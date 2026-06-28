@@ -1,0 +1,17 @@
+[project]
+name = "baseline-supply-chain-panel"
+version = "0.1.0"
+description = "Baseline Compustat customer-network pipeline for financial uncertainty analysis."
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "wrds>=3.1",
+  "networkx>=3.0",
+  "pyarrow>=12.0",
+  "statsmodels>=0.14",
+  "pyyaml>=6.0",
+]
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,25 @@
+# Copy to config/pipeline_config.yaml and fill in paths as needed.
+#
+# WRDS credentials are read by the wrds package from ~/.pgpass, .env-style
+# environment variables, or interactive login depending on your local setup.
+
+paths:
+  financial_uncertainty: ""
+  factset_revere: ""
+  factset_supply_chain: ""
+  capital_iq_supply_chain: ""
+
+wrds:
+  fundamentals_library_candidates: ["comp", "comp_na_daily_all", "comp_na_annual_all"]
+  fundamentals_table_candidates: ["funda"]
+  customer_segment_library_candidates: ["comp", "compseg", "comp_segments", "wrdsapps"]
+  customer_segment_keywords: ["customer", "cust", "segment", "segments", "supply", "supplier"]
+
+pipeline:
+  start_year:
+  end_year:
+  financial_uncertainty_value_column:
+  compute_expensive_network_metrics: true
+  run_diagnostic_regressions: true
+  write_csv: true
+  write_parquet: true

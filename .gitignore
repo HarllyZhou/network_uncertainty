@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+config/pipeline_config.yaml
+data/raw/*
+data/interim/*
+data/processed/*
+data/output/*
+data/logs/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/output/.gitkeep
+!data/logs/.gitkeep
