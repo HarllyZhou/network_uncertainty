@@ -1,0 +1,141 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Production Networks and Formation of Aggregate Uncertainty}
+\author{
+Harlly Zhou\footnotemark[1]\\\texttt{hzhouci@ust.hk}
+}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        {\LARGE\bfseries Production Networks and Formation of Aggregate Uncertainty\par}
+        \vspace{1.5em}
+        {\large
+        Harlly Zhou\footnotemark[1] (\texttt{hzhouci@ust.hk})\\
+        }
+        \vspace{1em}
+        \today
+    \end{center}
+    \vspace{2em}
+    \begin{abstract}
+        \sloppy
+        \noindent 
+         \vspace{1em}
+
+        \noindent\textbf{JEL Codes:} 
+        \noindent\textbf{Keywords:} 
+        \fussy
+    \end{abstract}
+    \thispagestyle{empty}
+    \setcounter{page}{0}
+\end{titlepage}
+
+
+\section{Introduction}\label{sec:introduction}
+
+\citep{acemogluEndogenousProductionNetworks2020}
+
+\clearpage
+\bibliographystyle{aer.bst}
+\bibliography{network_uncertainty.bib}
+
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Publication Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+\begin{appendix}
+% Formatting options
+\addcontentsline{toc}{section}{Appendices}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\renewcommand{\theequation}{\thesection\arabic{equation}}
+\numberwithin{equation}{section}
+% \setcounter{page}{1}
+\setcounter{figure}{0} \renewcommand{\thefigure}{\Roman{section}.\arabic{figure}}
+\setcounter{table}{0} \renewcommand{\thetable}{\Roman{section}.\arabic{table}}
+\setcounter{subsection}{0} \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
+\setcounter{equation}{0} \renewcommand{\theequation}{\Roman{section}.\arabic{equation}}
+\setcounter{theorem}{0} \renewcommand{\thetheorem}{\Roman{section}.\arabic{theorem}}
+\setcounter{definition}{0} \renewcommand{\thedefinition}{\Roman{section}.\arabic{definition}}
+% \setcounter{proposition}{0} \renewcommand{\theproposition}{\Roman{section}.\arabic{proposition}}
+\setcounter{assumption}{0} \renewcommand{\theassumption}{\Roman{section}.\arabic{assumption}}
+% \setcounter{hyp}{0} \renewcommand{\thehyp}{\Roman{section}.\arabic{hyp}}
+\setcounter{footnote}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{appendix}
+\end{document}
