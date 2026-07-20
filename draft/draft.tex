@@ -94,7 +94,184 @@ Harlly Zhou\footnotemark[1]\\\texttt{hzhouci@ust.hk}
 
 \section{Introduction}\label{sec:introduction}
 
+
 \citep{acemogluEndogenousProductionNetworks2020}
+
+\section{Benchmark Model}\label{sec:benchmark}
+In the benchmark model, we assume that all the agents have full information with rational expectations (FIRE). The friction in this economy is the financial friction in the form of borrowing constraint.
+
+Time is discrete and indexed by $t=0, 1, 2, \cdots$. There are representative agents with unit mass who consume a consumption aggregator $C_t$, make deposits $D_t$ and supplies labour $N_t$, a representative firm in each sector $i\in\{1, 2, \cdots, N\}$ \footnote{In the following, we will use the sector index $i$ and firm $i$ interchangeably.} that produces a differentiatiated good $y_{i,t}$ using labour $n_{i,t}$ and intermediate input $x_{ij, t}$ from sectors $j$, competitive financial intermediaries that takes deposits from households and supplies credit to firms, and a monetary authority that sets the nominal interest rate $i_t$.
+
+Interest rates are dated by when they are set, but need not apply over the same window. The policy rate $i_t$ is set at the beginning of period $t$ and remunerates deposits from the beginning of period $t+1$ to its end (so deposits $D_t$ earn $i_t$ in period $t+1$). The intra-period loan rate $i^L_{i,t}$ is set at the beginning of period $t$ and applies from the beginning of period $t$ to its end; it is priced off the predetermined funding rate $i_{t-1}$ that prevails over that same window.
+
+The timeline within a period $t$ is as follows. At the beginning of the period, the monetary authority sets the nominal interest rate $i_t$. The financial intermediary charges firm $i$ the loan rate $i^L_{i,t}$, and firms borrow, hire labour, and buy intermediate inputs. At the end of the period, productivity realizes, firms produce and sell goods and repay $\left(1+i^L_{i,t}\right)b_{i,t}$, and households consume, collect the maturity payoff $\left(1+i_{t-1}\right)$ on deposits $D_{t-1}$, and choose new deposits $D_t$.
+
+\subsection{Environment}
+\subsubsection{Households}
+
+Households gain utility from a consumption aggregator $C_t$ and disutility from labour supply $N_t$:
+\begin{align}\label{eq:hh_utility}
+    U(C_t, N_t) = \log C_t - \frac{\chi}{1+\varphi} N_t^{1+\varphi},
+\end{align}
+with $\chi > 0$ and $\varphi>0$, where the consumption aggregator is given by a CES aggregator of the differentiated goods $c_{i,t}$:
+\begin{align}\label{eq:cons_aggregator}
+    C_t = \left(\sum_{i=1}^N \rho_i^{\frac{1}{\xi}} c_{i,t}^{\frac{\xi-1}{\xi}}\right)^{\frac{\xi}{\xi-1}}
+\end{align}
+with $\rho_i \in (0,1)$ the demand weight of goods $i$ satisfying $\sum_{i=1}^N \rho_i = 1$ and $\xi>0$ the elasticity of substitution (EoS) between goods. As a result, the price level is given by
+\begin{align}\label{eq:price_level}
+    P_t = \left(\sum_{i=1}^N \rho_i p_{i,t}^{1-\xi}\right)^{\frac{1}{1-\xi}}.
+\end{align}
+where $p_{i,t}$ is the price of good $i$.
+
+They are subject to a budget constraint:
+\begin{align}\label{eq:hh_budget}
+    P_t C_t + D_t \leq W_t N_t + \left(1+i^D_{t-1}\right) D_{t-1} + \Pi^y_t + \Pi^f_t,
+\end{align}
+where $W_t$ is the nominal wage, $i^D_{t-1}$ is the nominal interest rate on deposits made in period $t-1$ (paid in period $t$), $\Pi^y_t$ is the total nominal profit of all the firms, and $\Pi^f_t$ is the total nominal profit of the financial intermediary.
+
+\subsubsection{Firms}
+Firm $i$ uses intermediate inputs from other sectors so that the economy has a network, denoted by an $N \times N$ matrix $\Omega_t = \left(\omega_{ij,t}\right)_{i,j=1}^N$ where the $(i,j)$-th entry $\omega_{ij,t}$ denotes the expenditure share of firm $i$ on input $j$. The corresponding quantity of $j$ used to produce $i$ is $x_{ij,t}$. Firms take input prices as given. For simplicity, assume that prices are pre-determined before productivity $A_{i,t}$ realizes.
+
+The firm produces its output $y_{i,t}$ using the following production function:
+\begin{align}\label{eq:firm_prod_fcn}
+    y_{i,t} = A_{i,t} n_{i,t}^{\alpha_{i,t}} \prod_{j=1}^N x_{ij, t}^{\omega_{ij,t}}
+\end{align}
+with $\alpha_{i,t} + \sum_{j=1}^N \omega_{ij, t} = 1$, where $A_{i,t}$ is the stochastic productivity
+\begin{align}\label{eq:firm_productivity}
+    \log A_{i,t} = \bar{a}_i + \sigma_{i,t-1} \epsilon_{i,t}.
+\end{align}
+
+We look at the components of productivity in \eqref{eq:firm_productivity} one by one. $\bar{a}_i$ denotes the sector-specific average productivity. $\sigma_{i,t}$ denotes the standard deviation scale of log productivity. $\epsilon_{i,t}\sim\mathcal{N}(0,1)$ with joint normal distribution ${\bf \epsilon}_t = (\epsilon_{1,t}, \epsilon_{2,t}, \cdots, \epsilon_{N,t})' \sim \mathcal{N}\left({\bf 0}, \Sigma_{\epsilon,t}\right)$ denotes the number of units of standard deviation. 
+
+Assume that uncertainty shocks are independent, \text{i.e.,} $\sigma_{i,t}$'s are independent among sectors and are independent of level shocks $\epsilon_{i,t}$. Assume that the uncertainty shocks follow: 
+\begin{align}
+    \log \sigma^2_{i,t} = (1-\phi)\log \bar{\sigma}^2_i + \phi \log \sigma^2_{i,t-1} + v_{i,t},
+\end{align}
+where $\phi\in(0,1)$ and $v_{i,t} \sim \mathcal{N}(0,\sigma^2_v)$ is the uncertainty shock. This decomposition isolates the uncertainty shock from the level shock: a shock to $\epsilon_{i,t}$ changes the realized productivity but not the distribution, while a shock to $\sigma_{i,t}$ changes the future conditional distribution of productivity. To be more precise, since $\sigma_{i,t} \perp \epsilon_{i,t}$, 
+\begin{align*}
+    \operatorname{Var}_{t-1}\left(\log A_{i,t}\right) = \operatorname{Var}_{t-1}\left(\sigma_{i,t-1} \epsilon_{i,t}\right) = \sigma_{i,t-1}^2.
+\end{align*}
+
+At the beginning of each period, each firm $i$ faces labour costs $W_t n_{i,t}$ and intermediate input costs $\sum_{j=1}^N p_{j,t}x_{ij, t}$. Therefore, it needs to borrow $b_{i,t}$ from the financial intermediary to cover the costs:
+\begin{align}\label{eq:firm_financial_constraint}
+    W_t n_{i,t} + \sum_{j=1}^N p_{j,t}x_{ij, t} \leq  b_{i,t},
+\end{align}
+subject to a borrowing constraint, which will be discussed soon in the Section \ref{sec:financial_intermediary}. At the end of the period, the firm has a revenue $R_{i,t} = p_{i,t} y_{i,t}$ and repays the debt $b_{i,t}$ together with interest at the intra-period loan rate $i^L_{i,t}$. Its nominal profit $\Pi^y_{i,t} = R_{i,t} - \left(1 + i^L_{i,t}\right) b_{i,t}$ will be distributed to the households.
+
+
+\subsubsection{Financial Intermediary}\label{sec:financial_intermediary}
+
+Competitive financial intermediaries take the deposit rate as tied to the policy rate $i^D_t = i_t$ (so deposits $D_t$ earn $i_t$ in period $t+1$). Period-$t$ working-capital loans are funded by outstanding deposits $D_{t-1}$ and are priced off the predetermined funding rate $i_{t-1}$ using a common risk-pricing rule $i^L_{i,t} = i_{t-1} + s_{i,t}$, where $s_{i,t}$ is the credit spread satisfying:
+\begin{align*}
+    s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(R_{i,t}\right),
+\end{align*}
+for some $\psi > 0$.
+
+Financial intermediaries receive a nominal transfer $X_t$ from the monetary authority at the beginning of period $t$. Its balance-sheet constraint is given by
+\begin{align}
+    \sum_{i=1}^N b_{i,t} \leq D_{t-1} + X_t.
+\end{align}
+For each firm $i$, the intermediary imposes the borrowing constraint
+\begin{align}
+    b_{i,t}
+    \leq
+    \kappa \mu_{i,t|t-1}
+    -
+    \theta \sigma_{i,t|t-1},
+    \label{eq:borrowing_constraint}
+\end{align}
+where $\mu_{i,t|t-1} = \mathbb{E}_{t-1}\left[R_{i,t}\right]$ and $\sigma_{i,t|t-1} = \sqrt{\operatorname{Var}_{t-1}\left(R_{i,t}\right)}$ are the mean and standard deviation of revenue conditional on information available at the end of period $t-1$. $\kappa>0$ captures the pledgeability of expected revenue and $\theta>0$ captures the sensitivity of credit capacity to revenue risk.\footnote{This reduced-form constraint is in the spirit of a default-tolerance lending rule. Suppose the intermediary requires
+\begin{align*}
+    \mathbb{P}_{t-1}
+    \left(
+    R_{i,t}
+    <
+    (1+i^L_{i,t})b_{i,t}
+    \right)
+    \leq
+    \delta,
+\end{align*}
+where $\delta$ is a common default tolerance. If $R_{i,t}$ is conditionally normal, this condition implies
+\begin{align*}
+    b_{i,t}
+    \leq
+    \frac{
+    \mu_{i,t|t-1}
+    -
+    z_{1-\delta} \times \sigma_{i,t|t-1}
+    }
+    {1+i^L_{i,t}} .
+\end{align*}
+Thus borrowing capacity is increasing in expected revenue and decreasing in revenue risk, as summarized by \eqref{eq:borrowing_constraint}.}
+
+We will not explicitly solve for the financial intermediary's optimization problem in the benchmark model. In the Appendix, we will show that the credit spread setting rule and the borrowing constraint consist of a reduced-form representation of the solution to thefinancial intermediary's optimization problem.
+
+
+
+\subsubsection{Monetary Authority}
+Assume that the monetary authority sets the nominal interest rate $i_t$ at the beginning of each period. This rate applies from the beginning of period $t+1$ to its end (equivalently, deposits $D_t$ earn $i_t$ in period $t+1$), so period-$t$ loans are priced off the predetermined rate $i_{t-1}$ via $i^L_{i,t} = i_{t-1} + s_{i,t}$. Assume that it is exogenous for the benchmark model and we will introduce the Taylor rule when policy implication is discussed.
+
+The monetary authority also makes a nominal transfer $X_t$ at the beginning of period $t$ to the financial intermediary so that the money supply rule is given by
+\begin{align}\label{eq:money_supply_rule}
+    M^S_{t} - M^S_{t-1} = X_t.
+\end{align}
+
+
+
+
+
+\subsection{Agents' Decisions}
+\subsubsection{Households}
+Households choose consumption $C_t$, labour supply $N_t$, and deposits $D_t$ to maximized their discounted lifetime utility:
+\begin{align*}
+    \max_{C_t, N_t, D_t} \mathbb{E}_0\sum_{t=0}^\infty \beta^t U(C_t, N_t),
+\end{align*}
+where $\beta\in(0,1)$ is the discount factor, subject to the budget constraint \eqref{eq:hh_budget}. The first-order conditions (FOC) imply the Euler equation \eqref{eq:hh_foc_euler} and the labour supply \eqref{eq:hh_foc_labour}:
+\begin{align}
+    1 &= \beta \mathbb{E}_t \left[\frac{1+i^D_t}{1+\pi_{t+1}}\frac{C_t}{C_{t+1}}\right], \label{eq:hh_foc_euler} \\
+    \frac{W_t}{P_t} &= \chi C_t N_t^{\varphi}. \label{eq:hh_foc_labour}
+\end{align}
+
+\subsubsection{Firms}
+Firms choose labour $n_{i,t}$, intermediate inputs $\{x_{ij,t}\}_{j=1}^N$ and debt $b_{i,t}$ to maximize their nominal profit $\Pi^y_{i,t}$:
+\begin{align*}
+    \max_{n_{i,t}, \{x_{ij,t}\}_{j=1}^N, b_{i,t}} \mathbb{E}_{t-1}\Pi^y_{i,t},
+\end{align*}
+subject to the production function \eqref{eq:firm_prod_fcn}, the financial constraint \eqref{eq:firm_financial_constraint} with Lagrange Multiplier $\lambda^1_{i,t}$ and the borrowing constraint \eqref{eq:borrowing_constraint} with Lagrange Multiplier $\lambda^2_{i,t}$. The FOCs imply that
+\begin{align}
+    \frac{W_t n_{i,t}}{p_{j,t}x_{ij,t}} &= \frac{\alpha_{i,t}}{\omega_{ij,t}},\qquad \forall j\neq i, \label{eq:firm_labour_input} \\
+    \frac{p_{j,t}x_{ij,t}}{p_{k,t}x_{ik,t}} &= \frac{\omega_{ij,t}}{\omega_{ik,t}},\qquad \forall j, k \neq i, \label{eq:firm_different_input} \\
+    \lambda^1_{i,t} - \lambda^2_{i,t} &= 1 + i^{L}_{i,t}. \label{eq:firm_borrowing_foc}
+\end{align} 
+
+First, since prices are predetermined, the first two moments of revenue are proportional to the same production aggregator. This indicates that the borrowing constraint changes the scale of production but not the relative input demand. Hence the standard Cobb-Douglas cost-share conditions hold. Second, it follows from the condition \eqref{eq:firm_borrowing_foc} that the financial constraint must bind since $1 + i^L_{i,t} > 0$ implies that $\lambda^1_{i,t} > \lambda^2_{i,t} \geq 0$.
+
+
+
+\subsection{Equilibrium}
+There are three market in the economy: the goods market, the labour market, and the financial market. The goods market clears when 
+\begin{align}\label{eq:goods_market_clear}
+    y_{i,t} = c_{i,t} + \sum_{j=1}^N x_{ji, t}, \; \forall i.
+\end{align}
+This means that the total output of firm $i$ is equal to the final comsumption of the household plus the intermediate inputs used by other firms.
+
+The labour market clears when
+\begin{align}\label{eq:labour_market_clear}
+    N_t = \sum_{i=1}^N n_{i,t}.
+\end{align}
+
+The financial market clears when
+\begin{align}
+    \sum_{i=1}^N b_{i,t} = D_{t-1} + X_t.
+\end{align}
+
+
+
+
+
+
+
+
 
 \clearpage
 \bibliographystyle{aer.bst}

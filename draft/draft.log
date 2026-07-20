@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.7)  10 JUL 2026 16:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.7)  20 JUL 2026 13:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/harlly/Desktop/credit_uncertainty_network/draft/draft.tex
-(/Users/harlly/Desktop/credit_uncertainty_network/draft/draft.tex
+**/Users/harlly/Desktop/network_uncertainty/draft/draft.tex
+(/Users/harlly/Desktop/network_uncertainty/draft/draft.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -910,12 +910,20 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 17.28pt on input line 95.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 17.28pt on input line 95.
- [1] (./draft.bbl
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 103.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 103.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 103.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 7.
+(Font)              scaled to size 14.4pt on input line 109.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 110.
+ [1] [2] [3] [4] [5] [6] [7] (./draft.bbl
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 12.0pt on input line 7.
-) [2
+) [8
 
 ] (./draft.aux)
  ***********
@@ -923,21 +931,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `draft.out' has not changed.
-(rerunfilecheck)             Checksum: 9814C2D956916ADB9290ECA4E25C967A;103.
+(rerunfilecheck)             Checksum: 4E89514F0DFC956B917603B126FDB79F;1353.
  ) 
 Here is how much of TeX's memory you used:
- 19612 strings out of 474116
- 309678 string characters out of 5743683
- 1928187 words of memory out of 5000000
- 41625 multiletter control sequences out of 15000+600000
- 587342 words of font info for 93 fonts, out of 8000000 for 9000
+ 19789 strings out of 474116
+ 312232 string characters out of 5743683
+ 1940187 words of memory out of 5000000
+ 41727 multiletter control sequences out of 15000+600000
+ 630645 words of font info for 192 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,5n,93p,597b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on draft.pdf (3 pages, 99802 bytes).
+ 80i,11n,93p,729b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on draft.pdf (9 pages, 183684 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 9 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 158 compressed objects within 2 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
