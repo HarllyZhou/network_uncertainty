@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex draft"] 1784526296.70239 "draft.aux" "draft.bbl" "draft" 1784526302.38245 0
+["bibtex draft"] 1784627341.44812 "draft.aux" "draft.bbl" "draft" 1784627343.31301 0
   "./aer.bst" 1783672192.10874 26811 771c5f71720eb59d6ae3121b064cdc33 ""
   "./network_uncertainty.bib" 1783672158.0274 57266 451a671dcc1d314339d8737d4cec76ae ""
-  "draft.aux" 1784526300.36093 3139 05f32938e91422c41c449347f2bd0669 "pdflatex"
+  "draft.aux" 1784627342.84969 3530 580429da4724d3170c19b09fdb65bc71 "pdflatex"
   (generated)
   "draft.bbl"
   "draft.blg"
   (rewritten before read)
-["pdflatex"] 1784526297.15649 "/Users/harlly/Desktop/network_uncertainty/draft/draft.tex" "draft.pdf" "draft" 1784526302.38578 0
-  "/Users/harlly/Desktop/network_uncertainty/draft/draft.tex" 1784526283.70149 16863 3009b10cd27a870e77abf6de0163c3a4 ""
+["pdflatex"] 1784627341.6131 "/Users/harlly/Desktop/network_uncertainty/draft/draft.tex" "draft.pdf" "draft" 1784627343.31323 0
+  "/Users/harlly/Desktop/network_uncertainty/draft/draft.tex" 1784627339.24381 25872 d8ccdb2eeb313379302d24b14d6aa432 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -40,6 +40,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm" 1569879884 1836 3af1bb0996e7f6070b70151de6395c2c ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txbmiaX.tfm" 1634244313 1704 00003e649bfb4755db663842be5471e6 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm" 1699567298 900 fc8190d6de1e520c751c99f1e4e5fe0a ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txexas.tfm" 1569879884 816 6a1b25d3c5b1a590c84505d9b6f91824 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txexs.tfm" 1621283831 1552 a4f9bb57de5b2864f3db1cb10ac7ad3a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm" 1569879884 920 99acdf374993fd46fd345f9cac168080 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm" 1634244313 1716 a6b113dfe808a82f532d14b1f370053f ""
@@ -47,6 +48,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/txfonts/txtt.tfm" 1136768653 1200 1032be7d597a4dce33bcda3c08fc1be0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb" 1572128992 32409 1452fa0ce4fabfb48acd5d077e296f6d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb" 1572128992 34733 61fa3c01fac511e451670c1b454ff211 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexas.pfb" 1569879884 23767 60f658096ab41f859b518103790fc331 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb" 1621283831 33424 f912ebe54685d0a65d3c046e3d517e38 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb" 1635022465 56686 b959be5e2e4a0232f5aa4c1c4be4574a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb" 1692649180 44726 c0c4f2d62278d1adbb6a666ba2cb0447 ""
@@ -58,6 +60,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntx-Bold-tlf-ot1.vf" 1572470264 956 0cf724d01d1d2d4ced0eca019099663a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntx-Italic-tlf-ot1.vf" 1572470264 956 2e470d34f6c84588eb717201f2f99e2d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf" 1583272976 956 44be8e0aea9c6d145fc21c9948a6b4b5 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntxexa.vf" 1487028062 576 6ffe6b42c20f7fbf4391e66fec9eda3f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntxexx.vf" 1699567298 1716 73c8d39d4c3ace9ec98a8f066bb3b494 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntxmi.vf" 1622581641 2612 4fd3785b7e98639f68f908a08c642071 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/vf/public/newtx/ntxmi7.vf" 1622753257 2576 4000b56c7179792370b883556f71007a ""
@@ -186,10 +189,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1712517235.13044 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1712517173 8221434 d8e240af24971eecbe43a8a3cd5838bb ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "draft.aux" 1784526300.36093 3139 05f32938e91422c41c449347f2bd0669 "pdflatex"
-  "draft.bbl" 1784526297.14303 375 0e67da0bfee0d69662b0e97934effc2f "bibtex draft"
-  "draft.out" 1784526300.36479 1353 4e89514f0dfc956b917603b126fdb79f "pdflatex"
-  "draft.tex" 1784526283.70149 16863 3009b10cd27a870e77abf6de0163c3a4 ""
+  "draft.aux" 1784627342.84969 3530 580429da4724d3170c19b09fdb65bc71 "pdflatex"
+  "draft.bbl" 1784627341.60881 375 0e67da0bfee0d69662b0e97934effc2f "bibtex draft"
+  "draft.out" 1784627342.85072 1353 4e89514f0dfc956b917603b126fdb79f "pdflatex"
+  "draft.tex" 1784627339.24381 25872 d8ccdb2eeb313379302d24b14d6aa432 ""
   (generated)
   "draft.aux"
   "draft.log"

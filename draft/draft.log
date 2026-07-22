@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.7)  20 JUL 2026 13:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.7)  21 JUL 2026 17:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -920,10 +920,15 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 14.4pt on input line 109.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 12.0pt on input line 110.
- [1] [2] [3] [4] [5] [6] [7] (./draft.bbl
+ [1] [2]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 7.
-) [8
+(Font)              scaled to size 12.0pt on input line 157.
+ [3] [4] [5] [6] [7] [8] [9] [10]
+Overfull \hbox (0.13902pt too wide) in paragraph at lines 440--441
+[]\OT1/minntx/m/n/12 Firms max-i-mize ex-pected nom-i-nal prof-its sub-ject to the pro-duc-tion func-tion, the working-
+ []
+
+[11] (./draft.bbl) [12
 
 ] (./draft.aux)
  ***********
@@ -934,18 +939,18 @@ Package rerunfilecheck Info: File `draft.out' has not changed.
 (rerunfilecheck)             Checksum: 4E89514F0DFC956B917603B126FDB79F;1353.
  ) 
 Here is how much of TeX's memory you used:
- 19789 strings out of 474116
- 312232 string characters out of 5743683
- 1940187 words of memory out of 5000000
- 41727 multiletter control sequences out of 15000+600000
- 630645 words of font info for 192 fonts, out of 8000000 for 9000
+ 19814 strings out of 474116
+ 312947 string characters out of 5743683
+ 1943187 words of memory out of 5000000
+ 41746 multiletter control sequences out of 15000+600000
+ 626671 words of font info for 184 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,11n,93p,729b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on draft.pdf (9 pages, 183684 bytes).
+ 80i,16n,93p,737b,603s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on draft.pdf (13 pages, 207897 bytes).
 PDF statistics:
- 191 PDF objects out of 1000 (max. 8388607)
- 158 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 185 compressed objects within 2 object streams
+ 55 named destinations out of 1000 (max. 500000)
  89 words of extra memory for PDF output out of 10000 (max. 10000000)
 
