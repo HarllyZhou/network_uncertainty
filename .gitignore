@@ -1,7 +1,16 @@
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
 .venv/
+venv/
 .env
+
+# Pipeline / local config & data
 config/pipeline_config.yaml
 data/raw/*
 data/interim/*
@@ -13,3 +22,33 @@ data/logs/*
 !data/processed/.gitkeep
 !data/output/.gitkeep
 !data/logs/.gitkeep
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.run.xml
+*.figlist
+*.makefile
+*-blx.bib
+draft/*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
