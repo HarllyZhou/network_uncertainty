@@ -195,13 +195,14 @@ where $s_{i,t}$ is the credit spread satisfying
     +
     \psi U_t,
 \end{align}
-for some $\psi>0$, where $U_t$ is the aggregate uncertainty measure à la [].
+for some $\psi>0$, where $U_t$ is the aggregate uncertainty measure as an weighted average of the firm-level uncertainty measures à la \citep{juradoMeasuringUncertainty2015} and \citep{ludvigsonUncertaintyBusinessCycles2021} defined as the variance \footnote{The original papers defined the uncertainty measure in terms of standard deviation. We use variance here for consistency with the assumed process of the uncertainty shock.} of the forecast error of an objective variable, namely the logarithm of productivity in this paper:
 \begin{align*}
-    U_t = \sum_{i=1}^N \omega^U_{i,t-1}\left(\sigma^R_{i,t|t-1}\right)^2
-    =
-    \sum_{i=1}^N \omega^U_{i,t} \operatorname{Var}_{t-1}\left(R_{i,t}\right) = \sum_{i=1}^N \omega^U_{i,t} p_{i,t} \tilde{y}_{i,t} \sigma^A_{i,t|t-1}
+    U_t := \sum_{i=1}^N \omega^U_{i,t-1} \sigma^2_{i,t-1},
 \end{align*}
-is the aggregate variance of firm revenue with $\omega^U_{i,t-1}$ being the weights.
+where the weight is defined as the share of firm $i$'s nominal output in the aggregate output:
+\begin{align*}
+    \omega^U_{i,t-1} = \frac{p_{i,t} \tilde{y}_{i,t}}{\sum_{i=1}^N p_{i,t} \tilde{y}_{i,t}}.
+\end{align*}
 
 The intermediary lends $\ell_{i,t}$ to firm $i$ with the nominal balance-sheet constraint
 \begin{align}\label{eq:balance_sheet_constraint}
