@@ -181,7 +181,7 @@ will be distributed to the households.
 
 Competitive financial intermediaries take the deposit rate as tied to the policy rate $i^D_t=i_t$, so deposits $D_t$ earn $i_t$ in period $t+1$. Period-$t$ working-capital loans are funded by outstanding nominal deposits $D_{t-1}$ and are priced off the predetermined funding rate $i_{t-1}$ using a common risk-pricing rule:
 \begin{align*}
-    i^L_{i,t}
+    i^L_{t}
     =
     i_{t-1}
     +
@@ -193,31 +193,29 @@ where $s_{i,t}$ is the credit spread satisfying
     =
     \bar{s}
     +
-    \psi \left(\sigma^R_{i,t|t-1}\right)^2,
+    \psi U_t,
 \end{align}
-for some $\psi>0$, where 
+for some $\psi>0$, where $U_t$ is the aggregate uncertainty measure à la [].
 \begin{align*}
-    \sigma^R_{i,t|t-1}
+    U_t = \sum_{i=1}^N \omega^U_{i,t-1}\left(\sigma^R_{i,t|t-1}\right)^2
     =
-    \sqrt{\operatorname{Var}_{t-1}\left(R_{i,t}\right)} = p_{i,t} \tilde{y}_{i,t} \sigma^A_{i,t|t-1}
+    \sum_{i=1}^N \omega^U_{i,t} \operatorname{Var}_{t-1}\left(R_{i,t}\right) = \sum_{i=1}^N \omega^U_{i,t} p_{i,t} \tilde{y}_{i,t} \sigma^A_{i,t|t-1}
 \end{align*}
-is the conditional standard deviation of firm revenue.
+is the aggregate variance of firm revenue with $\omega^U_{i,t-1}$ being the weights.
 
-
-
-The intermediary's nominal balance-sheet constraint is
+The intermediary lends $\ell_{i,t}$ to firm $i$ with the nominal balance-sheet constraint
 \begin{align}\label{eq:balance_sheet_constraint}
-    \sum_{i=1}^N b_{i,t}
+    \sum_{i=1}^N \ell_{i,t}
     \leq
     D_{t-1}.
 \end{align}
 Its nominal profit $\Pi^f_t$ is given by
 \begin{align*}
-    \Pi^f_t = \sum_{i=1}^N \min\left\{R_{i,t}, (1+i^L_{i,t})b_{i,t}\right\} - (1+i_{t-1})D_{t-1}.
+    \Pi^f_t = \sum_{i=1}^N \min\left\{R_{i,t}, (1+i^L_{i,t})\ell_{i,t}\right\} + \left(D_{t-1} - \sum_{i=1}^N \ell_{i,t} \right) - (1+i_{t-1})D_{t-1}.
 \end{align*}
-For each firm $i$, the intermediary imposes the borrowing constraint
+For each firm $i$, the intermediary imposes the borrowing constraint 
 \begin{align}
-    b_{i,t}
+    \ell_{i,t}
     \leq
     \kappa \mu^R_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right),
     \label{eq:borrowing_constraint}
@@ -228,7 +226,10 @@ where
     =
     \mathbb{E}_{t-1}\left[R_{i,t}\right] = p_{i,t} \tilde{y}_{i,t} \mu^A_{i,t|t-1},
 \end{align*}
-is the mean of revenue conditional on information available at the end of period $t-1$. The parameter $\kappa>0$ captures the pledgeability of expected revenue, and $\theta>0$ captures the sensitivity of credit capacity to revenue risk. This constraint prevents the intermediary from severe credit risk, but it cannot eliminate default. 
+is the mean of revenue conditional on information available at the end of period $t-1$. The parameter $\kappa>0$ captures the pledgeability of expected revenue, and $\theta>0$ captures the sensitivity of credit capacity to revenue risk. This constraint prevents the intermediary from severe credit risk, but it cannot eliminate default. Moreover, the realized borrowing amount will not exceed the lending amount:
+\begin{align*}
+    b_{i,t} \leq \ell_{i,t}, \forall i.
+\end{align*}
 
 
 We will not explicitly solve for the financial intermediary's optimization problem in the benchmark model. We show that the credit-spread rule and the borrowing constraint can be interpreted as a reduced-form representation of competitive risk-based lending.
@@ -239,39 +240,59 @@ The financial intermediary's optimization problem is to maximize its nominal pro
 \end{align*}
 subject to
 \begin{align*}
-    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{i,t})b_{i,t} \right) \leq \delta,
+    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{i,t})\ell_{i,t} \right) \leq \delta,
 \end{align*}
 for some $\delta \in (0,1)$. 
 
 We first derive the implication of the default-tolerance rule. Note that $R_{i,t} = p_{i,t} \tilde{y}_{i,t} A_{i,t}$. Therefore, the rule implies that
 \begin{align*}
-    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{i,t})b_{i,t} \right) &= \mathbb{P}_{t-1} \left( \log A_{i,t} < \log\left((1+i^L_{i,t})b_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} \right) \\
-    &= \Phi\left(\frac{\log\left((1+i^L_{i,t})b_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} - \bar{a}_i}{\sigma_{i,t-1}}\right)\\
+    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{i,t})\ell_{i,t} \right) &= \mathbb{P}_{t-1} \left( \log A_{i,t} < \log\left((1+i^L_{i,t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} \right) \\
+    &= \Phi\left(\frac{\log\left((1+i^L_{i,t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} - \bar{a}_i}{\sigma_{i,t-1}}\right)\\
     &\leq \delta.
 \end{align*}
 This is equivalent to
 \begin{align*}
-    b_{i,t} \leq \frac{\mu^R_{i,t|t-1}}{1+i^L_{i,t}}\exp\left(-\frac{1}{2}{\sigma^2_{i,t-1}}-z_{1-\delta}\sigma_{i,t-1}\right) = \frac{\exp\left(-\frac{1}{2}\sigma^2_{i,t-1}\right)}{1+i^L_{i,t}} \mu^R_{i,t|t-1} \exp(-z_{1-\delta}\sigma_{i,t-1}).
+    \ell_{i,t} \leq \frac{\mu^R_{i,t|t-1}}{1+i^L_{i,t}}\exp\left(-\frac{1}{2}{\sigma^2_{i,t-1}}-z_{1-\delta}\sigma_{i,t-1}\right) = \frac{\exp\left(-\frac{1}{2}\sigma^2_{i,t-1}\right)}{1+i^L_{i,t}} \mu^R_{i,t|t-1} \exp(-z_{1-\delta}\sigma_{i,t-1}).
 \end{align*}
 Denote $\kappa := \frac{\exp\left(-\frac{1}{2}\sigma^2_{i,t-1}\right)}{1+i^L_{i,t}}$ and $\theta := z_{1-\delta}$. Then the default-tolerance rule implies the borrowing constraint \eqref{eq:borrowing_constraint}.
 
 Now consider the objective function:
-\begin{align*}
-    \mathbb{E}_{t-1}\Pi^f_t = \sum_{i=1}^N \left[p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi(q_2)\right) + (1+i^L_{i,t})b_{i,t} \Phi(q_1)\right] - (1-i_{t-1})D_{t-1},
-\end{align*}
+\begin{align}\label{eq:exp_fina_intermediary_profit}
+    \mathbb{E}_{t-1}\Pi^f_t = \sum_{i=1}^N \left[p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi(q_2)\right) + (1+i^L_{i,t})\ell_{i,t} \Phi(q_1)\right] - (1+i_{t-1})D_{t-1},
+\end{align}
 where
 \begin{align*}
-    q_1 &= \frac{\bar{a}_i - \log\left((1+i^L_{i,t})b_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}},\\
-    q_2 &= \frac{\bar{a}_i + \sigma^2_{i,t-1} - \log\left((1+i^L_{i,t})b_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}} = q_1 + \sigma_{i,t-1}.
+    q_1 &= \frac{\bar{a}_i - \log\left((1+i^L_{i,t})\ell_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}},\\
+    q_2 &= \frac{\bar{a}_i + \sigma^2_{i,t-1} - \log\left((1+i^L_{i,t})\ell_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}} = q_1 + \sigma_{i,t-1}.
 \end{align*}
+
+Here we pause a bit for a technical lemma that is directly obtained from the definitions of $q_1$ and $q_2$.
+\begin{lemma}[Densities at $q_1$ and $q_2$]\label{lemma:pdf_q1_q2}
+    The probability densities of $q_1$ and $q_2$ have the following relationship:
+    \begin{align*}
+        \frac{\phi(q_2)}{\phi{q_1}} = \frac{\left(1+i^L_{i,t}\right)\ell_{i,t}}{p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}}.
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Note that $q_2 = q_1 + \sigma_{i,t-1}$. Therefore,
+    \begin{align*}
+        \frac{\phi(q_2)}{\phi(q_1)} = \exp \left(-q_1\sigma_{i,t-1} -\frac{1}{2} \sigma_{i,t-1}^2 \right).
+    \end{align*}
+    Substituting the expression of $q_1$ into the expression yields
+    \begin{align*}
+        \frac{\phi(q_2)}{\phi(q_1)} &= \exp \left(-\bar{a}_i + \log\left((1+i^L_{i,t})\ell_{i,t}\right) - \log \left(p_{i,t}\tilde{y}_{i,t}\right) - \frac{1}{2}\sigma_{i,t-1}^2 \right)\\
+        &= \frac{\left(1+i^L_{i,t}\right)\ell_{i,t}}{p_{i,t}\tilde{y}_{i,t}} \exp \left(-\bar{a}_i - \frac{1}{2}\sigma_{i,t-1}^2 \right).
+    \end{align*}
+    By Lemma \ref{lemma:conditional_mean_std_productivity_benchmark}, $\exp \left(-\bar{a}_i - \frac{1}{2}\sigma_{i,t-1}^2 \right) = \left(\mu^A_{i, t|t-1}\right)^{-1}$. We are done. 
+\end{proof}
 
 Since financial intermediaries are perfectly competitive, they should have zero expected profit for each loan $i$ made. A footnote here is that the potential realized loss will be borne by household consumption. Suppose that the default-tolerance constriant binds. Then we have
 \begin{align*}
-    (1+i^L_{i,t})b_{i,t} = p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\exp\left(-\frac{1}{2}\sigma^2_{i,t-1} - z_{1-\delta}\sigma_{i,t-1}\right).
+    (1+i^L_{i,t})\ell_{i,t} = p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\exp\left(-\frac{1}{2}\sigma^2_{i,t-1} - z_{1-\delta}\sigma_{i,t-1}\right).
 \end{align*}
 This condition and the zero-expected profit condition for loan $i$ together imply that
 \begin{align*}
-    p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right) + (1+i^L_{i,t})b_{i,t}(1-\delta) = (1+i_{t-1})b_{i,t}.
+    p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right) + (1+i^L_{i,t})\ell_{i,t}(1-\delta) = (1+i_{t-1})\ell_{i,t}.
 \end{align*}
 Further simplifying the expression yields
 \begin{align*}
@@ -304,7 +325,16 @@ Consider the function $f(a) = \phi(a) - a\Phi(-a)$. Note that
     &= -a\phi(a) -\Phi(-a) + a\phi(a)\\
     &= -\Phi(-a) < 0.
 \end{align*}
-Since $\inf f(a) = f(+\infty) = 0 - 0\cdot +\infty \leq 0$, we have $f(a) > 0$ for all $a\in\mathbb{R}$. This implies that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Then we are able to define the second term as $s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(R_{i,t}\right)$ in a reduced-form representation of competitive risk-based lending.
+Since $\inf_{a \in \mathbb{R}} f(a) = f(+\infty) = 0 - 0\cdot +\infty \leq 0$, we have $f(a) > 0$ for all $a\in\mathbb{R}$. This implies that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Then we are able to define the second term as $s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(R_{i,t}\right)$ in a reduced-form representation of competitive risk-based lending.
+
+Another way is to completely solve for the optimization problem subject to a binding balance sheet constraint:
+\begin{align*}
+    \sum_{i=1}^N \ell_{i,t} = D_{t-1}.
+\end{align*}
+Substituting this into the objective \eqref{eq:exp_fina_intermediary_profit} and taking FOC with respect to $\ell_{i,t}$ yield
+\begin{align*}
+    [\ell_{i,t}]:\,\,
+\end{align*}
 
 
 \subsubsection{Monetary Authority}
@@ -345,14 +375,12 @@ Expanding using the definition of $\Pi^y_{i,t}$ and $\tilde{y}_{i,t}$, the objec
 \begin{align*}
     \mathbb{E}_{t-1}\Pi^y_{i,t} = \mu^A_{i,t|t-1}p_{i,t} \tilde{y}_{i,t}\Phi(q_2) - (1+i^L_{i,t})b_{i,t} \Phi(q_1),
 \end{align*}
-where $\Phi(\cdot)$ is the cumulative distribution function of the standard normal distribution with probability density function $\phi(\cdot)$ and $q_1$ and $q_2$ are defined as in the proof of Lemma \ref{lemma:conditional_mean_std_productivity_benchmark}.
-Note that
+where $\Phi(\cdot)$ is the cumulative distribution function of the standard normal distribution with probability density function $\phi(\cdot)$ and $q_1$ and $q_2$ are defined as in the proof of Lemma \ref{lemma:conditional_mean_std_productivity_benchmark}. Since firms will borrow as much as they can, that is, $b_{i,t} = \ell_{i,t}$, Lemma \ref{lemma:pdf_q1_q2} implies that
 \begin{align*}
-    \frac{\phi(q_2)}{\phi(q_1)} &= \exp\left({-\sigma_{i,t-1}q_1 - \frac{\sigma^2_{i,t-1}}{2}}\right) = \frac{(1+i^L_{i,t})b_{i,t}}{\mu^A_{i,t|t-1}p_{i,t}\tilde{y}_{i,t}}.
+    \frac{\phi(q_2)}{\phi(q_1)} = \frac{(1+i^L_{i,t})b_{i,t}}{\mu^A_{i,t|t-1}p_{i,t}\tilde{y}_{i,t}}.
 \end{align*}
-We can simplify the FOCs as follows
 
-The FOCs are given by
+We can simplify the FOCs as follows:
 \begin{align}
     [n_{i,t}]:\, &\mu^A_{i,t|t-1}\alpha_{i,t}\frac{\tilde{y}_{i,t}}{n_{i,t}}\Phi(q_2) = \lambda^1_{i,t}\frac{W_t}{p_{i,t}} - \lambda^2_{i,t}\kappa \mu^A_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right) \alpha_{i,t} \frac{\tilde{y}_{i,t}}{n_{i,t}};\notag \\
     [x_{ij,t}]:\, &\mu^A_{i,t|t-1}\omega_{ij,t}\frac{\tilde{y}_{i,t}}{x_{ij,t}}\Phi(q_2)  = \lambda^1_{i,t}\frac{p_{j,t}}{p_{i,t}} - \lambda^2_{i,t}\kappa \mu^A_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right)  \omega_{ij,t} \frac{\tilde{y}_{i,t}}{x_{ij,t}},\quad \forall j;\notag\\
@@ -365,7 +393,7 @@ The first two FOCs implies that the cost-share conditions hold:
     \frac{p_{j,t}x_{ij,t}}{p_{k,t}x_{ik,t}} &= \frac{\omega_{ij,t}}{\omega_{ik,t}},\quad \forall j \neq k. \label{eq:firm_different_input}
 \end{align}
 The condition \eqref{eq:firm_borrowing_foc} implies the following Lemma.
-\begin{lemma}[Binding Working-Capital Constraint]
+\begin{lemma}[Binding Working-Capital Constraint]\label{lemma:working_capital_binding}
     The working-capital constraint \eqref{eq:firm_financial_constraint} binds in any interior solution with finite $q_1$.
 \end{lemma}
 \begin{proof}
@@ -403,9 +431,7 @@ The labour market clears when
 
 The financial market clears when
 \begin{align}\label{eq:financial_market_clear}
-    \sum_{i=1}^N b_{i,t}
-    =
-    D_{t-1}.
+    b_{i,t} = \ell_{i,t}, \forall i.
 \end{align}
 
 Given initial nominal deposits $D_{-1}$, initial money supply $M^S_{-1}$,
@@ -416,7 +442,8 @@ and exogenous policy processes $\{i_t,X_t\}_{t=0}^{\infty}$, a competitive equil
     \{n_{i,t}\}_{i=1}^N,
     \{x_{ij,t}\}_{i,j=1}^N,
     \{y_{i,t}\}_{i=1}^N,
-    \{b_{i,t}\}_{i=1}^N
+    \{b_{i,t}\}_{i=1}^N,
+    \{\ell_{i,t}\}_{i=1}^N
     \right\}_{t=0}^{\infty},
 \end{align*}
 prices and rates
@@ -439,9 +466,27 @@ such that, for all $t$ and all states:
     \item Households maximize expected lifetime utility subject to the nominal budget constraint.
     \item Firms maximize expected nominal profits subject to the production function, the working-capital constraint, and the borrowing constraint.
     \item Financial intermediaries satisfy the balance-sheet constraint, the loan-pricing rule, and the borrowing-capacity rule.
-    \item The monetary authority sets $i_t$ and $X_t$ according to the benchmark policy process.
+    \item The monetary authority sets $i_t$ according to the benchmark policy process.
     \item Goods, labor, and financial markets clear.
 \end{enumerate}
+
+\subsection{An Economy without Production Network}
+We would like to compare the effect of uncertainty shock between a network economy with a non-networked economy. We assume the same household with the same objective and budget constraint. We also adapt the same environment for financial intermediary and monetary authority. However, the firms have a different setting.
+
+To make the production process comparable, we assume that the production of a variety of good $i$ requires some capital $k_{i,t}$ instead of the intermediate goods with the following production function
+\begin{align*}
+    y_{i,t} = A_{i,t} n_{i,t}^{\alpha_{i,t}}k_{i,t}^{1-\alpha_{i,t}}.
+\end{align*}
+The capital is assumed to be borrowed at the beginning of each period from the financial intermediary with price $p^k_{i,t}$. Therefore, the budget constraint of the firms is
+\begin{align*}
+    W_t n_{i,t} + p^k_{i,t} k_{i,t} \leq b_{i,t}.
+\end{align*}
+
+At the same time, the goods market clears when 
+\begin{align*}
+    y_{i,t} = c_{i,t}.
+\end{align*}
+
 
 
 
