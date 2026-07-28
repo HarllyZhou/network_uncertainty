@@ -127,7 +127,7 @@ They are subject to a budget constraint:
 \begin{align}\label{eq:hh_budget}
     P_t C_t + D_t \leq W_t N_t + \left(1+i^D_{t-1}\right) D_{t-1} + \Pi^y_t + \Pi^f_t,
 \end{align}
-where $W_t$ is the nominal wage, $i^D_{t-1}$ is the nominal interest rate on deposits made in period $t-1$ (paid in period $t$), $\Pi^y_t$ is the total nominal profit of all the firms, and $\Pi^f_t$ is the total nominal profit of the financial intermediary.
+where $W_t$ is the nominal wage, $i^D_{t-1}$ is the nominal interest rate on deposits made in period $t-1$ (paid in period $t$), $\Pi^y_t$ is the total nominal profit of all the firms, and $\Pi^f_t$ is the total nominal profit of the financial intermediary which is allowed to be negative to reflect possible defaults.
 
 \subsubsection{Firms}
 Firm $i$ uses intermediate inputs from other sectors so that the economy has a network, denoted by an $N \times N$ matrix $\Omega_t = \left(\omega_{ij,t}\right)_{i,j=1}^N$ where the $(i,j)$-th entry $\omega_{ij,t}$ denotes the expenditure share of firm $i$ on input $j$. The corresponding quantity of $j$ used to produce $i$ is $x_{ij,t}$. Firms take input prices as given. For simplicity, assume that prices are pre-determined before productivity $A_{i,t}$ realizes.
@@ -201,7 +201,7 @@ for some $\psi>0$, where $U_t$ is the aggregate uncertainty measure as an weight
 \end{align*}
 where the weight is defined as the share of firm $i$'s nominal output in the aggregate output:
 \begin{align*}
-    \omega^U_{i,t-1} = \frac{p_{i,t} \tilde{y}_{i,t}}{\sum_{i=1}^N p_{i,t} \tilde{y}_{i,t}}.
+    \omega^U_{i,t-1} = \frac{p_{i,t} y_{i,t}}{\sum_{i=1}^N p_{i,t} y_{i,t}}.
 \end{align*}
 
 The intermediary lends $\ell_{i,t}$ to firm $i$ with the nominal balance-sheet constraint
@@ -212,7 +212,7 @@ The intermediary lends $\ell_{i,t}$ to firm $i$ with the nominal balance-sheet c
 \end{align}
 Its nominal profit $\Pi^f_t$ is given by
 \begin{align*}
-    \Pi^f_t = \sum_{i=1}^N \min\left\{R_{i,t}, (1+i^L_{i,t})\ell_{i,t}\right\} + \left(D_{t-1} - \sum_{i=1}^N \ell_{i,t} \right) - (1+i_{t-1})D_{t-1}.
+    \Pi^f_t = \sum_{i=1}^N \left[\min\left\{R_{i,t}, (1+i^L_{t})\ell_{i,t}\right\} - \ell_{i,t} \right]  - i_{t-1} D_{t-1}.
 \end{align*}
 For each firm $i$, the intermediary imposes the borrowing constraint 
 \begin{align}
@@ -240,64 +240,88 @@ The financial intermediary's optimization problem is to maximize its nominal pro
     \max_{b_{i,t}} \mathbb{E}_{t-1}\Pi^f_t,
 \end{align*}
 subject to
-\begin{align*}
-    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{i,t})\ell_{i,t} \right) \leq \delta,
-\end{align*}
-for some $\delta \in (0,1)$. 
+\begin{align}\label{eq:default_tolerance_rule}
+    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) \leq \delta,
+\end{align}
+for some $\delta \in (0,1)$, and the balance sheet constraint \eqref{eq:balance_sheet_constraint}.
 
 We first derive the implication of the default-tolerance rule. Note that $R_{i,t} = p_{i,t} \tilde{y}_{i,t} A_{i,t}$. Therefore, the rule implies that
 \begin{align*}
-    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{i,t})\ell_{i,t} \right) &= \mathbb{P}_{t-1} \left( \log A_{i,t} < \log\left((1+i^L_{i,t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} \right) \\
-    &= \Phi\left(\frac{\log\left((1+i^L_{i,t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} - \bar{a}_i}{\sigma_{i,t-1}}\right)\\
-    &\leq \delta.
+    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) &= \mathbb{P}_{t-1} \left( \log A_{i,t} < \log\left((1+i^L_{t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} \right) \\
+    &= 1-\Phi(q_{1,i})\\
+    &\leq \delta,
 \end{align*}
-This is equivalent to
+where
 \begin{align*}
-    \ell_{i,t} \leq \frac{\mu^R_{i,t|t-1}}{1+i^L_{i,t}}\exp\left(-\frac{1}{2}{\sigma^2_{i,t-1}}-z_{1-\delta}\sigma_{i,t-1}\right) = \frac{\exp\left(-\frac{1}{2}\sigma^2_{i,t-1}\right)}{1+i^L_{i,t}} \mu^R_{i,t|t-1} \exp(-z_{1-\delta}\sigma_{i,t-1}).
+    q_{1,i} = \frac{\bar{a}_i - \log\left((1+i^L_{t})\ell_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}}.
 \end{align*}
-Denote $\kappa := \frac{\exp\left(-\frac{1}{2}\sigma^2_{i,t-1}\right)}{1+i^L_{i,t}}$ and $\theta := z_{1-\delta}$. Then the default-tolerance rule implies the borrowing constraint \eqref{eq:borrowing_constraint}.
+The exact default-tolerance rule yields
+\begin{align*}
+    \ell_{i,t}
+    \leq
+    \frac{\mu^R_{i,t|t-1}}{1+i^L_{i,t}}
+    \exp\left(
+    -\frac{1}{2}\sigma^2_{i,t-1}
+    -
+    z_{1-\delta}\sigma_{i,t-1}
+    \right).
+\end{align*}
+This motivates the reduced-form borrowing-capacity constraint \eqref{eq:borrowing_constraint} where $\kappa>0$ captures pledgeability and average funding-cost effects, while $\theta>0$ captures the sensitivity of credit capacity to revenue risk.
 
 Now consider the objective function:
 \begin{align}\label{eq:exp_fina_intermediary_profit}
-    \mathbb{E}_{t-1}\Pi^f_t = \sum_{i=1}^N \left[p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi(q_2)\right) + (1+i^L_{i,t})\ell_{i,t} \Phi(q_1)\right] - (1+i_{t-1})D_{t-1},
+    \mathbb{E}_{t-1}\Pi^f_t = \sum_{i=1}^N \left[p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi(q_{2,i})\right) + (1+i^L_{i,t})\ell_{i,t} \Phi(q_{1,i}) - \ell_{i,t}\right] - i_{t-1}D_{t-1},
 \end{align}
 where
 \begin{align*}
-    q_1 &= \frac{\bar{a}_i - \log\left((1+i^L_{i,t})\ell_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}},\\
-    q_2 &= \frac{\bar{a}_i + \sigma^2_{i,t-1} - \log\left((1+i^L_{i,t})\ell_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}} = q_1 + \sigma_{i,t-1}.
+    q_{2,i} &= \frac{\bar{a}_i + \sigma^2_{i,t-1} - \log\left((1+i^L_{t})\ell_{i,t}\right) + \log \left(p_{i,t}\tilde{y}_{i,t}\right)}{\sigma_{i,t-1}} = q_{1,i} + \sigma_{i,t-1}.
 \end{align*}
 
-Here we pause a bit for a technical lemma that is directly obtained from the definitions of $q_1$ and $q_2$.
-\begin{lemma}[Densities at $q_1$ and $q_2$]\label{lemma:pdf_q1_q2}
-    The probability densities of $q_1$ and $q_2$ have the following relationship:
+Here we pause a bit for a technical lemma that is directly obtained from the definitions of $q_{1,i}$ and $q_{2,i}$.
+\begin{lemma}[Densities at $q_{1,i}$ and $q_{2,i}$]\label{lemma:pdf_q1_q2}
+    The probability densities of $q_{1,i}$ and $q_{2,i}$ have the following relationship:
     \begin{align*}
-        \frac{\phi(q_2)}{\phi{q_1}} = \frac{\left(1+i^L_{i,t}\right)\ell_{i,t}}{p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}}.
+        \frac{\phi(q_{2,i})}{\phi(q_{1,i})} = \frac{\left(1+i^L_{t}\right)\ell_{i,t}}{p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}}.
     \end{align*}
 \end{lemma}
 \begin{proof}
-    Note that $q_2 = q_1 + \sigma_{i,t-1}$. Therefore,
+    Note that $q_{2,i} = q_{1,i} + \sigma_{i,t-1}$. Therefore,
     \begin{align*}
-        \frac{\phi(q_2)}{\phi(q_1)} = \exp \left(-q_1\sigma_{i,t-1} -\frac{1}{2} \sigma_{i,t-1}^2 \right).
+        \frac{\phi(q_{2,i})}{\phi(q_{1,i})} = \exp \left(-q_{1,i}\sigma_{i,t-1} -\frac{1}{2} \sigma_{i,t-1}^2 \right).
     \end{align*}
-    Substituting the expression of $q_1$ into the expression yields
+    Substituting the expression of $q_{1,i}$ into the expression yields
     \begin{align*}
-        \frac{\phi(q_2)}{\phi(q_1)} &= \exp \left(-\bar{a}_i + \log\left((1+i^L_{i,t})\ell_{i,t}\right) - \log \left(p_{i,t}\tilde{y}_{i,t}\right) - \frac{1}{2}\sigma_{i,t-1}^2 \right)\\
-        &= \frac{\left(1+i^L_{i,t}\right)\ell_{i,t}}{p_{i,t}\tilde{y}_{i,t}} \exp \left(-\bar{a}_i - \frac{1}{2}\sigma_{i,t-1}^2 \right).
+        \frac{\phi(q_{2,i})}{\phi(q_{1,i})} &= \exp \left(-\bar{a}_i + \log\left((1+i^L_{t})\ell_{i,t}\right) - \log \left(p_{i,t}\tilde{y}_{i,t}\right) - \frac{1}{2}\sigma_{i,t-1}^2 \right)\\
+        &= \frac{\left(1+i^L_{t}\right)\ell_{i,t}}{p_{i,t}\tilde{y}_{i,t}} \exp \left(-\bar{a}_i - \frac{1}{2}\sigma_{i,t-1}^2 \right).
     \end{align*}
     By Lemma \ref{lemma:conditional_mean_std_productivity_benchmark}, $\exp \left(-\bar{a}_i - \frac{1}{2}\sigma_{i,t-1}^2 \right) = \left(\mu^A_{i, t|t-1}\right)^{-1}$. We are done. 
 \end{proof}
 
-Since financial intermediaries are perfectly competitive, they should have zero expected profit for each loan $i$ made. A footnote here is that the potential realized loss will be borne by household consumption. Suppose that the default-tolerance constriant binds. Then we have
+\begin{corollary}[Default-tolerance constraint binds]\label{corollary:default_tolerance_constraint_binds}
+    When the default-tolerance constraint binds, $q_{1,i} = z_{1-\delta}$ for all $i$.
+\end{corollary}
+\begin{proof}
+    Suppose that the default-tolerance constriant binds. Then we have
+    \begin{align}\label{eq:default_tolerance_constraint_binds}
+        (1+i^L_{t})\ell_{i,t} = p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\exp\left(-\frac{1}{2}\sigma^2_{i,t-1} - z_{1-\delta}\sigma_{i,t-1}\right).
+    \end{align}
+    By Lemma \ref{lemma:pdf_q1_q2}, we have
+    \begin{align*}
+        \exp\left(-\frac{1}{2}\sigma^2_{i,t-1} - z_{1-\delta}\sigma_{i,t-1}\right) = \frac{\phi(q_{2,i})}{\phi(q_{1,i})} = \exp\left(-\frac{1}{2}\sigma^2_{i,t-1} - q_{1,i}\sigma_{i,t-1}\right).
+    \end{align*}
+    It follows from the the monotonicty of the exponential functions that $z_{1-\delta} = q_{1,i}$.
+\end{proof}
+
+The derivation below shows that competitive risk-based lending implies a loan rate that is increasing in revenue risk. We use the linear spread rule \eqref{eq:credit_spread_rule} as a reduced-form approximation to this structural pricing relation.
+
+Since financial intermediaries are perfectly competitive, they should have zero expected profit for each loan $i$ made. The potential realized loss will be borne by household consumption. Suppose that the default-tolerance constraint binds. 
+Thien equation \eqref{eq:default_tolerance_constraint_binds} and the zero-expected profit condition for loan $i$ together imply that
 \begin{align*}
-    (1+i^L_{i,t})\ell_{i,t} = p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\exp\left(-\frac{1}{2}\sigma^2_{i,t-1} - z_{1-\delta}\sigma_{i,t-1}\right).
-\end{align*}
-This condition and the zero-expected profit condition for loan $i$ together imply that
-\begin{align*}
-    p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right) + (1+i^L_{i,t})\ell_{i,t}(1-\delta) = (1+i_{t-1})\ell_{i,t}.
+    p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right) + (1+i^L_{t})\ell_{i,t}(1-\delta) = (1+i_{t-1})\ell_{i,t}.
 \end{align*}
 Further simplifying the expression yields
 \begin{align*}
-    1 + i^L_{i,t} = (1+i_{t-1})\left[\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right) + (1-\delta)\right]^{-1}
+    1 + i^L_{t} = (1+i_{t-1})\left[\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right) + (1-\delta)\right]^{-1}
 \end{align*}
 We now show that the multiplier to $1+i_{t-1}$ is greater than or equal to 1. Note that
 \begin{align*}
@@ -312,12 +336,12 @@ where the inequality is derived from $x \geq z_{1-\delta}$. The result follows.
 
 Taking log approximation on both sides, we get
 \begin{align*}
-    i^L_{i,t} = i_{t-1} + \left[\delta-\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right)\right].
+    i^L_{t} = i_{t-1} + \left[\delta-\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right)\right].
 \end{align*}
 It remains to show that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Differentiating the second term with respect to $\sigma_{i,t-1}$, we get
 \begin{align*}
     &\frac{d}{d\sigma_{i,t-1}}\left[\delta-\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left(1-\Phi\left(z_{1-\delta}+\sigma_{i,t-1}\right)\right)\right]\\
-     = &\,\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left[\phi(z_{1-\delta}+\sigma_{i,t-1}) - (z_{1-\delta}+\sigma_{i,t-1})\left(\Phi(-z_{i-\delta}-\sigma_{i,t-1})\right)\right].
+     = &\,\exp\left(\frac{1}{2}\sigma^2_{i,t-1}+z_{1-\delta}\sigma_{i,t-1}\right)\left[\phi(z_{1-\delta}+\sigma_{i,t-1}) - (z_{1-\delta}+\sigma_{i,t-1})\left(\Phi(-z_{1-\delta}-\sigma_{i,t-1})\right)\right].
 \end{align*}
 
 Consider the function $f(a) = \phi(a) - a\Phi(-a)$. Note that
@@ -326,16 +350,193 @@ Consider the function $f(a) = \phi(a) - a\Phi(-a)$. Note that
     &= -a\phi(a) -\Phi(-a) + a\phi(a)\\
     &= -\Phi(-a) < 0.
 \end{align*}
-Since $\inf_{a \in \mathbb{R}} f(a) = f(+\infty) = 0 - 0\cdot +\infty \leq 0$, we have $f(a) > 0$ for all $a\in\mathbb{R}$. This implies that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Then we are able to define the second term as $s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(R_{i,t}\right)$ in a reduced-form representation of competitive risk-based lending.
+Moreover, by the Mills ratio,
+\begin{align*}
+    \lim_{a\to+\infty}
+    \left[
+    \phi(a)-a\Phi(-a)
+    \right]
+    =
+    0.
+\end{align*}
+Since $f'(a)=-\Phi(-a)<0$, $f$ is strictly decreasing and converges to zero from above. Therefore $f(a)>0$ for every finite $a$. This implies that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Then we are able to define the second term as $s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(R_{i,t}\right)$ in a reduced-form representation of competitive risk-based lending.
 
-Another way is to completely solve for the optimization problem subject to a binding balance sheet constraint:
+Another way is to completely solve for the optimization problem subject to the balance sheet constraint \eqref{eq:balance_sheet_constraint} with Lagrange Multiplier $\lambda^f_t$. This provides the optimal lending amount of the financial intermediary, as is stated in the following Lemma.
+\begin{lemma}[Optimal Lending Amount]\label{lemma:optimal_lending_amount}
+    Suppose the intermediary chooses $\{\ell_{i,t}\}_{i=1}^N$ to maximize expected profit subject to the balance-sheet constraint and the default-tolerance constraint. Then the optimal lending amount $\ell_{i,t}$ is characterized by
+    \begin{align*}
+        \Phi(q_{1,i}) =
+        \left\{
+        \begin{array}{ll}
+            \dfrac{1}{1+i^L_t},
+            & \text{if } \sum_{i=1}^N \ell_{i,t}<D_{t-1}
+            \text{ and the default-tolerance constraint does not bind}, \\[1.2em]
+            \dfrac{1+i_{t-1}}{1+i^L_t},
+            & \text{if } \sum_{i=1}^N \ell_{i,t}=D_{t-1}
+            \text{ and the default-tolerance constraint does not bind}, \\[1.2em]
+            1-\delta,
+            & \text{if the default-tolerance constraint binds}.
+        \end{array}
+        \right.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    Let
+    \begin{align*}
+        m_i(\ell_{i,t})
+        :=
+        \mathbb{E}_{t-1}
+        \left[
+        \min\left\{
+        R_{i,t},(1+i^L_t)\ell_{i,t}
+        \right\}
+        \right].
+    \end{align*}
+    Using the lognormal formula derived above, we can write
+    \begin{align*}
+        m_i(\ell_{i,t})
+        =
+        p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}
+        \left(1-\Phi(q_{2,i})\right)
+        +
+        (1+i^L_t)\ell_{i,t}\Phi(q_{1,i}).
+    \end{align*}
+    The derivative of $m_i(\ell_{i,t})$ with respect to $\ell_{i,t}$ is
+    \begin{align*}
+        m_i'(\ell_{i,t})
+        =
+        (1+i^L_t)\Phi(q_{1,i}),
+    \end{align*}
+    where the density terms cancel by Lemma \ref{lemma:pdf_q1_q2}.
+
+    \noindent\textbf{Case 1: Balance-sheet constraint does not bind and the default-tolerance constraint does not bind.}
+    When the default-tolerance constraint does not bind, the lending FOC is
+    \begin{align*}
+        m_i'(\ell_{i,t})
+        =
+        1+\lambda^f_t,
+    \end{align*}
+    where $\lambda^f_t$ is the multiplier on the balance-sheet constraint
+    \begin{align*}
+        D_{t-1}-\sum_{i=1}^N\ell_{i,t}\geq 0.
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        (1+i^L_t)\Phi(q_{1,i})
+        =
+        1+\lambda^f_t.
+    \end{align*}
+    If the balance-sheet constraint does not bind, then complementary slackness implies
+    \begin{align*}
+        \lambda^f_t=0.
+    \end{align*}
+    Hence
+    \begin{align*}
+        \Phi(q_{1,i})
+        =
+        \frac{1}{1+i^L_t}.
+    \end{align*}
+
+    \noindent\textbf{Case 2: Balance-sheet constraint binds and the default-tolerance constraint does not bind.}
+    If the balance-sheet constraint binds, then
+    \begin{align*}
+        D_{t-1}
+        =
+        \sum_{i=1}^N \ell_{i,t}.
+    \end{align*}
+    Therefore, the intermediary's expected profit can be rewritten as
+    \begin{align*}
+        \mathbb{E}_{t-1}\Pi^f_t
+        =
+        \sum_{i=1}^N
+        \left[
+        p_{i,t}\mu^A_{i,t|t-1}\tilde{y}_{i,t}
+        \left(1-\Phi(q_{2,i})\right)
+        +
+        (1+i^L_t)\ell_{i,t}\Phi(q_{1,i})
+        -
+        (1+i_{t-1})\ell_{i,t}
+        \right].
+    \end{align*}
+    Since the default-tolerance constraint does not bind in this case, the FOC is
+    \begin{align*}
+        m_i'(\ell_{i,t})
+        =
+        1+i_{t-1}.
+    \end{align*}
+    Using $m_i'(\ell_{i,t})=(1+i^L_t)\Phi(q_{1,i})$, we obtain
+    \begin{align*}
+        (1+i^L_t)\Phi(q_{1,i})
+        =
+        1+i_{t-1}.
+    \end{align*}
+    Hence
+    \begin{align*}
+        \Phi(q_{1,i})
+        =
+        \frac{1+i_{t-1}}{1+i^L_t}.
+    \end{align*}
+    Comparing this condition with the original KKT condition
+    \begin{align*}
+        (1+i^L_t)\Phi(q_{1,i})
+        =
+        1+\lambda^f_t
+    \end{align*}
+    also implies that, in this case,
+    \begin{align*}
+        \lambda^f_t=i_{t-1}.
+    \end{align*}
+
+    \noindent\textbf{Case 3: Default-tolerance constraint binds.} The result directly follows from Corollary \ref{corollary:default_tolerance_constraint_binds}.
+\end{proof}
+
+This lemma shows that the optimal lending amount is determined by the smaller of two values: the unconstrained lending amount implied by the intermediary's expected-profit FOC and the maximum lending amount allowed by the default-tolerance constraint. When the default-tolerance constraint is slack, the intermediary chooses lending so that the marginal expected repayment equals the relevant marginal funding cost. If the balance-sheet constraint is slack, this marginal cost is one. If the balance-sheet constraint binds, this marginal cost is $1+i_{t-1}$, and the shadow value of balance-sheet capacity in the original KKT formulation is $\lambda^f_t=i_{t-1}$.
+
+When the default-tolerance constraint binds, lending is pinned down by
 \begin{align*}
-    \sum_{i=1}^N \ell_{i,t} = D_{t-1}.
+    \Phi(q_{1,i})=1-\delta.
 \end{align*}
-Substituting this into the objective \eqref{eq:exp_fina_intermediary_profit} and taking FOC with respect to $\ell_{i,t}$ yield
+Equivalently, letting $z_{1-\delta}:=\Phi^{-1}(1-\delta)$, we have
 \begin{align*}
-    [\ell_{i,t}]:\,\,
+    q_{1,i}=z_{1-\delta}.
 \end{align*}
+Using the definition of $q_{1,i}$, this implies the default-tolerance lending cap
+\begin{align*}
+    \ell_{i,t}^{\max}
+    =
+    \frac{
+    p_{i,t}\tilde{y}_{i,t}\exp(\bar a_i)
+    }
+    {1+i^L_t}
+    \exp\left(
+    -z_{1-\delta}\sigma_{i,t-1}
+    \right).
+\end{align*}
+Equivalently, since
+\begin{align*}
+    \mu^A_{i,t|t-1}
+    =
+    \exp\left(
+    \bar a_i+\frac{1}{2}\sigma^2_{i,t-1}
+    \right),
+\end{align*}
+we can write
+\begin{align*}
+    \ell_{i,t}^{\max}
+    =
+    \frac{
+    p_{i,t}\tilde{y}_{i,t}\mu^A_{i,t|t-1}
+    }
+    {1+i^L_t}
+    \exp\left(
+    -\frac{1}{2}\sigma^2_{i,t-1}
+    -
+    z_{1-\delta}\sigma_{i,t-1}
+    \right).
+\end{align*}
+Therefore, when the default-tolerance constraint binds, the optimal lending amount is decreasing in the loan rate $i^L_t$ and in firm-level uncertainty $\sigma_{i,t-1}$. Since the loan rate satisfies $i^L_t=i_{t-1}+s_t$ with $s_t=\bar s+\psi U_t$, higher aggregate uncertainty $U_t$ reduces lending through a higher loan rate in the binding default-tolerance region.
+ 
 
 
 \subsubsection{Monetary Authority}
@@ -374,18 +575,17 @@ subject to the production function \eqref{eq:firm_prod_fcn}, the financial const
 
 Expanding using the definition of $\Pi^y_{i,t}$ and $\tilde{y}_{i,t}$, the objective function can be rewritten as
 \begin{align*}
-    \mathbb{E}_{t-1}\Pi^y_{i,t} = \mu^A_{i,t|t-1}p_{i,t} \tilde{y}_{i,t}\Phi(q_2) - (1+i^L_{i,t})b_{i,t} \Phi(q_1),
+    \mathbb{E}_{t-1}\Pi^y_{i,t} = \mu^A_{i,t|t-1}p_{i,t} \tilde{y}_{i,t}\Phi(q_{2,i}) - (1+i^L_{i,t})b_{i,t} \Phi(q_{1,i}),
 \end{align*}
-where $\Phi(\cdot)$ is the cumulative distribution function of the standard normal distribution with probability density function $\phi(\cdot)$ and $q_1$ and $q_2$ are defined as in the proof of Lemma \ref{lemma:conditional_mean_std_productivity_benchmark}. Since firms will borrow as much as they can, that is, $b_{i,t} = \ell_{i,t}$, Lemma \ref{lemma:pdf_q1_q2} implies that
+where $\Phi(\cdot)$ is the cumulative distribution function of the standard normal distribution with probability density function $\phi(\cdot)$ and $q_{1,i}$ and $q_{2,i}$ are defined as in the proof of Lemma \ref{lemma:conditional_mean_std_productivity_benchmark}. In equilibrium, financial-market clearing implies $b_{i,t}=\ell_{i,t}$. Therefore the density identity in Lemma \ref{lemma:pdf_q1_q2} applies with $\ell_{i,t}=b_{i,t}$ in the firm problem:
 \begin{align*}
-    \frac{\phi(q_2)}{\phi(q_1)} = \frac{(1+i^L_{i,t})b_{i,t}}{\mu^A_{i,t|t-1}p_{i,t}\tilde{y}_{i,t}}.
+    \frac{\phi(q_{2,i})}{\phi(q_{1,i})} = \frac{(1+i^L_{i,t})b_{i,t}}{\mu^A_{i,t|t-1}p_{i,t}\tilde{y}_{i,t}}.
 \end{align*}
-
-We can simplify the FOCs as follows:
+We can thus simplify the FOCs as follows:
 \begin{align}
-    [n_{i,t}]:\, &\mu^A_{i,t|t-1}\alpha_{i,t}\frac{\tilde{y}_{i,t}}{n_{i,t}}\Phi(q_2) = \lambda^1_{i,t}\frac{W_t}{p_{i,t}} - \lambda^2_{i,t}\kappa \mu^A_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right) \alpha_{i,t} \frac{\tilde{y}_{i,t}}{n_{i,t}};\notag \\
-    [x_{ij,t}]:\, &\mu^A_{i,t|t-1}\omega_{ij,t}\frac{\tilde{y}_{i,t}}{x_{ij,t}}\Phi(q_2)  = \lambda^1_{i,t}\frac{p_{j,t}}{p_{i,t}} - \lambda^2_{i,t}\kappa \mu^A_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right)  \omega_{ij,t} \frac{\tilde{y}_{i,t}}{x_{ij,t}},\quad \forall j;\notag\\
-    [b_{i,t}]:\, &(1+i^L_{i,t})\Phi(q_1) = \lambda^1_{i,t} - \lambda^2_{i,t}. \label{eq:firm_borrowing_foc}
+    [n_{i,t}]:\, &\mu^A_{i,t|t-1}\alpha_{i,t}\frac{\tilde{y}_{i,t}}{n_{i,t}}\Phi(q_{2,i}) = \lambda^1_{i,t}\frac{W_t}{p_{i,t}} - \lambda^2_{i,t}\kappa \mu^A_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right) \alpha_{i,t} \frac{\tilde{y}_{i,t}}{n_{i,t}};\notag \\
+    [x_{ij,t}]:\, &\mu^A_{i,t|t-1}\omega_{ij,t}\frac{\tilde{y}_{i,t}}{x_{ij,t}}\Phi(q_{2,i})  = \lambda^1_{i,t}\frac{p_{j,t}}{p_{i,t}} - \lambda^2_{i,t}\kappa \mu^A_{i,t|t-1} \exp\left(-\theta \sigma^2_{i,t-1}\right)  \omega_{ij,t} \frac{\tilde{y}_{i,t}}{x_{ij,t}},\quad \forall j;\notag\\
+    [b_{i,t}]:\, &(1+i^L_{i,t})\Phi(q_{1,i}) = \lambda^1_{i,t} - \lambda^2_{i,t}. \label{eq:firm_borrowing_foc}
 \end{align}
 
 The first two FOCs implies that the cost-share conditions hold:
@@ -395,16 +595,16 @@ The first two FOCs implies that the cost-share conditions hold:
 \end{align}
 The condition \eqref{eq:firm_borrowing_foc} implies the following Lemma.
 \begin{lemma}[Binding Working-Capital Constraint]\label{lemma:working_capital_binding}
-    The working-capital constraint \eqref{eq:firm_financial_constraint} binds in any interior solution with finite $q_1$.
+    The working-capital constraint \eqref{eq:firm_financial_constraint} binds in any interior solution with finite $q_{1,i}$.
 \end{lemma}
 \begin{proof}
     From the FOC with respect to $b_{i,t}$,
     \begin{align*}
-        \lambda^1_{i,t} - \lambda^2_{i,t} = (1+i^L_{i,t})\Phi(q_1).
+        \lambda^1_{i,t} - \lambda^2_{i,t} = (1+i^L_{i,t})\Phi(q_{1,i}).
     \end{align*}
-    Since $1+i^L_{i,t}>0$ and $\Phi(q_1)>0$ for finite $q_1$, we have
+    Since $1+i^L_{i,t}>0$ and $\Phi(q_{1,i})>0$ for finite $q_{1,i}$, we have
     \begin{align*}
-        \lambda^1_{i,t} = \lambda^2_{i,t} + (1+i^L_{i,t})\Phi(q_1) > 0.
+        \lambda^1_{i,t} = \lambda^2_{i,t} + (1+i^L_{i,t})\Phi(q_{1,i}) > 0.
     \end{align*}
     By complementary slackness for the working-capital constraint,
     \begin{align*}
@@ -496,8 +696,8 @@ At the same time, the goods market clears when
 
 
 \clearpage
-\bibliographystyle{aer.bst}
-\bibliography{network_uncertainty.bib}
+\bibliographystyle{aer}
+\bibliography{network_uncertainty}
 
 
 \clearpage
