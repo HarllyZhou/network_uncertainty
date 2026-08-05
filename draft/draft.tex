@@ -104,7 +104,7 @@ Time is discrete and indexed by $t=0, 1, 2, \cdots$. There are representative ag
 
 Interest rates are dated by when they are set, but need not apply over the same window. The policy rate $i_t$ is set at the beginning of period $t$ and remunerates deposits from the beginning of period $t+1$ to its end (so deposits $D_t$ earn $i_t$ in period $t+1$). The intra-period loan rate $i^L_{i,t}$ is set at the beginning of period $t$ and applies from the beginning of period $t$ to its end; it is priced off the predetermined funding rate $i_{t-1}$ that prevails over that same window.
 
-The timeline within period $t$ is as follows. At the beginning of the period, the monetary authority sets the nominal interest rate $i_t$. Firms observe the aggregate state, set nominal prices, and the financial intermediary offers loan rates $\{i^L_{i,t}\}_{i=1}^N$. Given these prices and loan rates, firms borrow, hire labor, and purchase intermediate inputs. Productivity then realizes. Firms produce and sell goods at the predetermined prices, repay $\left(1+i^L_{i,t}\right)b_{i,t}$ whenever they have sufficient revenue, and households consume, collect the maturity payoff $\left(1+i_{t-1}\right)D_{t-1}$ on deposits, receive firm and intermediary dividends, and choose new deposits $D_t$.\footnote{The assumption that firms are monopolistically competitive price setters but choose nominal prices before some within-period shocks are realized follows the sticky-price New Keynesian tradition. See, for example, \cite{sve}, Calvo (1983), and Christiano, Eichenbaum, and Evans (2005). The within-period timing in which firms finance production costs before sales revenue is realized is standard in the cost-channel or working-capital literature; see Ravenna and Walsh (2006) and Christiano, Eichenbaum, and Evans (2005).}
+The timeline within period $t$ is as follows. At the beginning of the period, the monetary authority sets the nominal interest rate $i_t$. Firms observe the aggregate state, set nominal prices, and the financial intermediary offers loan rates $\{i^L_{i,t}\}_{i=1}^N$. Given these prices and loan rates, firms borrow, hire labor, and purchase intermediate inputs. Productivity then realizes. Firms produce and sell goods at the predetermined prices, repay $\left(1+i^L_{i,t}\right)b_{i,t}$ whenever they have sufficient revenue, and households consume, collect the maturity payoff $\left(1+i_{t-1}\right)D_{t-1}$ on deposits, receive firm and intermediary dividends, and choose new deposits $D_t$.\footnote{The assumption that firms are monopolistically competitive price setters but choose nominal prices before some within-period shocks are realized follows the sticky-price New Keynesian tradition. See, for example, \cite{svenssonStickyGoodsPrices1986}, \cite{calvoStaggeredPricesUtilityMzximizing1983}, and \cite{christianoNominalRigiditiesDynamic2005}. The within-period timing in which firms finance production costs before sales revenue is realized is standard in the cost-channel or working-capital literature; see \cite{ravennaOptimalMonetaryPolicy2006} and \cite{christianoNominalRigiditiesDynamic2005}.}
 
 \subsection{Environment}
 \subsubsection{Households}
@@ -130,52 +130,148 @@ They are subject to a budget constraint:
 where $W_t$ is the nominal wage, $i^D_{t-1}$ is the nominal interest rate on deposits made in period $t-1$ (paid in period $t$), $\Pi^y_t$ is the total nominal profit of all the firms, and $\Pi^f_t$ is the total nominal profit of the financial intermediary which is allowed to be negative to reflect possible defaults.
 
 \subsubsection{Firms}
-Firm $i$ uses intermediate inputs from other sectors so that the economy has a network, denoted by an $N \times N$ matrix $\Omega_t = \left(\omega_{ij,t}\right)_{i,j=1}^N$ where the $(i,j)$-th entry $\omega_{ij,t}$ denotes the expenditure share of firm $i$ on input $j$. The corresponding quantity of $j$ used to produce $i$ is $x_{ij,t}$. Firms take input prices as given. For simplicity, assume that prices are pre-determined before productivity $A_{i,t}$ realizes.
 
-The firm produces its output $y_{i,t}$ using the following production function:
+Firm $i$ is a monopolistically competitive producer of differentiated good $i$. It uses labour and intermediate inputs from other sectors. The quantity of good $j$ used in the production of good $i$ is $x_{ij,t}$. Firms take wages and input prices as given. At the beginning of the period, firm $i$ sets its nominal price $p_{i,t}$ before productivity $A_{i,t}$ realizes.
+Final demand for good $i$ is implied by the household CES aggregator:
+\begin{align}\label{eq:final_demand_benchmark}
+    c_{i,t}
+    =
+    \rho_i
+    \left(
+    \frac{p_{i,t}}{P_t}
+    \right)^{-\xi}
+    \mathcal C_t .
+\end{align}
+In addition, firm $i$ also faces intermediate demand from downstream firms. Hence goods-market clearing requires
+\begin{align}\label{eq:goods_market_clear}
+    y_{i,t}
+    =
+    c_{i,t}
+    +
+    \sum_{j=1}^N x_{ji,t}.
+\end{align}
+
+Firm $i$ produces output according to
 \begin{align}\label{eq:firm_prod_fcn}
-    y_{i,t} = A_{i,t} \underbrace{n_{i,t}^{\alpha_{i,t}} \prod_{j=1}^N x_{ij, t}^{\omega_{ij,t}}}_{\equiv \tilde{y}_{i,t}}
+    y_{i,t}
+    =
+    A_{i,t}
+    \underbrace{
+    n_{i,t}^{\alpha_{i,t}}
+    \prod_{j=1}^N x_{ij,t}^{\omega_{ij,t}}
+    }_{\equiv \tilde y_{i,t}},
 \end{align}
-with $\alpha_{i,t} + \sum_{j=1}^N \omega_{ij, t} = 1$, where $A_{i,t}$ is the stochastic productivity
-\begin{align}\label{eq:firm_productivity}
-    \log A_{i,t} = \bar{a}_i + \sigma_{i,t-1} \epsilon_{i,t}.
-\end{align}
-
-We look at the components of productivity in \eqref{eq:firm_productivity} one by one. $\bar{a}_i$ denotes the sector-specific average productivity. $\sigma_{i,t}$ denotes the standard deviation scale of log productivity. $\epsilon_{i,t}\sim\mathcal{N}(0,1)$ with joint normal distribution ${\bf \epsilon}_t = (\epsilon_{1,t}, \epsilon_{2,t}, \cdots, \epsilon_{N,t})' \sim \mathcal{N}\left({\bf 0}, \Sigma_{\epsilon,t}\right)$ denotes the number of units of standard deviation. 
-
-Assume that uncertainty shocks are independent, \text{i.e.,} $\sigma_{i,t}$'s are independent among sectors and are independent of level shocks $\epsilon_{i,t}$. Assume that the uncertainty shocks follow: 
-\begin{align}\label{eq:uncertainty_shock_process}
-    \log \sigma^2_{i,t} = (1-\phi)\log \bar{\sigma}^2_i + \phi \log \sigma^2_{i,t-1} + v_{i,t},
-\end{align}
-where $\phi\in(0,1)$ and $v_{i,t} \sim \mathcal{N}(0,\sigma^2_v)$ is the uncertainty shock. This decomposition isolates the uncertainty shock from the level shock: a shock to $\epsilon_{i,t}$ changes the realized productivity but not the distribution, while a shock to $\sigma_{i,t}$ changes the future conditional distribution of productivity. To be more precise, since $\sigma_{i,t} \perp \epsilon_{i,t}$, 
+with
 \begin{align*}
-    \operatorname{Var}_{t-1}\left(\log A_{i,t}\right) = \operatorname{Var}_{t-1}\left(\sigma_{i,t-1} \epsilon_{i,t}\right) = \sigma_{i,t-1}^2.
+    \alpha_{i,t}
+    +
+    \sum_{j=1}^N \omega_{ij,t}
+    =
+    1,
+\end{align*}
+where $\alpha_{i,t}$ is the labour share of firm $i$ and $\omega_{ij,t}$ is the input share of firm $i$ on intermediate input $j$. The production network is defined by an $N \times N$ matrix $\tilde{\Omega}_t$ where the $(i,j)$-th entry is defined by
+\begin{align*}
+    \tilde{\omega}_{ij,t} = \frac{\omega_{ij,t}}{1-\alpha_{i,t}},
+\end{align*}
+so that the sum of each row of $\tilde{\Omega}_t$ is 1. Denote the un-normalized production network by $\Omega_t$ where the $(i,j)$-th entry is $\omega_{ij,t}$.
+The stochastic productivity process is
+\begin{align}\label{eq:firm_productivity}
+    \log A_{i,t}
+    =
+    \bar a_i
+    +
+    \sigma_{i,t-1}\epsilon_{i,t}.
+\end{align}
+Here $\bar a_i$ is the sector-specific average log productivity, $\sigma_{i,t}$ is the standard deviation scale of log productivity, and $\epsilon_{i,t}$ is the level shock. Let
+\begin{align*}
+    \boldsymbol{\epsilon}_t
+    =
+    (\epsilon_{1,t},\ldots,\epsilon_{N,t})',
+    \qquad
+    \boldsymbol{\epsilon}_t
+    \sim
+    \mathcal N(\mathbf 0,\Sigma_{\epsilon,t}).
+\end{align*}
+For each $i$, $\epsilon_{i,t}$ has mean zero and unit variance.
+
+Uncertainty shocks are independent across sectors and independent of level shocks. The uncertainty process is
+\begin{align}\label{eq:uncertainty_shock_process}
+    \log \sigma^2_{i,t}
+    =
+    (1-\phi)\log \bar\sigma_i^2
+    +
+    \phi \log \sigma^2_{i,t-1}
+    +
+    v_{i,t},
+\end{align}
+where $\phi\in(0,1)$ and $v_{i,t}\sim \mathcal N(0,\sigma_v^2)$. This decomposition separates level shocks from uncertainty shocks. A shock to $\epsilon_{i,t}$ changes realized productivity, while a shock to $\sigma_{i,t}$ changes the future conditional distribution of productivity. In particular, conditional on information at the end of period $t-1$,
+\begin{align*}
+    \operatorname{Var}_{t-1}
+    \left(
+    \log A_{i,t}
+    \right)
+    =
+    \operatorname{Var}_{t-1}
+    \left(
+    \sigma_{i,t-1}\epsilon_{i,t}
+    \right)
+    =
+    \sigma_{i,t-1}^2.
 \end{align*}
 
+The following lemma provides the conditional mean and standard deviation of productivity.
 
-The following lemma provides the closed-form solution to the conditional mean and standard deviation of productivity.
 \begin{lemma}[Conditional Mean and Standard Deviation of Productivity]\label{lemma:conditional_mean_std_productivity_benchmark}
-    Given the information at the end of period $t-1$, productivity at period $t$ is log-normally distributed with the conditional mean and standard deviation given by
-    \begin{align*}
-        \mu^A_{i,t|t-1} = e^{\bar{a}_i + \frac{1}{2}\sigma_{i,t-1}^2},
-        \quad
-        \sigma^A_{i,t|t-1} = \mu^A_{i,t|t-1}\sqrt{e^{\sigma_{i,t-1}^2} - 1}.
-    \end{align*}
+Given information at the end of period $t-1$, productivity in period $t$ is log-normally distributed, with conditional mean and standard deviation
+\begin{align*}
+    \mu^A_{i,t|t-1}
+    =
+    \exp\left(
+    \bar a_i+\frac{1}{2}\sigma_{i,t-1}^2
+    \right),
+    \qquad
+    \sigma^A_{i,t|t-1}
+    =
+    \mu^A_{i,t|t-1}
+    \sqrt{
+    \exp(\sigma_{i,t-1}^2)-1
+    }.
+\end{align*}
 \end{lemma}
+
 \begin{proof}
-    Conditional on the information at the end of period $t-1$, \eqref{eq:uncertainty_shock_process} implies that the log of productivity has mean $\bar{a}_i$ and standard deviation $\sigma_{i,t-1}$. The remaining follows from the properties of log-normal distribution.
+Conditional on information at the end of period $t-1$, $\log A_{i,t}$ is normally distributed with mean $\bar a_i$ and variance $\sigma_{i,t-1}^2$. The result follows from the standard moments of a log-normal random variable.
 \end{proof}
 
-At the beginning of each period, each firm $i$ faces labour costs $W_t n_{i,t}$ and intermediate input costs $\sum_{j=1}^N p_{j,t}x_{ij, t}$. Therefore, it needs to borrow $b_{i,t}$ from the financial intermediary to cover the costs:
+At the beginning of period $t$, firm $i$ chooses its preset price $p_{i,t}$, borrowing $b_{i,t}$, labour input $n_{i,t}$, and intermediate inputs $\{x_{ij,t}\}_{j=1}^N$. Since wages and input purchases must be paid before sales revenue is realized, the firm needs working capital to finance production costs:
 \begin{align}\label{eq:firm_financial_constraint}
-    W_t n_{i,t} + \sum_{j=1}^N p_{j,t}x_{ij, t} \leq  b_{i,t},
+    W_t n_{i,t}
+    +
+    \sum_{j=1}^N p_{j,t}x_{ij,t}
+    \leq
+    b_{i,t}.
 \end{align}
-subject to a borrowing constraint, which will be discussed soon in the Section \ref{sec:financial_intermediary}. At the end of the period, the firm has a revenue $\mathcal{R}_{i,t} = p_{i,t} y_{i,t}$ and repays the debt $b_{i,t}$ together with interest at the intra-period loan rate $i^L_{i,t}$. Its nominal profit 
-\begin{align*}
-\Pi^y_{i,t} = \max\left\{\mathcal{R}_{i,t} - \left(1 + i^L_{i,t}\right) b_{i,t}, 0\right\}
-\end{align*}
-will be distributed to the households.
+The firm is also subject to a borrowing constraint, which will be specified in Section \ref{sec:financial_intermediary}.
 
+At the end of the period, productivity realizes, the firm produces and sells good $i$ at the preset price $p_{i,t}$, and realized nominal revenue is
+\begin{align}\label{eq:firm_revenue}
+    \mathcal R_{i,t}
+    =
+    p_{i,t}y_{i,t}.
+\end{align}
+The firm repays its debt with gross interest rate $1+i^L_{i,t}$. Under limited liability, its nominal profit is
+\begin{align}\label{eq:firm_profit_limited_liability}
+    \Pi^y_{i,t}
+    =
+    \max
+    \left\{
+    \mathcal R_{i,t}
+    -
+    \left(1+i^L_{i,t}\right)b_{i,t},
+    0
+    \right\}.
+\end{align}
+Profits are distributed to households.
 
 \subsubsection{Financial Intermediary}\label{sec:financial_intermediary}
 
@@ -746,10 +842,10 @@ The condition \eqref{eq:firm_borrowing_foc} implies the following Lemma.
 
 
 \subsection{Equilibrium}
-There are three market in the economy: the goods market, the labour market, and the financial market. The goods market clears when 
-\begin{align}\label{eq:goods_market_clear}
+There are three market in the economy: the goods market, the labour market, and the financial market. The goods market clears when condition \eqref{eq:goods_market_clear} holds:
+\begin{align*}
     y_{i,t} = c_{i,t} + \sum_{j=1}^N x_{ji, t}, \; \forall i.
-\end{align}
+\end{align*}
 This means that the total output of firm $i$ is equal to the final comsumption of the household plus the intermediate inputs used by other firms.
 
 The labour market clears when
