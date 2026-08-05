@@ -100,22 +100,22 @@ Harlly Zhou\footnotemark[1]\\\texttt{hzhouci@ust.hk}
 \section{Benchmark Model}\label{sec:benchmark}
 In the benchmark model, we assume that all the agents have full information with rational expectations (FIRE). The friction in this economy is the financial friction in the form of borrowing constraint.
 
-Time is discrete and indexed by $t=0, 1, 2, \cdots$. There are representative agents with unit mass who consume a consumption aggregator $C_t$, make nominal deposits $D_t$ and supplies labour $N_t$, a representative firm in each sector $i\in\{1, 2, \cdots, N\}$ \footnote{In the following, we will use the sector index $i$ and firm $i$ interchangeably.} that produces a differentiatiated good $y_{i,t}$ using labour $n_{i,t}$ and intermediate input $x_{ij, t}$ from sectors $j$, competitive financial intermediaries that takes deposits from households and supplies credit to firms, and a monetary authority that sets the nominal interest rate $i_t$.
+Time is discrete and indexed by $t=0, 1, 2, \cdots$. There are representative agents with unit mass who consume a consumption aggregator $\mathcal{C}_t$, make nominal deposits $D_t$ and supplies labour $N_t$, a representative firm in each sector $i\in\{1, 2, \cdots, N\}$ \footnote{In the following, we will use the sector index $i$ and firm $i$ interchangeably.} that produces a differentiatiated good $y_{i,t}$ using labour $n_{i,t}$ and intermediate input $x_{ij, t}$ from sectors $j$, competitive financial intermediaries that takes deposits from households and supplies credit to firms, and a monetary authority that sets the nominal interest rate $i_t$.
 
 Interest rates are dated by when they are set, but need not apply over the same window. The policy rate $i_t$ is set at the beginning of period $t$ and remunerates deposits from the beginning of period $t+1$ to its end (so deposits $D_t$ earn $i_t$ in period $t+1$). The intra-period loan rate $i^L_{i,t}$ is set at the beginning of period $t$ and applies from the beginning of period $t$ to its end; it is priced off the predetermined funding rate $i_{t-1}$ that prevails over that same window.
 
-The timeline within a period $t$ is as follows. At the beginning of the period, the monetary authority sets the nominal interest rate $i_t$. The financial intermediary charges firm $i$ the loan rate $i^L_{i,t}$, and firms borrow, hire labour, and buy intermediate inputs. At the end of the period, productivity realizes, firms produce and sell goods and repay $\left(1+i^L_{i,t}\right)b_{i,t}$, and households consume, collect the maturity payoff $\left(1+i_{t-1}\right)$ on deposits $D_{t-1}$, and choose new deposits $D_t$.
+The timeline within period $t$ is as follows. At the beginning of the period, the monetary authority sets the nominal interest rate $i_t$. Firms observe the aggregate state, set nominal prices, and the financial intermediary offers loan rates $\{i^L_{i,t}\}_{i=1}^N$. Given these prices and loan rates, firms borrow, hire labor, and purchase intermediate inputs. Productivity then realizes. Firms produce and sell goods at the predetermined prices, repay $\left(1+i^L_{i,t}\right)b_{i,t}$ whenever they have sufficient revenue, and households consume, collect the maturity payoff $\left(1+i_{t-1}\right)D_{t-1}$ on deposits, receive firm and intermediary dividends, and choose new deposits $D_t$.\footnote{The assumption that firms choose nominal prices before some shocks are realized follows the sticky-price and preset-price tradition in monetary macroeconomics. See, among others, Taylor (1980), Calvo (1983), Yun (1996), Obstfeld and Rogoff (1995), Chari, Kehoe, and McGrattan (2000), Christiano, Eichenbaum, and Evans (2005), and Smets and Wouters (2007). In these models, prices are endogenous decisions of monopolistically competitive firms, but nominal rigidities make them predetermined with respect to at least some contemporaneous shocks.}
 
 \subsection{Environment}
 \subsubsection{Households}
 
-Households gain utility from a consumption aggregator $C_t$ and disutility from labour supply $N_t$:
+Households gain utility from a consumption aggregator $\mathcal{C}_t$ and disutility from labour supply $N_t$:
 \begin{align}\label{eq:hh_utility}
-    U(C_t, N_t) = \log C_t - \frac{\chi}{1+\varphi} N_t^{1+\varphi},
+    U(\mathcal{C}_t, N_t) = \log \mathcal{C}_t - \frac{\chi}{1+\varphi} N_t^{1+\varphi},
 \end{align}
 with $\chi > 0$ and $\varphi>0$, where the consumption aggregator is given by a CES aggregator of the differentiated goods $c_{i,t}$:
 \begin{align}\label{eq:cons_aggregator}
-    C_t = \left(\sum_{i=1}^N \rho_i^{\frac{1}{\xi}} c_{i,t}^{\frac{\xi-1}{\xi}}\right)^{\frac{\xi}{\xi-1}}
+    \mathcal{C}_t = \left(\sum_{i=1}^N \rho_i^{\frac{1}{\xi}} c_{i,t}^{\frac{\xi-1}{\xi}}\right)^{\frac{\xi}{\xi-1}}
 \end{align}
 with $\rho_i \in (0,1)$ the demand weight of goods $i$ satisfying $\sum_{i=1}^N \rho_i = 1$ and $\xi>0$ the elasticity of substitution (EoS) between goods. As a result, the price level is given by
 \begin{align}\label{eq:price_level}
@@ -125,7 +125,7 @@ where $p_{i,t}$ is the price of good $i$.
 
 They are subject to a budget constraint:
 \begin{align}\label{eq:hh_budget}
-    P_t C_t + D_t \leq W_t N_t + \left(1+i^D_{t-1}\right) D_{t-1} + \Pi^y_t + \Pi^f_t,
+    P_t \mathcal{C}_t + D_t \leq W_t N_t + \left(1+i^D_{t-1}\right) D_{t-1} + \Pi^y_t + \Pi^f_t,
 \end{align}
 where $W_t$ is the nominal wage, $i^D_{t-1}$ is the nominal interest rate on deposits made in period $t-1$ (paid in period $t$), $\Pi^y_t$ is the total nominal profit of all the firms, and $\Pi^f_t$ is the total nominal profit of the financial intermediary which is allowed to be negative to reflect possible defaults.
 
@@ -170,9 +170,9 @@ At the beginning of each period, each firm $i$ faces labour costs $W_t n_{i,t}$ 
 \begin{align}\label{eq:firm_financial_constraint}
     W_t n_{i,t} + \sum_{j=1}^N p_{j,t}x_{ij, t} \leq  b_{i,t},
 \end{align}
-subject to a borrowing constraint, which will be discussed soon in the Section \ref{sec:financial_intermediary}. At the end of the period, the firm has a revenue $R_{i,t} = p_{i,t} y_{i,t}$ and repays the debt $b_{i,t}$ together with interest at the intra-period loan rate $i^L_{i,t}$. Its nominal profit 
+subject to a borrowing constraint, which will be discussed soon in the Section \ref{sec:financial_intermediary}. At the end of the period, the firm has a revenue $\mathcal{R}_{i,t} = p_{i,t} y_{i,t}$ and repays the debt $b_{i,t}$ together with interest at the intra-period loan rate $i^L_{i,t}$. Its nominal profit 
 \begin{align*}
-\Pi^y_{i,t} = \max\left\{R_{i,t} - \left(1 + i^L_{i,t}\right) b_{i,t}, 0\right\}
+\Pi^y_{i,t} = \max\left\{\mathcal{R}_{i,t} - \left(1 + i^L_{i,t}\right) b_{i,t}, 0\right\}
 \end{align*}
 will be distributed to the households.
 
@@ -212,11 +212,11 @@ The intermediary lends $\ell_{i,t}$ to firm $i$ with the nominal balance-sheet c
 \end{align}
 Its nominal profit $\Pi^f_t$ is given by
 \begin{align*}
-    \Pi^f_t = \sum_{i=1}^N \left[\min\left\{R_{i,t}, (1+i^L_{t})\ell_{i,t}\right\} - \ell_{i,t} \right]  - i_{t-1} D_{t-1}.
+    \Pi^f_t = \sum_{i=1}^N \left[\min\left\{\mathcal{R}_{i,t}, (1+i^L_{t})\ell_{i,t}\right\} - \ell_{i,t} \right]  - i_{t-1} D_{t-1}.
 \end{align*}
 For each firm $i$, the intermediary imposes a lending constraint
 \begin{align}\label{eq:borrowing_constraint}
-    \ell_{i,t} \leq \kappa R_{i,t-1} \exp\left(-\frac{1}{2}\sigma^2_{i,t-1}-\theta \sigma_{i,t-1}\right).
+    \ell_{i,t} \leq \kappa \mathcal{R}_{i,t-1} \exp\left(-\frac{1}{2}\sigma^2_{i,t-1}-\theta \sigma_{i,t-1}\right).
 \end{align}
 Moreover, the realized borrowing amount will not exceed the lending amount:
 \begin{align*}
@@ -237,7 +237,7 @@ This constraint can be interpreted as a reduced-form implication of a default-to
 % \begin{align*}
 %     \mu^R_{i,t|t-1}
 %     =
-%     \mathbb{E}_{t-1}\left[R_{i,t}\right] = p_{i,t} \tilde{y}_{i,t} \mu^A_{i,t|t-1},
+%     \mathbb{E}_{t-1}\left[\mathcal{R}_{i,t}\right] = p_{i,t} \tilde{y}_{i,t} \mu^A_{i,t|t-1},
 % \end{align*}
 % is the mean of revenue conditional on information available at the end of period $t-1$. The parameter $\kappa>0$ captures the pledgeability of expected revenue, and $\theta>0$ captures the sensitivity of credit capacity to revenue risk. This constraint prevents the intermediary from severe credit risk, but it cannot eliminate default. 
 
@@ -250,13 +250,13 @@ The financial intermediary's optimization problem is to maximize its nominal pro
 \end{align*}
 subject to a default-tolerance constraint
 \begin{align}\label{eq:default_tolerance_rule}
-    \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) \leq \delta,
+    \mathbb{P}_{t-1} \left( \mathcal{R}_{i,t} < (1+i^L_{t})\ell_{i,t} \right) \leq \delta,
 \end{align}
 for some $\delta \in (0,1)$, and the balance sheet constraint \eqref{eq:balance_sheet_constraint}.
 
-% We first derive the implication of the default-tolerance rule. Note that $R_{i,t} = p_{i,t} \tilde{y}_{i,t} A_{i,t}$. Therefore, the rule implies that
+% We first derive the implication of the default-tolerance rule. Note that $\mathcal{R}_{i,t} = p_{i,t} \tilde{y}_{i,t} A_{i,t}$. Therefore, the rule implies that
 % \begin{align*}
-%     \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) &= \mathbb{P}_{t-1} \left( \log A_{i,t} < \log\left((1+i^L_{t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} \right) \\
+%     \mathbb{P}_{t-1} \left( \mathcal{R}_{i,t} < (1+i^L_{t})\ell_{i,t} \right) &= \mathbb{P}_{t-1} \left( \log A_{i,t} < \log\left((1+i^L_{t})\ell_{i,t}\right) - \log p_{i,t}\tilde{y}_{i,t} \right) \\
 %     &= 1-\Phi(q_{1i,t})\\
 %     &\leq \delta,
 % \end{align*}
@@ -368,7 +368,7 @@ Moreover, by the Mills ratio,
     =
     0.
 \end{align*}
-Since $f'(a)=-\Phi(-a)<0$, $f$ is strictly decreasing and converges to zero from above. Therefore $f(a)>0$ for every finite $a$. This implies that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Then we are able to define the second term as $s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(R_{i,t}\right)$ in a reduced-form representation of competitive risk-based lending.
+Since $f'(a)=-\Phi(-a)<0$, $f$ is strictly decreasing and converges to zero from above. Therefore $f(a)>0$ for every finite $a$. This implies that the second term on the right-hand side is increasing in $\sigma_{i,t-1}$. Then we are able to define the second term as $s_{i,t} = \bar{s} + \psi \operatorname{Var}_{t-1}\left(\mathcal{R}_{i,t}\right)$ in a reduced-form representation of competitive risk-based lending.
 
 Another way is to completely solve for the optimization problem subject to the balance sheet constraint \eqref{eq:balance_sheet_constraint} with Lagrange Multiplier $\lambda^f_t$. This provides the optimal lending amount of the financial intermediary, as is stated in the following Lemma.
 \begin{lemma}[Optimal Lending Amount]\label{lemma:optimal_lending_amount}
@@ -379,12 +379,12 @@ Another way is to completely solve for the optimization problem subject to the b
         \begin{array}{ll}
             \dfrac{1}{1+i^L_t},
             & \text{if } \sum_{i=1}^N \ell_{i,t}<D_{t-1}
-            \text{ and } \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) < \delta, \\[1.2em]
+            \text{ and } \mathbb{P}_{t-1} \left( \mathcal{R}_{i,t} < (1+i^L_{t})\ell_{i,t} \right) < \delta, \\[1.2em]
             \dfrac{1+i_{t-1}}{1+i^L_t},
             & \text{if } \sum_{i=1}^N \ell_{i,t}=D_{t-1}
-            \text{ and } \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) < \delta, \\[1.2em]
+            \text{ and } \mathbb{P}_{t-1} \left( \mathcal{R}_{i,t} < (1+i^L_{t})\ell_{i,t} \right) < \delta, \\[1.2em]
             1-\delta,
-            & \text{if } \mathbb{P}_{t-1} \left( R_{i,t} < (1+i^L_{t})\ell_{i,t} \right) = \delta.
+            & \text{if } \mathbb{P}_{t-1} \left( \mathcal{R}_{i,t} < (1+i^L_{t})\ell_{i,t} \right) = \delta.
         \end{array}
         \right.
     \end{align*}
@@ -398,7 +398,7 @@ Another way is to completely solve for the optimization problem subject to the b
         \mathbb{E}_{t-1}
         \left[
         \min\left\{
-        R_{i,t},(1+i^L_t)\ell_{i,t}
+        \mathcal{R}_{i,t},(1+i^L_t)\ell_{i,t}
         \right\}
         \right].
     \end{align*}
@@ -502,7 +502,7 @@ Another way is to completely solve for the optimization problem subject to the b
     \begin{align*}
         \mathbb{P}_{t-1}
         \left(
-        R_{i,t}<(1+i^L_t)\ell_{i,t}
+        \mathcal{R}_{i,t}<(1+i^L_t)\ell_{i,t}
         \right)
         \leq \delta.
     \end{align*}
@@ -510,7 +510,7 @@ Another way is to completely solve for the optimization problem subject to the b
     \begin{align*}
         \mathbb{P}_{t-1}
         \left(
-        R_{i,t}<(1+i^L_t)\ell_{i,t}
+        \mathcal{R}_{i,t}<(1+i^L_t)\ell_{i,t}
         \right)
         =
         1-\Phi(q_{1i,t}),
@@ -682,14 +682,14 @@ In the benchmark model, the nominal interest rate process is exogenous. We intro
 
 \subsection{Agents' Decisions}
 \subsubsection{Households}
-Households choose consumption $C_t$, labour supply $N_t$, and deposits $D_t$ to maximized their discounted lifetime utility:
+Households choose consumption $\mathcal{C}_t$, labour supply $N_t$, and deposits $D_t$ to maximized their discounted lifetime utility:
 \begin{align*}
-    \max_{C_t, N_t, D_t} \mathbb{E}_0\sum_{t=0}^\infty \beta^t U(C_t, N_t),
+    \max_{\mathcal{C}_t, N_t, D_t} \mathbb{E}_0\sum_{t=0}^\infty \beta^t U(\mathcal{C}_t, N_t),
 \end{align*}
 where $\beta\in(0,1)$ is the discount factor, subject to the budget constraint \eqref{eq:hh_budget}. The first-order conditions (FOC) imply the Euler equation \eqref{eq:hh_foc_euler} and the labour supply \eqref{eq:hh_foc_labour}:
 \begin{align}
-    [\text{ Euler }]:\, &1 = \beta \mathbb{E}_t \left[\frac{1+i^D_t}{1+\pi_{t+1}}\frac{C_t}{C_{t+1}}\right], \label{eq:hh_foc_euler} \\
-    [\text{ Labour supply }]:\, &\frac{W_t}{P_t} = \chi C_t N_t^{\varphi}. \label{eq:hh_foc_labour}
+    [\text{ Euler }]:\, &1 = \beta \mathbb{E}_t \left[\frac{1+i^D_t}{1+\pi_{t+1}}\frac{\mathcal{C}_t}{\mathcal{C}_{t+1}}\right], \label{eq:hh_foc_euler} \\
+    [\text{ Labour supply }]:\, &\frac{W_t}{P_t} = \chi \mathcal{C}_t N_t^{\varphi}. \label{eq:hh_foc_labour}
 \end{align}
 
 \subsubsection{Firms}
@@ -766,7 +766,7 @@ Given initial nominal deposits $D_{-1}$, initial money supply $M^S_{-1}$,
 and exogenous policy processes $\{i_t,X_t\}_{t=0}^{\infty}$, a competitive equilibrium is a stochastic sequence of allocations
 \begin{align*}
     \left\{
-    C_t,\{c_{i,t}\}_{i=1}^N,N_t,D_t,
+    \mathcal{C}_t,\{c_{i,t}\}_{i=1}^N,N_t,D_t,
     \{n_{i,t}\}_{i=1}^N,
     \{x_{ij,t}\}_{i,j=1}^N,
     \{y_{i,t}\}_{i=1}^N,
@@ -873,11 +873,14 @@ Rewriting the objective using \eqref{eq:production_benchmark}, we have
     \mathbb{E}_{t-1} \Pi^y_{i,t} &= \mathbb{E}_{t-1} \left[\max \left\{p_{i,t} y_{i,t} - (1+i^L_t)b_{i,t}, 0\right\}\right] \\
     &= b_{i,t} \mathbb{E}_{t-1} \left[\max\left\{A_{i,t} \frac{p_{i,t}}{{mc}_{i,t}} - (1+i^L_t), 0\right\}\right], 
 \end{align*}
-which is linear in $b_{i,t}$. Since the result of the maximization operator is non-negative, maximization of the expected profit requires $b_{i,t}$ to be at the maximum allowed level. Therefore, the borrowing constraint must be binding. Define this maximum level as $\bar{b}_{i,t} := \kappa R_{i,t-1} \exp \left(-\frac{1}{2}\sigma_{i,t-1}^2 - \theta \sigma_{i,t-1}\right)$. We have $b_{i,t} = \bar{b}_{i,t}$ at equilibrium.
+which is linear in $b_{i,t}$. Since the result of the maximization operator is non-negative, maximization of the expected profit requires $b_{i,t}$ to be at the maximum allowed level. Therefore, the borrowing constraint must be binding. Define this maximum level as $\bar{b}_{i,t} := \kappa \mathcal{R}_{i,t-1} \exp \left(-\frac{1}{2}\sigma_{i,t-1}^2 - \theta \sigma_{i,t-1}\right)$. We have $b_{i,t} = \bar{b}_{i,t}$ at equilibrium.
 
 We now formally show that the borrowing constraint is binding using the KKT condition.
 \begin{lemma}[Borrowing Constraint Binding]\label{lemma:borrowing_constraint_binding}
-    The borrowing constraint \eqref{eq:borrowing_constraint} is binding in equilibrium.
+    The borrowing constraint \eqref{eq:borrowing_constraint} is binding in equilibrium, that is
+    \begin{align}\label{eq:borrowing_constraint_binding}
+        b_{i,t} = \bar{b}_{i,t} := \kappa \mathcal{R}_{i,t-1} \exp \left(-\frac{1}{2}\sigma_{i,t-1}^2 - \theta \sigma_{i,t-1}\right).
+    \end{align}
 \end{lemma}
 \begin{proof}
     Rewriting the labour FOC $[n_{i,t}]$ \eqref{eq:firm_labour_foc} as
@@ -906,15 +909,92 @@ We now formally show that the borrowing constraint is binding using the KKT cond
     which further implies that the derivative is positive. Since $q_{2i,t} > q_{1i,t}$, $\lambda^y_{2i,t} > 0$. The KKT condition thus implies that the borrowing constraint must be binding.
 \end{proof}
 
-Moreover, substituting the expression for $\lambda^y_{2i,t}$ into the price-cost ratio, we have
+Moreover, substituting the expression for $\lambda^y_{2i,t}$ into the price-cost ratio, we obtain
 \begin{align}\label{eq:price_cost_ratio_benchmark}
-    \frac{p_{i,t}}{{mc}_{i,t}} = \frac{(1+i^L_t)}{\mu^A_{i,t|t-1}} \frac{\phi(q_{1i,t})}{\phi(q_{2i,t})} = (1+i^L_t) \exp \left(-\bar{a}_i + q_{1i,t}\sigma_{i,t-1}\right).
+    \frac{p_{i,t}}{{mc}_{i,t}} 
+    = 
+    \frac{1+i^L_t}{\mu^A_{i,t|t-1}}
+    \frac{\phi(q_{1i,t})}{\phi(q_{2i,t})}
+    =
+    (1+i^L_t)
+    \exp\left(-\bar a_i+q_{1i,t}\sigma_{i,t-1}\right).
 \end{align}
-By the definition of $q_{1i,t}$, we have
+This ratio is not a monopolistic markup. To see its role, by \eqref{eq:production_benchmark}, we can write the realized revenue as
 \begin{align*}
-    \mathbb{P}_{t-1} \left(R_{i,t} \geq (1+i^L_t) b_{i,t}\right) = \Phi(q_{1i,t}).
+    \mathcal{R}_{i,t}
+    =
+    p_{i,t}A_{i,t}\tilde y_{i,t}
+    =
+    b_{i,t}
+    \left(
+    \underbrace{\frac{p_{i,t}}{{mc}_{i,t}}A_{i,t}}_{\equiv R_{i,t}}
+    \right).
 \end{align*}
-Therefore, from a partial equilibrium perspective, the sign of the uncertainty effect depends on the firm's repayment position. When the firm repays in more than half of states, the repayment threshold lies below median revenue, and greater uncertainty raises the price-cost ratio required to maintain that repayment position. When the firm repays in less than half of states, the firm is effectively relying on upper-tail outcomes, and limited liability makes uncertainty valuable, so the required price-cost ratio falls.
+Thus $R_{i,t}$ is realized revenue per unit of borrowing, while $\frac{p_{i,t}}{{mc}_{i,t}}$ is its deterministic component. We interpret $\frac{p_{i,t}}{{mc}_{i,t}}$ as the firm's repayment capacity per unit of financed input cost: a higher value means that, for a given productivity realization, each borrowed unit generates more revenue and is therefore more likely to cover promised repayment.
+
+Next, $q_{1i,t}$ summarizes the firm's repayment position. By definition,
+\begin{align*}
+    \mathbb{P}_{t-1}
+    \left(
+    \mathcal{R}_{i,t}\geq (1+i^L_t)b_{i,t}
+    \right)
+    =
+    \Phi(q_{1i,t}).
+\end{align*}
+Hence $q_{1i,t}>0$ means that the firm repays in more than half of states, while $q_{1i,t}<0$ means that the firm repays in less than half of states. In this sense, $q_{1i,t}$ is a local index of repayment risk. The following interpretation is partial-equilibrium: it holds $q_{1i,t}$ and $i^L_t$ fixed and studies how the repayment capacity associated with a given repayment position changes with uncertainty.
+
+From \eqref{eq:price_cost_ratio_benchmark},
+\begin{align*}
+    \frac{\partial}{\partial \sigma_{i,t-1}}
+    \log\left(
+    \frac{p_{i,t}}{{mc}_{i,t}}
+    \right)
+    =
+    q_{1i,t}.
+\end{align*}
+Therefore, conditional on a given repayment position, the repayment capacity increases with uncertainty if $q_{1i,t}>0$ and decreases with uncertainty if $q_{1i,t}<0$.
+
+The intuition is as follows. When $q_{1i,t}>0$, the firm is relatively safe: it repays in more than half of states. In this region, preserving the same positive repayment position under higher uncertainty requires a larger deterministic revenue capacity, because more dispersion raises the risk of low productivity realizations that may prevent repayment. Hence the price-cost ratio must rise. By contrast, when $q_{1i,t}<0$, the firm is already risky: repayment occurs only in relatively high-revenue states. In this region, greater volatility increases the probability and payoff of high productivity realizations. Since repayment already relies on upper-tail outcomes, the same repayment position can be sustained with a lower deterministic revenue capacity. Hence the price-cost ratio falls.
+
+The associated Lagrange multipliers clarify the financial distortion. Recall that
+\begin{align*}
+    \lambda^y_{1i,t} 
+    &= 
+    \frac{p_{i,t}}{{mc}_{i,t}}
+    \mu^A_{i,t|t-1}
+    \Phi(q_{2i,t}), \\
+    \lambda^y_{2i,t} 
+    &=
+    \frac{p_{i,t}}{{mc}_{i,t}}
+    \mu^A_{i,t|t-1}
+    \Phi(q_{2i,t})
+    -
+    (1+i^L_t)\Phi(q_{1i,t}).
+\end{align*}
+The multiplier $\lambda^y_{1i,t}$ is the shadow value of one additional unit of working capital. It equals repayment capacity multiplied by the expected marginal productivity term adjusted for repayment risk. The multiplier $\lambda^y_{2i,t}$ is the shadow value of relaxing the borrowing constraint. It is the difference between the marginal value of working capital and the expected marginal repayment cost. As shown in Lemma \ref{lemma:borrowing_constraint_binding}, $\lambda^y_{2i,t}>0$ for active firms. Hence the firm would like to borrow more, but the borrowing constraint prevents it from doing so. This binding borrowing limit is the source of the financial distortion.
+
+\noindent \paragraph{Networked Economy} The goods market clearing condition \eqref{eq:goods_market_clear} implies that
+\begin{align*}
+    p_{i,t} y_{i,t} = p_{i,t} c_{i,t} + \sum^N_{j=1} p_{i,t} x_{ji,t}.
+\end{align*}
+Substituting the solutions to $x_{ji,t}$ \eqref{eq:intermediate_demand_benchmark} and $y_{i,t}$ \eqref{eq:production_benchmark} into the goods market clearing condition, we have
+\begin{align*}
+    R_{i,t} b_{i,t} = f_{i,t} + \sum^N_{j=1} \omega_{ji,t} b_{j,t},
+\end{align*}
+where $R_{i,t}:= A_{i,t} \frac{p_{i,t}}{{mc}_{i,t}}$ is realized revenue per unit of borrowing, and $f_{i,t}:= p_{i,t} c_{i,t}$ is the nominal value of goods $i$ sold as final goods.
+
+Define the production network as an $N\times N$ matrix $\Omega_t$, whose $(i,j)$-th entry is $\omega_{ij,t}$. Here $\omega_{ij,t}$ is the cost share of good $j$ used as an intermediate input in the production of good $i$. Then the goods market clearing condition can be written as
+\begin{align*}
+    \mathbf{R}_t \mathbf{b}_t = \mathbf{f}_t + \Omega'_t \mathbf{b}_t,
+\end{align*}
+where $\mathbf{R}_t$ is an $N \times N$ diagonal matrix with $R_{i,t}$ on the diagonal, and $\mathbf{b}_t$, and $\mathbf{f}_t$ are $N \times 1$ vectors of borrowing and the nominal value of final goods, respectively. Therefore,
+\begin{align*}
+    \mathbf{f}_t = \left(\mathbf{R}_t - \Omega'_t\right)\mathbf{b}_t = \left(\mathbf{R}_t - \Omega'_t\right)\bar{\mathbf{b}}_t,
+\end{align*}
+where $\bar{\mathbf{b}}_t$ is the $N \times 1$ vector of $\bar{b}_{i,t}$. Define $h_{i,t} = \exp \left(-\frac{1}{2}\sigma_{i,t}^2 - \theta \sigma_{i,t}\right)$ and $\mathbf{H}_t$ as an $N \times N$ diagonal matrix with $h_{i,t}$ on the diagonal. By definition of $\bar{b}_{i,t}$, we can write $\bar{\mathbf{b}}_t = \kappa \mathbf{H}_{t-1} \mathbf{R}_{t-1} \mathbf{b}_{t-1}$. Therefore, we have
+\begin{align*}
+    \mathbf{f}_t = \kappa \left(\mathbf{R}_t - \Omega'_t\right) \mathbf{H}_{t-1} \mathbf{R}_{t-1} \mathbf{b}_{t-1}.
+\end{align*}
 
 
 
@@ -948,7 +1028,7 @@ Capital is purchased at price $p^k_{i,t}$. As in the network economy, factor pay
 \end{align*}
 The firm borrows $b_{i,t}$ from the financial intermediary and repays subject to limited liability. Let
 \begin{align*}
-    R_{i,t}
+    \mathcal{R}_{i,t}
     =
     p_{i,t}A_{i,t}
     n_{i,t}^{\alpha_{i,t}}
@@ -957,7 +1037,7 @@ The firm borrows $b_{i,t}$ from the financial intermediary and repays subject to
 denote realized revenue, and firm profit is
 \begin{align*}
     \Pi^y_{i,t}
-    = \max\{0, R_{i,t} - (1+i^L_t)b_{i,t}\}.
+    = \max\{0, \mathcal{R}_{i,t} - (1+i^L_t)b_{i,t}\}.
 \end{align*}
 
 The final-goods demand system is unchanged. Hence demand for variety $i$ is
@@ -968,7 +1048,7 @@ The final-goods demand system is unchanged. Hence demand for variety $i$ is
     \left(
     \frac{p_{i,t}}{P_t}
     \right)^{-\xi}
-    C_t.
+    \mathcal{C}_t.
 \end{align*}
 Since there are no intermediate-input linkages, the goods-market clearing condition for each variety is
 \begin{align*}
@@ -997,7 +1077,7 @@ The default-tolerance constraint also takes the same form:
 \begin{align*}
     \mathbb P_{t-1}
     \left(
-    R_{i,t}<(1+i^L_t)b_{i,t}
+    \mathcal{R}_{i,t}<(1+i^L_t)b_{i,t}
     \right)
     \leq
     \delta.
