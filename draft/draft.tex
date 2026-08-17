@@ -105,7 +105,10 @@ The firm produces output according to
 \begin{align}\label{eq:firm_prod_fcn}
     y_{i,t} = A_{i,t} n_{i,t}^{\alpha_{i,t}} \prod_{j=1}^N x_{ij,t}^{\omega_{ij,t}},
 \end{align}
-where $\alpha_{i,t}$ is the labour share, and $\omega_{ij,t}$ is the cost share of intermediate input $j$ in the production of good $i$. 
+where $\alpha_{i,t}$ is the labour share, and $\omega_{ij,t}$ is the cost share of intermediate input $j$ in the production of good $i$. The labour and intermediate input costs are financed by the financial intermediary through working capital loans:
+\begin{align}\label{eq:working_capital_constraint}
+    W_t n_{i,t} + \sum_{j=1}^N p_{j,t} x_{ij,t} \leq  b_{i,t}.
+\end{align}
 
 The stochastic productivity process is
 \begin{align}\label{eq:firm_productivity}
@@ -137,7 +140,7 @@ Uncertainty shocks are independent across sectors and independent of level shock
     +
     v_{i,t},
 \end{align}
-where $\phi\in(0,1)$ and $v_{i,t}\sim\mathcal N(0,\sigma_v^2)$. It realizes at the very beginning of this period, before $A_{i,t}$ and $\epsilon_{i,t}$ realizes so that all economic activity can be affected by the volatility shocks comtemporaneously. Due to this timing issue, define the information set until uncertainty in period $t$, $\sigma_{i,t}$, realizes as $\mathcal{I}_t$. We will always be explicit on which information set an agent is using for computing conditional moments.
+where $\phi\in(0,1)$ and $v_{i,t}\sim\mathcal N(0,\sigma_v^2)$. It realizes at the very beginning of this period, before $A_{i,t}$ and $\epsilon_{i,t}$ realizes so that all economic activity can be affected by the volatility shocks comtemporaneously. Due to this timing issue, define the information set until uncertainty in period $t$, ($\sigma_{i,t}$) realizes as $\mathcal{I}_t$ and the information set after the productivity ($A_{i,t}$, or equivalently, $\epsilon_{i,t}$) realizes as $\mathcal{F}_t$. We will always be explicit on which information set an agent is using for computing conditional moments.
 
 This decomposition of $\sigma_{i,t}$ and $\epsilon_{i,t}$ separates level shocks from uncertainty shocks. A shock to $\epsilon_{i,t}$ changes realized productivity, while a shock to $\sigma_{i,t}$ changes the distribution of productivity conditional on $\mathcal{I}_t$.
 
@@ -145,7 +148,7 @@ The nominal profit of firm $i$ is given by
 \begin{align}\label{eq:firm_profit}
     \Pi^y_{i,t} = \max\left\{p_{i,t}y_{i,t} - (1+i^L_t)b_{i,t}, 0\right\},
 \end{align}
-where $p_{i,t}$ is the firm's nominal preset price. Firms choose the price first before the productivity realizes, and their labour inputs, intermediate inputs, and working capital after the productivity realizes.
+where $p_{i,t}$ is the firm's nominal preset price. Firms choose the price first before the productivity realizes, and their labour inputs, intermediate inputs, and working capital after the productivity realizes. That is, firms choose prices to maximize the expected profit conditional on the information set $\mathcal{I}_t$ and choose the working capital and inputs to maximize the expected profit conditional on the information set $\mathcal{F}_t$.
 
 \noindent \paragraph{Households} Households consume a consumption aggregator $C_t$, make nominal deposits $D_t$, and supply labour $N_t$. They make the deposit at the end of each period $t$, and gain an interest at nominal w gross rate $1 + i_t$ in period $t+1$. 
 
@@ -206,35 +209,35 @@ for some $\psi>0$. The aggregate uncertainty measure is a weighted average of fi
 The weights are lagged nominal sales shares $\omega^R_{i,t-1} = \dfrac{\mathcal R_{i,t-1}}{\sum_{k=1}^N\mathcal R_{k,t-1}}$.
 Using lagged sales shares keeps $V_t$ predetermined when loan rates are set.
 
-The intermediary offers a borrowing capacity to firm $i$. Since the realized working capital will be productivity-contingent, the borrowing-capacity constraint is on the expected working-capital:
-\begin{align}\label{eq:borrowing_capacity_constraint}
-    \mathbb E \left[b_{i,t} \mid \mathcal{I}_t\right] \leq \ell_{i,t},
-\end{align}
-where $\ell_{i,t}$ is the credit capacity granted to firm $i$ determined after uncertainty realizes but before prices are determined. The intermediary's balance-sheet constraint is
-\begin{align}\label{eq:balance_sheet_constraint}
-    \sum_{i=1}^N \ell_{i,t}
-    \leq
-    D_{t-1}.
-\end{align}
-For each firm $i$, the intermediary imposes the reduced-form borrowing-capacity rule
-\begin{align}\label{eq:borrowing_constraint}
-    \ell_{i,t}
-    \leq
-    \kappa\mathcal R_{i,t-1}
+The intermediary offers firm $i$ a borrowing capacity $\bar b_{i,t}$ according to the reduced-form capacity rule
+\begin{align}\label{eq:borrowing_capacity_rule}
+    \bar b_{i,t}
+    =
+    \kappa \mathcal R_{i,t-1}
     \exp\left(
     -\frac12\sigma^2_{i,t}
     -
     \theta\sigma_{i,t}
     \right),
 \end{align}
-where $\kappa>0$ captures pledgeability and $\theta>0$ captures the sensitivity of credit capacity to firm-level uncertainty. This constraint is interpreted as a reduced-form credit-line rule based on lagged observable repayment capacity. The term involving $\sigma_{i,t}$ captures the idea that higher conditional volatility tightens ex-ante credit capacity.
+where $\kappa>0$ captures pledgeability and $\theta>0$ captures the sensitivity of credit capacity to firm-level uncertainty. This constraint is interpreted as a reduced-form credit-line rule based on past observable repayment capacity as an indicator of repayment ability. The term involving $\sigma_{i,t}$ captures the idea that higher conditional volatility tightens ex-ante credit capacity. Under this rule, when firms determine realized working capital after productivity is observed, their borrowing is subject to the capacity constraint
+\begin{align}\label{eq:borrowing_constraint}
+    b_{i,t} \leq \bar b_{i,t}.
+\end{align}
+
+Let the lending amount of the intermediary to firm $i$ be $\ell_{i,t}$.The intermediary's balance-sheet constraint is
+\begin{align}\label{eq:balance_sheet_constraint}
+    \sum_{i=1}^N \ell_{i,t}
+    \leq
+    D_{t-1}.
+\end{align}
 
 The intermediary's realized repayment from firm $i$ is $\min \left\{p_{i,t}y^d_{i,t}, (1+i^L_{i,t})b_{i,t}\right\}$. The realized profit of the intermediary is
 \begin{align}\label{eq:fi_profit}
     \Pi^f_t = \sum_{i=1}^N
     \left[ \min \left\{ p_{i,t}y^d_{i,t}, (1+i^L_{i,t})b_{i,t} \right\} - (1+i_{t-1})b_{i,t} \right].
 \end{align}
-Note that this profit can be negative in the case of default from many firms. All the profit or loss is born by households.
+Note that this profit can be negative in the case of default from many firms. All the profit or loss is borne by households.
 
 \noindent \paragraph{Monetary Authority} The monetary authority sets the nominal interest rate $i_t$ at the beginning of each period. This rate applies from the beginning of period $t+1$ to its end, equivalently, deposits $D_t$ earn $i_t$ in period $t+1$. Period-$t$ loans are priced off the predetermined funding rate $i_{t-1}$ through \eqref{eq:loan_rate_rule}. In the benchmark model, the nominal interest rate process is exogenous. An endogenous policy rule can be introduced when discussing policy implications.
 
@@ -279,17 +282,43 @@ We now define the notion of production network. Recall that for firm $i$, the co
 \begin{align*}
     \tilde{\omega}_{ij,t} := \frac{\omega_{ij,t}}{1-\alpha_{i,t}},
 \end{align*}
-so that the row sum of $\tilde{\omega}_{ij,t}$ equals 1.
+so that the row sum of $\tilde{\omega}_{ij,t}$ equals 1. We will denote the matrix with $\omega_{ij,t}$ entries by $\Omega_t$ and the matrix with $\tilde{\omega}_{ij,t}$ entries by $\tilde{\Omega}_t$.
 
 \subsubsection{Optimal Prices}
-Recall that firms choose the prices after uncertainty $\sigma_{i,t}$ realizes but before the uncertainty unit $\epsilon_{i,t}$ realizes. We can derive that the price of good $i$ should satisfy the following equation:
+Recall that firms choose prices after uncertainty $\sigma_{i,t}$ realizes but before the level shock $\epsilon_{i,t}$ realizes. The optimal pricing problem is to maximize expected profit conditional on the information set $\mathcal I_t$. For tractability, we formulate the price-setting problem as an unconstrained problem. The borrowing-capacity constraint is not imposed directly at the price-setting stage because the realized working-capital requirement $b_{i,t}$ depends on the subsequent productivity realization. Instead, firms choose prices taking the loan rate and limited-liability payoff as given, through which the borrowing friction enters expected profits.
+
+We can derive that the price of good $i$ should satisfy the following equation:
 \begin{align}\label{eq:firm_optimal_pricing}
     p_{i,t} = \left(1+\frac{1}{(\xi-1)\nu_{i,t}}\right) (1+i^L_t) \mu^{A^{-1}}_{i,t|\mathcal{I}_t} \frac{\Phi(q_{i,t} - \sigma_{i,t})}{\Phi(q_{i,t})} {mc}_{i,t} ,
 \end{align}
 where $\nu_{i,t}$ is the final consumption fraction of total sales, $\mu^{A^{-1}}_{i,t} = e^{-\bar{a}_i + \frac12 \sigma_{i,t}^2}$ is the conditional mean of the inverse of productivity $\mathbb{E}\left[A^{-1}_{i,t} | \mathcal{I}_t\right]$, and $q_{i,t}$ is the productivity cutoff of default such that firm $i$ does not default if and only if the standardized productivity $A_{i,t}$ is greater than or equal to $-q_{i,t}$. Details are in Appendix \ref{app:firm_pricing}.
 
-Every component in equation \eqref{eq:firm_optimal_pricing} has its explicit interpretation. First, the monopoly markup is $1 + \frac{1}{(\xi-1)\nu_{i,t}}$. Note that when $\nu_{i,t}\to 1$, that is, no intermediate input demand, we have this term converges to $\frac{\xi}{\xi-1}$, which is the standard CES markup. Second, the financial wedge is $1+ i^L_t$, reflecting the interest cost of borrowing. Third, the uncertainty wedge is brought by $\mu^{A^{-1}}_{i, t|\mathcal{I}_t}$ which increases with uncertainty $\sigma_{i,t}$, meaning that the distortion is larger when the uncertainty is larger. Finally, the normal CDF ratio represents the default/liquidity-risk adjustment. Consider two cases. When $q_{i,t} \to +\infty$, it is very unlikely that the firm will default. This adjustment term goes to 1 so that this wedge vanishes. On the other hand, when $q_{i,t} \to -\infty$, the firm tends to default. As a result, the price goes to zero.
+Every component in equation \eqref{eq:firm_optimal_pricing} has its explicit interpretation. First, the monopoly markup is $1 + \frac{1}{(\xi-1)\nu_{i,t}}$. Note that when $\nu_{i,t}\to 1$, that is, no intermediate input demand, we have this term converges to $\frac{\xi}{\xi-1}$, which is the standard CES markup. Second, the financial wedge is $1+ i^L_t$, reflecting the interest cost of borrowing. Third, the uncertainty wedge is brought by $\mu^{A^{-1}}_{i, t|\mathcal{I}_t}$ which increases with uncertainty $\sigma_{i,t}$, meaning that the distortion is larger when the uncertainty is larger. Finally, the normal CDF ratio represents the default/liquidity-risk adjustment. Consider two cases. When $q_{i,t} \to +\infty$, it is very unlikely that the firm will default. This adjustment term goes to 1 so that this wedge vanishes. On the other hand, when $q_{i,t} \to -\infty$, default becomes almost certain. The firm repays only in exceptionally good productivity states, where producing the required output is very cheap. Therefore, the marginal cost conditional on repayment becomes negligible, which pushes the optimal price toward zero.
 
+We will show the existence and uniquess of the equilibrium prices after characterizing the complete general equilibrium.
+
+\subsubsection{Determining Working Capital}
+The second-stage problem of firms is cost minimization, or equivalently, profit maximizing conditional on the information set $\mathcal{F}_t$.
+\begin{align}\label{eq:firm_second_problem}
+    \max_{b_{i,t}, n_{i,t}, \{x_{ij,t}\}_{j=1}^N} \mathbb{E}\left[ \Pi^y_{i,t} \mid \mathcal{F}_t \right],
+\end{align}
+subject to the working capital constraint \eqref{eq:working_capital_constraint} and the borrowing-capacity rule \eqref{eq:borrowing_constraint}.
+
+
+
+\subsubsection{General Equilibrium}
+Now we would like to show that the equilibrium prices exist and are unique. Before that, we need a standard assumption on the production network such that the Leontief inverse matrix is well-defined.
+\begin{assumption}[Production Network Assumption]\label{ass:production_network_assumption}
+    The production network is such that $\mathcal{L}_t =  I_N - \Omega_t$ is non-singular for all $t$.
+\end{assumption}
+
+Now we can state the existence and uniqueness of finite equilibrium price.
+\begin{proposition}[Existence and Uniqueness of Finite Equilibrium Price]\label{prop:existence_uniqueness_finite_equilibrium_price}
+    Under Assumption \ref{ass:production_network_assumption}, for each good $i$, there exists a unique finite equilibrium price $p_{i,t}$ that satisfies the optimal pricing equation \eqref{eq:firm_optimal_pricing}.
+\end{proposition}
+\begin{proof}
+    See Appendix \ref{app:proof_existence_uniqueness_finite_equilibrium_price}.
+\end{proof} 
 
 
 \subsection{Agents' Decisions}
@@ -1177,7 +1206,7 @@ In this case, the constraint fixes the maximum admissible default probability, o
 Thus, holding firm revenue fundamentals fixed, higher aggregate uncertainty $V_t$ reduces $\ell^{\max}_{i,t}$ through the higher loan rate $i^L_t$. Higher firm-level uncertainty $\sigma_{i,t}$ also reduces the lending cap through the default-tolerance term.
 
 \subsubsection{Firms' Optimal Pricing}\label{app:firm_pricing}
-The Cobb-Douglas production function \eqref{eq:firm_prod_fcn} implies the cost share equation:
+The Cobb-Douglas production function \eqref{eq:firm_prod_fcn} implies the cost-share conditions, which will be formally shown in Appendix \ref{app:firm_working_capital}:
 \begin{align*}
     n_{i,t} = \frac{\alpha_{i,t} b_{i,t}}{W_t}, \qquad x_{ij,t} = \frac{\omega_{ij,t} b_{i,t}}{p_{j,t}}, \forall j = 1, \cdots, N.
 \end{align*}
@@ -1240,6 +1269,97 @@ Substituting this into the derivative of $y^d_{i,t}(p_{i,t})$, we can derive the
     p_{i,t} = \left(1+\frac{1}{(\xi-1)\nu_{i,t}}\right) (1+i^L_t) \mu^{A^{-1}}_{i,t|\mathcal{I}_t} \frac{\Phi(q_{i,t} - \sigma_{i,t})}{\Phi(q_{i,t})} {mc}_{i,t} .
 \end{align*}
 
+\subsubsection{Firm's Optimal Working Capital}\label{app:firm_working_capital}
+The optimal working capital problem is a constrained optimization problem:
+\begin{align*}
+    \max_{b_{i,t}, n_{i,t}, \{x_{ij,t}\}_{j=1}^N} \mathbb{E}\left[ \Pi^y_{i,t} \mid \mathcal{F}_t \right],
+\end{align*}
+subject to
+\begin{align*}
+    \text{Working capital constraint: } &W_t n_{i,t} + \sum_{j=1}^N p_{j,t} x_{ij,t} \leq  b_{i,t};\\
+    \text{Borrowing-capacity constraint: } &b_{i,t} \leq \bar b_{i,t}.
+\end{align*}
+
+Consider the objective function. Given the information set $\mathcal{F}_t$, there is no uncertainty. The objective function is therefore deterministic as the maximizer funciton. Note that if the objective function is constantly 0, it is indifferent for firms to choose any level of the choice variables. Therefore, we impose such that when the objective function is 0, the choice variables will be optimal such that they maximizes the operating surplus $p_{i,t} y_{i,t} - (1+i^L_t) b_{i,t}$. 
+
+Denote the Lagrange multipliers for the working capital constraint and the borrowing-capacity constraint as $\lambda^y_{1i,t}$ and $\lambda^y_{2i,t}$, respectively. The FOCs are
+\begin{align}
+    [b_{i,t}]:\, & -(1+i^L_t) + \lambda^y_{1i,t} - \lambda^y_{2i,t} = 0; \label{eq:foc_b}\\
+    [n_{i,t}]:\, & p_{i,t} \alpha_{i,t} \frac{y_{i,t}}{n_{i,t}} - \lambda^y_{1i,t} W_t  = 0; \label{eq:foc_n}\\
+    [x_{ij,t}]:\, & p_{i,t} \omega_{ij,t} \frac{y_{i,t}}{x_{ij,t}} - \lambda^y_{1i,t} p_{j,t} = 0, \forall j=1, \cdots N. \label{eq:foc_x}
+\end{align}
+
+A first observation is that the working capital constraint is binding.
+
+\begin{lemma}[Binding Working-Capital Constraint]\label{lemma:working_capital_binding}
+    The working-capital constraint \eqref{eq:working_capital_constraint} binds in any interior solution with finite $b_{i,t}$.
+\end{lemma}
+\begin{proof}
+    From the FOC with respect to $b_{i,t}$,
+    \begin{align*}
+        \lambda^y_{1i,t} - \lambda^y_{2i,t} = (1+i^L_{i,t}).
+    \end{align*}
+    Since $1+i^L_{i,t}>0$, we have
+    \begin{align*}
+        \lambda^y_{1i,t} = \lambda^y_{2i,t} + (1+i^L_{i,t}) > 0.
+    \end{align*}
+    By complementary slackness for the working-capital constraint,
+    \begin{align*}
+        \lambda^y_{1i,t}\left[b_{i,t}-W_t n_{i,t}-\sum_{j=1}^N p_{j,t}x_{ij,t}\right]=0.
+    \end{align*}
+    Since $\lambda^y_{1i,t}>0$, it follows that
+    \begin{align*}
+        b_{i,t}=W_t n_{i,t}+\sum_{j=1}^N p_{j,t}x_{ij,t}.
+    \end{align*}
+\end{proof}
+
+Second, take ratio of \eqref{eq:foc_n} and \eqref{eq:foc_x}, we get
+\begin{align*}
+    \frac{W_t n_{i,t}}{p_{j,t} x_{ij,t}} = \frac{\alpha_{i,t}}{\omega_{ij,t}}.
+\end{align*}
+Combining with the binding working capital constraint, we get the cost-share conditions:
+\begin{align*}
+    n_{i,t} = \frac{\alpha_{i,t} b_{i,t}}{W_t}, \qquad x_{ij,t} = \frac{\omega_{ij,t} b_{i,t}}{p_{j,t}}, \forall j = 1, \cdots, N.
+\end{align*}
+
+
+
+\subsubsection{Proof of Proposition \ref{prop:existence_uniqueness_finite_equilibrium_price}}\label{app:proof_existence_uniqueness_finite_equilibrium_price}
+\begin{proof}
+    First, we introduce the following notations to rewrite the optimal pricing equation \eqref{eq:firm_optimal_pricing} in vector form. Let $\mathbf{p}_t = (\log p_{1,t}, \cdots, \log p_{N,t})'$ and $\mathbf{q}_t = (q_{1,t}, \cdots, q_{N,t})'$. Since the final consumption fraction $\nu_{i,t}$ is a function of prices, define
+    \begin{align*}
+        \mathbf{\Gamma}_t(\mathbf{p}_t) = \left(\log \left(1+\frac{1}{(\xi-1)\nu_{1,t}(\mathbf{p}_t)}\right), \cdots, \log \left(1+\frac{1}{(\xi-1)\nu_{N,t}(\mathbf{p}_t)}\right)\right)'.
+    \end{align*}
+    
+    Define the log marginal cost vector being $\mathbf{mc}_t(\mathbf{p}_t)$. Recall that we have
+    \begin{align*}
+        {mc}_{i,t} = \frac{W_t^{\alpha_{i,t}} \prod_{j=1}^N p_{j,t}^{\omega_{ij,t}}}{\alpha_{i,t}^{\alpha_{i,t}} \prod_{j=1}^N \omega_{ij,t}^{\omega_{ij,t}}}.
+    \end{align*}
+    Therefore, with the unnormalized network matrix $\Omega_t$, we can write $\mathbf{mc}_t(\mathbf{p}_t)$ as
+    \begin{align*}
+        \mathbf{mc}_t(\mathbf{p}_t) = \Omega_t \mathbf{p}_t + \mathbf{w}_t,
+    \end{align*}
+    where $\mathbf{w}_t$ is the vector of log coefficients and wage. We can also write $\mathbf{q}_t$ as
+    \begin{align*}
+        \mathbf{q}_t = \mathbf{q}_t(\mathbf{p}_t) := \Sigma_t^{-1} \left(\mathbf{a} + (\underbrace{I_N - \Omega_t}_{=: \mathcal{L}_t})\mathbf{p}_t - \mathbf{i^L}_t - \mathbf{w}_t\right),
+    \end{align*}
+    where $\Sigma_t = \operatorname{diag}(\sigma_{1,t}, \cdots, \sigma_{N,t})$ is the diagonal matrix of uncertainty, $\mathbf{a} = (\bar a_1, \cdots, \bar a_N)'$ is the vector of log productivity means, and $\mathbf{i^L}_t = \log(1+i^L_t) \mathbf{1}_N$ is the vector of loan rates.
+    
+    Denote the default-risk adjustment vector as $\mathbf{F}_t(\mathbf{q}_t)$ with entries $\log \frac{\Phi(q_{i,t} - \sigma_{i,t})}{\Phi(q_{i,t})}$.
+
+    Using matrix notation, we can rewrite the optimal pricing equation \eqref{eq:firm_optimal_pricing} as
+    \begin{align*}
+        \mathbf{p}_t = \mathbf{\Gamma}_t(\mathbf{p}_t) + \mathbf{F}_t(\mathbf{p}_t) + \Omega_t \mathbf{p}_t + \mathbf{w}_t + \mathbf{i^L}_t - \mathbf{a} + \frac12 \Sigma^2_t \mathbf{1}_N.
+    \end{align*}
+    Under Assumption \ref{ass:production_network_assumption}, we can further rewrite the equation as
+    \begin{align}\label{eq:firm_optimal_pricing_matrix}
+        \mathbf{p}_t = \mathcal{L}^{-1}_t \left(\mathbf{\Gamma}_t(\mathbf{p}_t) + \mathbf{F}_t(\mathbf{p}_t) + \mathbf{w}_t + \mathbf{i^L}_t - \mathbf{a} + \frac12 \Sigma^2_t \mathbf{1}_N\right)
+    \end{align}
+
+    Note that equation \eqref{eq:firm_optimal_pricing_matrix} is a fixed-point equation for $\mathbf{p}_t$. Next, we try to show that the fixed-point exists and is unique. We will use the Banach fixed-point theorem. Next, we show that the right-hand side of equation \eqref{eq:firm_optimal_pricing_matrix} is a contraction mapping.
+
+
+\end{proof}
 
 
 \end{appendix}
