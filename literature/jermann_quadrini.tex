@@ -60,7 +60,7 @@
 \numberwithin{equation}{section}
 \newtheorem{assumption}{Assumption}[section] % number within sections
 
-\title{Notes on Jermann and Quadrini (2012)}
+\title{Notes on \cite{jermannMacroeconomicEffectsFinancial2012}}
 \author{Harlly Zhou \\ \texttt{hzhouci@ust.hk}}
 \date{\today}
 
@@ -71,7 +71,54 @@
 
 \paragraph{Research Question} How are the dynamics of real and financial variables affected by "financial shocks"?
 
-\paragraph{}
+\paragraph{Model} RBC Model + Financial friction
+\begin{enumerate}
+	\item Firm: Continuum of firms on $[0,1]$. Gross revenue function $F(z_t, k_t, n_t) = z_t k_t^{\theta} n_t^{1-\theta}$. Capital is chosen at time $t-1$ and labour is flexible at $t$. Capital evolves according to $k_{t+1} = (1-\delta) k_t + i_t$.
+	
+	Firms use equity (payout $d_t$) and debt ($b_t$). Debt is preferred since its tax advantage. Effective gross interest rate is $R_t = 1+ r_t(1-\tau)$ where $\tau$ is tax.
+
+	Debt $b_t$ is intertemporal, and loan $\ell_t$ is intraperiod to finance working capital without interest.
+	The loan is
+	\begin{align*}
+		\ell_t = w_t n_t + i_t + b_t + d_t - \frac{b_{t+1}}{R_t}.
+	\end{align*}
+	Budget constraint:
+	\begin{align*}
+		b_t + d_t + w_t n_t + k_{t+1} = \frac{b_{t+1}}{R_t} + (1-\delta)k_t + F(z_t, k_t, n_t).
+	\end{align*}
+	Hence, $\ell_t = F(z_t, k_t, n_t)$.
+
+	\item Consider default. Firms has liability $\ell_t + \frac{b_{t+1}}{R_t}$, and liquidity $\ell_t = F(z_t, k_t, n_t)$. However, firm can divert\footnote{Firms can make the revenue unavailable to creditors. This helps create limited enforcement.} to pay debt. Then the creditors can only liquidate $k_{t+1}$. Given default, suppose that creditors have probability $\xi_t$ of recovering the full value of $k_{t+1}$ and otherwise zero. As a result, the expected recovery value is $\xi_t k_{t+1}$. The enforcement constraint is:
+	\begin{align}\label{eq:enforcement_constraint}
+		\xi_t \left(k_{t+1} - \frac{b_{t+1}}{1+r_t}\right) \geq \ell_t.
+	\end{align}
+	Why we have $1+r_t$ instead of effective rate? $b_t/(1+r_t)$ is the market value of the debt at time $t$ so it is subtracted to compute the residual collateral. $b_{t+1}/R_t$, however, is the effective borrowed amount. It is less than the market value. 
+
+	So what is the interpretation of this \eqref{eq:enforcement_constraint}? It sets a credit limit: loan will not be available if this condition is not met, or, equivalently, the intratemporal loan amount will not exceed the credit limit. The stochastic $\xi_t$ captures the financial market uncertainty. Comparably in my model, it is the second-order productivity shock that is exogenous and controlling the tightness of the credit constraint.
+
+	Rewriting the enforcement constraint using the budget constraint, we have
+	\begin{align*}
+		\frac{\xi_t}{1-\xi_t} \left[(1-\delta) k_t - b_t - w_t n_t - d_t \right] \geq F(z_t, k_t, n_t).
+	\end{align*}
+	Therefore, if there is a negative financial shock, that is, $\xi_t$ decreases, then conditional on that the production plan does not change, the firm will have to increase the equity, that is, cut the payout $d_t$. However, if $d_t$ cannot be cut more, then labour will be reduced.
+
+	\item Firm's recursive problem is
+	\begin{align*}
+		V(\mathbf{s}; k, b) = \max_{d,n,k',b'} \left\{d + Em'V(\mathbf{s}'; k',b')\right\}
+	\end{align*}
+	subject to
+	\begin{align*}
+		(1-\delta) k + F(z, k, n) - wn + \frac{b'}{R} &= b \varphi(d) +k'\\
+		\xi\left(k'-\frac{b'}{1+r}\right) & \geq F(z,k,n),
+	\end{align*}
+	where $\varphi(d) = d + \kappa(d-\bar d)$ is equity payout cost.
+
+	\item Household: Homogenous agents maximizing lifetime utility $\mathbb{E}_0 \sum_{t=0}^\infty \beta^t U(c_t, n_t)$, subject to the budget constraint
+	\begin{align*}
+		w_t n_t + b_t + s_t(d_t+p_t) = \frac{b_{t+1}}{1+r_t} + s_{t+1}p_t + c_t + T_t,
+	\end{align*}
+	where $s_t$ is the equity share and $T_t$ is a lump-sum tax that finances the firm deby tax benefit. 
+\end{enumerate}
 
 
 
