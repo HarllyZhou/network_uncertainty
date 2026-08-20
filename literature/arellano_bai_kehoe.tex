@@ -71,7 +71,23 @@
 
 \paragraph{Research question} Can an increase in the volatility of firm-level idiosyncratic productivity shocks that generates the observed increase in the cross-sectional despersion in recent recession lead to a sizable constraction in aggrgeate economic activity and tighter financial conditions?
 
-\paragraph{Model}
+\paragraph{Literature} Key literature is \cite{bloomReallyUncertainBusiness2018}. The shared idea is that volatility shocks drive aggregate fluctuations. 1. The paper use micro data to show that the dispersion in idiosyncratic shocks to TFP is countercyclical (i.e. larger dispersion); 2. Volatility endogenously increases in recessions. Recessions are driven by a combination of \textbf{negative first-moment} and \textbf{positive second-moment shocks}, which causality likely to run in both directions.
+
+Difference: Financial distress plays a key role in this model. 
+
+Financial friction + Business cycle models (Exogenous shocks directly shifts a parameter of credit constraint): Aim at generating business cycles without large productivity fluctuation. But this paper links credit tightening to volatility shocks endogenously. 
+
+\paragraph{How volatility matters for labour decision?} Firm has debt $b$ and continuation value $V$ when no default, or otherwise zero. Productivity shock is $z$ with density $\pi(z)$. In a complete financial market, there are state-contigent debt such that $\int^{\infty}_0 b(z) \pi(z) dz = b$. Labour is chosen before productivity realizes while price is determined after productivity realizes. Firms maximize the equity payout under the constraint that the payout is non-negative.The labour FOC is
+\begin{align*}
+	\mathbb{E}[p(z;\ell^*)]\alpha (\ell^*)^{\alpha-1} = \frac{\eta}{\eta-1} w.
+\end{align*}
+
+When the financial market is not complete, there is a productivity cutoff $\hat z$ under which the equity payout will anyways be zero and the continuation value is zero, that is, if productivity is below $\hat z$, any choice of $\ell$ will leads to default. The FOC is
+\begin{align*}
+	\mathbb{E}[p(z;\ell^*)]\alpha (\ell^*)^{\alpha-1} = \frac{\eta}{\eta-1} \left(w + V \frac{\pi(\hat z)}{1-\Pi(\hat z)}\frac{d \hat z}{d \ell}\right).
+\end{align*}
+
+Volatility enters through the density and distribution function only when the financial market is incomplete. The marginal cost of labour is not only the wage cost but also a loss of value.
 
 
 
