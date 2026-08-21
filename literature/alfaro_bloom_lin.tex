@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{bbm}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Notes on \cite{alfaroFinanceUncertaintyMultiplier2024}}
+\author{Harlly Zhou \\ \texttt{hzhouci@ust.hk}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\paragraph{Motivation} 1. Empirics: Causal effect of second-order shock is correlated with the first-order in economic down-turn; 2. Theory: Current models have difficulty explaining the slow recovery after the Great Recession.
+
+\paragraph{Model Overview} DSGE with heterogeneous firms. 1) Real friction: Investment has fixed cost; 2) Financial friction: Lquidity management by saving cash; 3) Stochasticity: Uncertainty and financing costs.
+
+Results: 1. Amplification effect with financial friction: Double the negative impact of unvertainty shocks on investment; 2. Persistence effect with financial friction: Double the duration of the drop; 3. Propogation effect onto financial variables: Affect both investment and cash (accumulation) and equity payout (drop).
+
+\paragraph{Empirical Results} \textcolor{red}{TO DO!}
+
+\paragraph{Model}
+\begin{enumerate}
+    \item Technology: Firms use physical capital to produce a signle final good with aggregate productivity $X_t$ and firm-specific productivity $z_{j,t}$:
+    \begin{align*}
+        y_{j, t} = X_t z_{j,t } k_{j,t}^{\alpha}.
+    \end{align*}
+    
+    Productivity terms follow $AR(1)$ process:
+    \begin{align*}
+        \log X_{t+1} &= (1-\rho^X) \log \bar X + \rho^X \log X_{t} + \sigma^X_{t} \epsilon^X_{t+1}\\
+        \log z_{j,t+1} &= \rho^z \log z_{j,t} + \sigma^z_t \epsilon^z_{j,t+1},
+    \end{align*}
+    where $\epsilon^X_{t+1}$ and $\epsilon^z_{j,t+1}$ are i.i.d. standard normal shocks and $\sigma^X_t$ and $\sigma^z_t$ are macro and micro uncertainty (time-varying conditional volatilities) of the productivity processes.\footnote{In my paper, the modelling of uncertainty is exactly à la this.} These uncertainties follow a two-state Markov process with high and low states.
+
+    Capital accumulation is standard with non-convex adjustment costs.
+    
+    \item Cash accumulation: Cash investment and return to holding cash (question mark here).
+    
+    \item External financing: Exist only when payout is negative. External financing condition is a two-state Markov process with high and low states as a multiplier to the required financing.
+    
+    \item Firm's problem: Maximize payout minus external financing cost with continuation value.
+    \item Households: Have access to equity.
+    \item Equilibrium: Goods market, equity market, and money market (money supply is exogenous, equal the demand from firms).
+\end{enumerate}
+
+\bibliographystyle{../draft/aer}
+\bibliography{../draft/network_uncertainty}
+
+\end{document}
