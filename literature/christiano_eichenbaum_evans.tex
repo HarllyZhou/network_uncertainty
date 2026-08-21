@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{bbm}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Notes on \cite{christianoNominalRigiditiesDynamic2005}}
+\author{Harlly Zhou \\ \texttt{hzhouci@ust.hk}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\paragraph{Motivation} Observed inflation inertia and aggregate quantity persistence.
+
+\paragraph{Research qeustion} Can models with moderate degrees of nominal rigidities generate inertial inflation and persistent output movements in response to a monetary policy shock?
+
+\paragraph{Consequences of MP shock} After an expansionary monetary policy shock:
+\begin{enumerate}
+    \item output, consumption, and investment respond in a hump-shaped fashuon, peaking after about one and a half years and returning to preshock levels after about three years;
+    \item inflation responds in a hump-shaped fashion, peaking after about two years;
+    \item the interest rate falls for roughly one year;
+    \item real profits, real wages and labour productivity rise; and
+    \item the growth rate of money rises immediately.
+\end{enumerate}
+
+\paragraph{Model} 
+\begin{enumerate}
+    \item Firm, still, is doing recursive optimization problem with continuation value: Choose its price to maximize the expected continuation value under this price.
+    \item Money supply is the sum of cash balance and debt.
+\end{enumerate}
+
+
+
+\bibliographystyle{../draft/aer}
+\bibliography{../draft/network_uncertainty}
+
+\end{document}
