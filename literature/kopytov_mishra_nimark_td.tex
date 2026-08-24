@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{bbm}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Notes on \cite{kopytovEndogenousProductionNetworks2024}}
+\author{Harlly Zhou \\ \texttt{hzhouci@ust.hk}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\paragraph{Motivation} Supply chain disruptions affect aggregates. Firms can mitigate by switching suppliers.
+
+\paragraph{Research Question} How does the firm mitigation behavior aggect an economy's production network and macroeconomic aggrgeates?
+
+\paragraph{Model} Multi-sector ($n$) economy. Each sector populated by representative firm subject to sector-specific productivity shocks. 
+
+\begin{enumerate}
+    \item Firm. Firms choose production techniques before shocks are realized. Firms have access to production technology set $\mathcal{A}_i$, where a technology $\alpha_i \in \mathcal{A}_i$ specifies the input used. The production function is
+    \begin{align*}
+        F(\alpha_i, L_i, X_i) = e^{\epsilon_i}A_i(\alpha_i)\zeta(\alpha_i)L_i^{1-\sum_{j=1}^n \alpha_{ij}}\prod_{j=1}^n X_{ij}^{\alpha_{ij}}
+    \end{align*}
+    where $\alpha_{ij}$ is the input share of good $j$ used by firm $i$, $\epsilon_i$ is the stochastic sector TFP, $A_i(\alpha_i)$ is the productivity shifter, and $\zeta(\alpha_i)$ is the normalization factor. Uncertainty is captured by $\epsilon_i$.
+    \item Household. Standard CRRA utility with CES consumption aggregator. Seems no labour market here because labour does not enter the utility function. But that's not important perhaps for the model (?).
+    \item Timing. Firms have two stages. In the first stage, firms choose production technology before the shock is realized. In the second stage, labour and intermediate inputs (and household consumption) are chosen, after the realization of $\epsilon$.
+    
+    The paper first solves for the optimal inputs with unit production. Then the technology problem. Since the paper focuses mainly on production network formation and aggregate fluctuation instead of monetary implications, it assumes competitive market so that prices are equal to unit cost (marginal cost). That is, there is no optimal pricing problem.
+    \item Technology choice. Use SDF to discount. Multiply the profit wedge to the demand. Goods market clearing condition is such that
+    \begin{align}
+        C_i^* + \sum_{j=1}^n X_{ji}^* = Q_i^* = F_i(\alpha_i^*, L_i^*, X_i^*).
+    \end{align}
+\end{enumerate}
+
+
+\bibliographystyle{../draft/aer}
+\bibliography{../draft/network_uncertainty}
+
+\end{document}
