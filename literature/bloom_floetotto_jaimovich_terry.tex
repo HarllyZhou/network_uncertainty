@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{bbm}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Notes on \cite{bloomReallyUncertainBusiness2018}}
+\author{Harlly Zhou \\ \texttt{hzhouci@ust.hk}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\paragraph{Motivation} Uncertainty is importqnt. Try to evaluate the role of uncertainty for business cycle.
+
+\paragraph{Measurement} A firm produces output according to
+\begin{align*}
+    y_{j,t} = A_t z_{j,t} f(k_{j,t}, n_{j,t})
+\end{align*}
+where $A_t$ is the agggregate productivity and $z_{j,t}$ is the idiosyncratic component. They follow an $AR(1)$ process:
+\begin{align*}
+    \log A_t &= \rho^A \log A_{t-1} + \sigma_{t-1}^A \epsilon_t\\
+    \log z_{j,t} &= \rho^z \log z_{j,t-1} + \sigma_{t-1}^z \epsilon_{j,t}.
+\end{align*}
+Let the variances move over time according to two-state Markov chains.
+
+\paragraph{Empirics} Uncertainty is countercyclical, but the causality seems to be two-way.
+\begin{enumerate}
+    \item Dispersion in plant-level innovation is countercyclical. 
+    \begin{enumerate}
+        \item Data: Census panel of manufacturing establishments. 
+        \item Calculate the establishment-lebel TFP $\hat{z}_{j,t}$ according to Foster, Haltiwanger and Krizan (2000). Define TFP \textbf{shock} as $e_{j,t}$:
+        \begin{align*}
+            \log \hat{z}_{j,t} = \rho \log \hat{z}_{j,t-1} + \underbrace{\mu_j}_{\text{establishment FE}} + \underbrace{\lambda_t}_{\text{time FE}} + e_{j,t}.
+        \end{align*}
+        Define microeconomic uncertainty $\sigma^{\hat z}_{t-1}$ as the cross-sectional dispersion of $e_{j,t}$ calculated on an annual basis.
+        \item Empirical strategy: Regress dispersion measurements (standard deviation, skewness, kurtosis, and IQR\footnote{Interquartile range, which is the upper quartiel minus the lower quartile.}) on the number of recession quarters in a year (\textit{e.g.}, recession only in Q4 will be assigned with number 0.25).
+    \end{enumerate}
+    \item Industry-level uncertainty is countercyclical.
+    \item Macroeconomic measures of uncertainty: Estimated using GARCH(1,1) model on Basu, Fernald and Kimball (2006) (seems to have been mentioned in Byoungchan's class).
+\end{enumerate}
+
+
+\bibliographystyle{../draft/aer}
+\bibliography{../draft/network_uncertainty}
+
+\end{document}
