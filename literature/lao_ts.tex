@@ -1,0 +1,370 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{bbm}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Notes on \cite{laoOptimalMonetaryPolicy2022}}
+\author{Harlly Zhou \\ \texttt{hzhouci@ust.hk}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\paragraph{Preview of Results} Optimal monetary policy should assign larger weight in the price index to 1) larger, 2) stickier, 3) more upstream firms and 4) firms with less stickier upstream but stickier downstream.
+
+\paragraph{Motivation} The ``divine coincidence'' (stabilizing price elimiates inflation and output gap simultaneously) of optimal monetary policy requires the assumption that all firms are technologically the same. With input-output linkages, monetary policy may lose its abilityto replicate flexible-price allocations.
+
+\paragraph{Model setup} $n$ industries with two types of firms in each industry. 1) Monopolistically competitive firms $k\in[0.1]$ producing differentiated goods. 2) Competitve producer aggregating the differentiated goods into a sectoral composite. 
+
+\begin{enumerate}
+    \item \textit{Monopolistically competitive firms}. CRTS production technology:
+    \[y_{ik} = z_i F_i(\ell_{ik}, x_{i1,k}, \dots, x_{in,k}).\]
+    Nominal profit is $\pi_{ik} = (1-\tau_i)p_{ik} y_{ik} - w \ell_{ik} - \sum_{j=1}^n p_{j} x_{ij,k}$, where $\tau_i$ is collected by the firm and transferred to the household in lump-sum.
+
+    \item \textit{Competitve producer}. CES aggregator:
+    \[y_i = \left(\int^1_0 y_{ik}^{(\theta_i-1)/{\theta_i}} dk\right)^{{\theta_i}/(\theta_i - 1)}.\]
+    It has zero profit and zero value added in equilibrium.
+
+    \item Representative household. Utility:
+    \[W(C,L) = U(C) - V(L),\]
+    where $C$ is a consumption aggregator $C = \mathcal{C}(c_1, \dots, c_n)$ homogeneous of degree 1. A household has the budget constraint:
+    \[ PC = \sum_{j=1}^n p_j c_j \leq wL + \sum_{i=1}^n \int_0^1 \pi_{ik} dk + T.\]
+    
+    \item \textit{Government}. The government has both fiscal policy and monetary policy. The tax is
+    \[T = \sum_{i=1}^n \tau_i \int_0^1 p_{ik} y_{ik} dk.\]
+    The money supply is $m$, implied by the CIA constraint of household:
+    \[PC = m.\]
+
+    \item \textit{Rigidities; Frictions.} Firms make their nominal pricing decisions under incomplete information, that is, before observing the realized productivity shocks $z = (z_1, \dots, z_n)$.
+    
+    Each firm receive signal $\omega_{ik} \in \Omega_{ik}$ about the econmy's aggrgeate state. The state $s$ is defined by
+    \[ s = (z, \omega) \in \mathbb{R}^n_+ \times \Omega = S. \]
+    As only $\omega_{ik}$ is observed, the price will be contingent on the signal but not the true state $s$.
+
+    Note that the information structure here is exogenous, meaning that firms cannot set a nominal price that is contingent on prices set by other firms.
+
+    \item \textit{Summary.} Prices:
+    \[\varrho = \left\{\left(\left(p_{ik}(\omega_{ik})\right)_{k\in[0,1]}, p_i(\omega_i)\right), P(\omega), w(s)\right\}_{s\in S}.\]
+    Firms and household make their quantity decisions after observing the prices and the realization of productivities. Quantities:
+    \[\xi = \left\{\left(\left(y_{ik}(s), \ell_{ik}(s), x_{ik}(s)\right)_{k\in[0,1]}, y_i(s), c_i(s)\right)_{i=1}^n\}, C(s), L(s)\right\}_{s\in S}.\]
+    Government sets state-uncontingent fiscal policy to undo steady-state distortions due to monopolistic competition (a sufficiently rich set of state-contingent tax instruments can undo the real effects of nominal rigidities and implement the first-best allocation under any monetary policy). 
+    
+    The monetary policy is implemented by an arbitrary function $m(s)$ so that it can be state contingent. In other words, the monetyary authority has the ability to commit, ex ante, to a policy that can in principle depend on the realized productivities and the profile of beliefs throughout the economy.
+
+    Policy:
+    \[ \nu = \left\{\left(\tau_1, \cdots, \tau_n\right), m(s) \right\}_{s\in S}.\]
+
+    \item \textit{Equilibrium.} Market Clearing conditions are 
+    \begin{align*}
+        L(s) &= \sum_{i=1}^n \int_0^1 \ell_{ik}(s)dk, \forall s\\
+        y_i(s) & = c_i(s) + \sum_{j=1}^n \int^1_0 x_{ji,k}(s) dk = \left(\int^1_0 y_{ik}(s)^{(\theta_i-1)/{\theta_i}} dk\right)^{{\theta_i}/(\theta_i - 1)}, \forall i, s.
+    \end{align*}
+    A sticky-price equilibrium is a triplet $(\varrho, \xi, \nu)$ that satisfies optimality and market clearing conditions under constraints. A flexible-price equilibrium is the same except that all prices can be contingent on the aggregate state, $s$. An allocation $\xi$ is feasible if it satisfies resource constraints (market clearing conditions).
+\end{enumerate}
+
+\paragraph{Characterization of Equilibria}
+\begin{lemma}
+    The first-best allocation is a feasible allocation that satisfies
+    \begin{align}
+        V'(L(s)) &= U'(C(s))\frac{\partial \mathcal{C}}{\partial c_i}(s) z_i\frac{\partial F_i}{\partial \ell_i}(s) \label{eq:first_best_goods_labour} \\
+        \frac{\partial \mathcal{C} / \partial c_j(s)}{\partial \mathcal{C} / \partial c_i(s)} &= z_i\frac{\partial F_i}{\partial x_{ij}}(s). 
+        \label{eq:first_best_input}
+    \end{align}
+\end{lemma}
+
+\begin{proof}
+    The household optimization problem is
+    \begin{align*}
+        \max_{\{c_i(s)\}_{i=1}^n, L(s)} &\quad U(c) - V(L) \\
+        \text{s.t. } PC &= \sum_{i=1}^n p_i c_i(s) \leq wL(s) + \sum_{i=1}^n \int_0^1 \pi_{ik}(s) dk + T.
+    \end{align*}
+    The FOCs are
+    \begin{align*}
+        [c_i(s)]: &\quad U'(C(s))\frac{\partial \mathcal{C}}{\partial c_i}(s) - \lambda(s) p_i(s) = 0,\\
+        [L(s)]: &\quad -V'(L(s)) + \lambda(s) w(s) = 0.
+    \end{align*}
+    Therefore, $\lambda(s) = V'(L(s))/w(s)$. At equilibrium, $\frac{w(s)}{p_i(s)} = z_i\frac{\partial F_i}{\partial \ell_i}(s)$. Hence we have equation \eqref{eq:first_best_goods_labour}
+    \begin{align*}
+        V'(L(s)) = U'(C(s))\frac{\partial \mathcal{C}}{\partial c_i}(s) \frac{w(s)}{p_i(s)} = z_i\frac{\partial F_i}{\partial \ell_i}(s).
+    \end{align*}
+    Using only the $c_i(s)$ conditions and taking ratio, using equilibrium condition $\frac{p_j}{p_i} = z_i\frac{\partial F_i}{\partial x_{ij}}(s)$, we have equation \eqref{eq:first_best_input}
+    \begin{align*}
+        \frac{\partial \mathcal{C} / \partial c_j(s)}{\partial \mathcal{C} / \partial c_i(s)} = z_i\frac{\partial F_i}{\partial x_{ij}}(s).
+    \end{align*}
+\end{proof}
+
+\begin{proposition}
+    A feasible allocation is part of a flexible-price equilibrium if and only if ther exists a set of positive scalars $(\chi_1^f, \cdots, \chi_n^f)$ such that
+    \begin{align}
+        V'(L(s)) &= \chi_i^f U'(C(s))\frac{\partial \mathcal{C}}{\partial c_i}(s) z_i\frac{\partial F_i}{\partial \ell_i}(s) \label{eq:flex_eqm_goods_labour} \\
+        \frac{\partial \mathcal{C} / \partial c_j(s)}{\partial \mathcal{C} / \partial c_i(s)} &= \chi_i^f z_i\frac{\partial F_i}{\partial x_{ij}}(s). 
+        \label{eq:flex_eqm_goods_subs}
+    \end{align}
+\end{proposition}
+
+\begin{proposition}
+    A feasible allocation is implementable as a sticky-price equilibrium if and only if there exist positive scalars $(\chi_1^s, \cdots, \chi_n^s)$, a monetary policy function $m(s)$, and firm-level wedge $\varepsilon_{ik}(s)$ such that:
+    \begin{enumerate}
+        \item the allocation, the scalars $(\chi_1^s, \cdots, \chi_n^s)$, and firm-level wedges $\varepsilon_{ik}(s)$ jointly satisfy
+        \begin{align}
+            V'(L(s)) &= \chi_i^s \varepsilon_{ik}(s) U'(C(s))\frac{\partial \mathcal{C}}{\partial c_i}(s) z_i\frac{\partial F_i}{\partial \ell_i}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-1/\theta_i}\label{eq:sticky_eqm_goods_labour} \\
+            \frac{\partial \mathcal{C} / \partial c_j(s)}{\partial \mathcal{C} / \partial c_i(s)} &= \chi_i^s \varepsilon_{ik}(s) z_i\frac{\partial F_i}{\partial x_{ij}}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-1/\theta_i}. 
+            \label{eq:sticky_eqm_goods_subs}
+        \end{align}
+
+        \item the monetry policy function $m(s)$ induces firm-level wedges $\varepsilon_{ik}(s)$ given by
+        \begin{align}\label{eq:sticky_firm_wedge}
+            \varepsilon_{ik}(s) = \frac{\text{mc}_i(s)\mathbb{E}_{ik}[v_{ik}(s)]}{\mathbb{E}_{ik}[v_{ik}(s) \text{mc}_i(s)]}
+        \end{align}
+        for all firms $k$, all industries $i$, and all states $s$, where $\mathbb{E}_{ik}[\cdot]$ denotes the expectation with respect to the information set of firm $k$ in industry $i$,
+        \begin{align}\label{eq:sticky_eqm_mc_mp}
+            \text{mc}_i(s) = m(s)\frac{V'(L(s))}{C(s) U'(C(s))} \left(z_i \frac{\partial F_i}{\partial \ell_{i}}(s) \right)^{-1}
+        \end{align}
+        is the nominal marginal cost of firms in industry $i$ and 
+        \begin{align*}
+            v_{ik}(s) = U'(C(s)) \frac{\partial \mathcal{C}}{\partial c_i}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{\frac{\theta_i-1}{\theta_i}} y_i(s).
+        \end{align*}
+    \end{enumerate}
+    
+\end{proposition}
+
+\paragraph{Proof of Proposition 1 and 2: Equilibria}
+\begin{proof}
+    We will first show the result on sticky-price equilibrium and then show the result on flexible-price equilibrium as a special case.
+
+    First, we show the relation between marginal cost and monetary policy \eqref{eq:sticky_eqm_mc_mp}.
+
+    The household's FOCs are identical to the first-best case, except that the price is determined by the signal so that we have
+    \begin{align}\label{eq:sticky_eqm_foc}
+        V'(L(s)) = U'(C(s)) \frac{\partial \mathcal{C}}{\partial c_i}(s) \frac{w(s)}{p_i(\omega_i)}.
+    \end{align}
+    Multiplying both sides by $c_i(s)$ and summing over all $i$'s, we have
+    \begin{align*}
+        m(s) V'(L(s)) = C(s) U'(C(s)) w(s),
+    \end{align*}
+    where we used the fact the $\mathcal{C}$ is homogeneous of degree 1 and the definition $m(s) = P(s) C(s) = \sum_{i=1}^n p_i(\omega_i) c_i(s)$.
+
+    Consider the firm's cost minimization problem:
+    \begin{align*}
+        \min_{\ell_{i}(s), \left\{x_{ij}(s)\right\}_{j=1}^n} &\quad w(s) \ell_{i}(s) + \sum_{j=1}^n p_{j}(s) x_{ij}(s), \\
+        \text{s.t. } y_{i}(s) &= z_i F_i(\ell_{i}(s), x_{i1}(s), \dots, x_{in}(s)).
+    \end{align*}
+    Let the Lagrange multiplier be $\mu_i(s)$. The FOCs are 
+    \begin{align*}
+        [\ell_{i}(s)]: &\quad w(s) - \mu_i(s) z_i \frac{\partial F_i}{\partial \ell_{i}}(s) = 0,\\
+        [x_{ij}(s)]: &\quad p_{j}(s) - \mu_i(s) z_i \frac{\partial F_i}{\partial x_{ij}}(s) = 0, \forall j.
+    \end{align*}
+    Since $F_i$ is homogeneous of degree 1, we have $\mu_i(s) = \text{mc}_i(s)$. Therefore, we derive equation (16):
+    \begin{align*}
+        \text{mc}_i(s) = \frac{V'(L(s))}{C(s) U'(C(s))} \left(z_i \frac{\partial F_i}{\partial \ell_{i}}(s) \right)^{-1}.
+    \end{align*}
+
+    Second, we derive the sticky-price consumption-leisure tradeoff \eqref{eq:sticky_eqm_goods_labour}. Consider firm's optimal pricing decision:
+    \begin{align*}
+        \max_{p_{ik}(\omega_{ik})} &\quad \mathbb{E}_{ik} \left[\frac{U'(C(s))}{P(s)} \left((1-\tau_i)p_{ik}(\omega_{ik}) y_{ik}(s) - \text{mc}_i(s) y_{ik}(s)\right)\right],\\
+        \text{s.t. } y_{ik}(s) &= \left(\frac{p_{ik}(\omega_{ik})}{p_i(\omega_i)}\right)^{-\theta_i}y_i(s),
+    \end{align*}
+    where $\mathbb{E}_{ik}$ denotes the conditional expectation given the signal $\omega_{ik}$. The reason why instead of $1/P(s)$, the paper multiplies $U'(C(s))$ is that $U'(C(s))$ is the marginal utility of consumption and the firm's pricing decision should be able to compare with welfare terms: the same numerical value of price will lead to different consumption decisions based on the state. 
+
+    The FOC is
+    \begin{align*}
+        \mathbb{E}_{ik} \left[U'(C(s)) \frac{\partial \mathcal{C}}{\partial c_i}(s) \left(\frac{p_{ik}(\omega_{ik})}{p_i(\omega_i)}\right)^{1-\theta_i} y_i(s) \frac{1}{p_{ik}(\omega_{ik})} \left((1-\tau_i)\left(\frac{\theta_i-1}{\theta}\right) - \frac{\text{mc}_i(s)}{p_{ik}(\omega_{ik})}\right) \right] =0,
+    \end{align*}
+    where we used the fact that $\frac{\partial \mathcal{C}}{\partial c_i}(s) = \frac{p_{i}(\omega_i)}{P(s)}$. \footnote{Multiplying the consumption FOC $[c_i(s)]$ by $c_i(s)$ on both sides and summing over all $i$'s, we have \(\lambda(s) = \frac{U'(C(s))}{P(s)}\). Substituting this into the FOC $[c_i(s)]$, we get this.}
+    Since the expectation is conditional, the term $1/p_{ik}(\omega_{ik})$ can be cancelled out. Using the demand function, we have 
+    \begin{align*}
+        \frac{p_{ik}(\omega_{ik})}{p_i(\omega_i)} = \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-\frac{1}{\theta_i}}.
+    \end{align*}
+    Define 
+    \begin{align*}
+        v_{ik}(s) = U'(C(s)) \frac{\partial \mathcal{C}}{\partial c_i}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{\frac{\theta_i-1}{\theta_i}} y_i(s).
+    \end{align*}
+    Then the optimal price is
+    \begin{align*}
+        p_{ik}(\omega_{ik}) = \left[\underbrace{(1-\tau_i)\left(\frac{\theta_i-1}{\theta}\right)}_{\equiv \chi_i^s}\right]^{-1}\frac{\mathbb{E}_{ik}[v_{ik}(s) \text{mc}_i(s)]}{\mathbb{E}_{ik}[v_{ik}(s)]}.
+    \end{align*}
+    Define the monetary policy induced firm-level wedge (or the information wedge) as
+    \begin{align*}
+        \varepsilon_{ik}(s) = \frac{\text{mc}_i(s)\mathbb{E}_{ik}[v_{ik}(s)]}{\mathbb{E}_{ik}[v_{ik}(s) \text{mc}_i(s)]}.
+    \end{align*}
+    Then the optimal price can be rewritten as
+    \begin{align}\label{eq:sticky_eqm_opt_price}
+        p_{ik}(\omega_{ik}) = \frac{1}{\chi_i^s \varepsilon_{ik}(s)} \text{mc}_i(s).
+    \end{align}
+
+    Combining this optimal pricing equation with \eqref{eq:sticky_eqm_foc} and the goods demand, we get
+    \begin{align*}
+        V'(L(s)) = \chi_i^s \varepsilon_{ik}(s) U'(C(s)) \frac{\partial \mathcal{C}}{\partial c_i}(s) z_i \frac{\partial F_i}{\partial \ell_i}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-\frac{1}{\theta_i}}.
+    \end{align*}
+
+    Finally, we show the substitution between consumption goods \eqref{eq:sticky_eqm_goods_subs}. Recall that $\frac{\partial \mathcal{C}}{\partial c_i}(s) = \frac{p_{i}(\omega_i)}{P(s)}$. Therefore,
+    \begin{align*}
+        \frac{\partial \mathcal{C}/\partial c_j(s)}{\partial \mathcal{C}/\partial c_i(s)} &= \frac{p_{j}(\omega_j)}{p_{i}(\omega_i)} = \frac{p_{j}(\omega_j)}{p_{ik}(\omega_{ik})} \frac{p_{ik}(\omega_{ik})}{p_{i}(\omega_i)} \\
+        &= \frac{\text{mc}_i(s) z_i \frac{\partial F_i}{\partial x_{ij}}(s)}{\frac{1}{\chi_i^s \varepsilon_{ik}(s)} \text{mc}_i(s)} \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-\frac{1}{\theta_i}} \\
+        &= \chi_i^s \varepsilon_{ik}(s) z_i \frac{\partial F_i}{\partial x_{ij}}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-\frac{1}{\theta_i}}.
+    \end{align*}
+
+    Now consider the flexible-price equilibrium where $\omega_{ik} = s$. Then $y_{ik}(s) = y_i(s)$ symmetrically and $\varepsilon_{ik}(s) = 1$. Therefore, we have 
+    \begin{align*}
+        V'(L(s)) &= \chi_i^f U'(C(s)) \frac{\partial \mathcal{C}}{\partial c_i}(s) z_i \frac{\partial F_i}{\partial \ell_i}(s)  \\
+        \frac{\partial \mathcal{C}/\partial c_j(s)}{\partial \mathcal{C}/\partial c_i(s)} &= \chi_i^f z_i \frac{\partial F_i}{\partial x_{ij}}(s).
+    \end{align*}
+\end{proof}
+
+\paragraph{Role of Policies}
+From the scalars as in Proposition 1 and 2, we know that the fiscal policy (taxes or subsidies) will influence the allocation through them. The monetary policy will affect the nominal marginal cost and hence ths wedge $\varepsilon_{ik}(s)$ and that's why it is called ``monetary policy induced wedge''. Note that equation \eqref{eq:sticky_firm_wedge} implies that $\mathbb{E}_{ik}[v_{ik(s)}(\varepsilon_{ik}(s) - 1)] = 0$, requiring that the wedge should be one in expectation, reflecting the fact that firms, though have only incomplete information, are pricing the goods optimally so that the prices are efficient in expectation.
+
+The next theorem characterizes the condition under which a flexible-price equilibrium can be implemented as a sticky-price equilibrium.
+
+\begin{theorem}
+    A flexible-price allocation indexed by $(\chi_1^f, \cdots, \chi_n^f)$ is implementable as a sticky-price equilibrium if and only if there exists a nominal wage function $w(s)$ such that
+    \begin{align}\label{eq:cond_flex_implement_sticky}
+        \frac{w(s)}{g_i(\chi_1^f z_1, \cdots, \chi_n^f, z_n)} \in \sigma(\omega_{ik})
+    \end{align}
+    where $g_i(z_1, \cdots, z_n)$ is the MPL as afunction of producitivity shocks under the first best-allocation and $\sigma(\omega_{ik})$ is the $\sigma-$ algebra generated by signal $\omega_{ik}$, for all firms $k\in[0,1]$ in all industries $i$, where $w(s)$ is pinned down by the monetary policy via $w(s) = m(s) \frac{V'(L(s))}{C(s) U'(C(s))}$.
+\end{theorem}
+The intuition is that one flexible-price equilibrium can be achieved if and only if a monetary policy can induce the firm to have maringal cost under the signal $\omega_{ik}$ as if under complete information. 
+
+\begin{proof}
+    ($\impliedby$) Suppose that there exists a nominal wage function $w(s)$ such that condition \eqref{eq:cond_flex_implement_sticky} is satisfied. By \eqref{eq:sticky_eqm_mc_mp}, we have $\text{mc}_i(s) = w(s)/g_i(\chi_1^f z_1, \cdots, \chi_n^f, z_n) \in \sigma(\omega_{ik})$. Therefore, $\mathbb{E}_{ik} \text{mc}_i(s) = \text{mc}_{i}(s)$. Therefore, the wedge $\varepsilon = 1$. In a flexible equilibrium, $y_{ik}(s) = y_i(s), \forall k\in[0,1]$. Such allocation satisfies \eqref{eq:sticky_eqm_goods_labour}.
+
+    ($\implies$) Suppose that there exists a flexible-price equilibrium that is implementable as a sticky-price one. Therefore, the indices satisfy
+    \begin{align*}
+        \chi_i^f = \chi_i^s \varepsilon_{ik}(s) \left(\frac{y_{ik}(s)}{y_i(s)}\right)^{-1/\theta_i}.
+    \end{align*}
+    Since this equilibrium is flexible, $y_{ik}(s) = y_i(s)$. Therefore, we have
+    \begin{align*}
+        \chi_i^f = \chi_i^s \varepsilon_{ik}(s).
+    \end{align*}
+    Note that both $\chi_i^f$ and $\chi_i^s$ are perpendicular to $s$ and invariant w.r.t. $k$. We can let $\varepsilon_{ik}(s) = \varepsilon_i$.
+
+    Recall that \eqref{eq:sticky_firm_wedge} implies that $\mathbb{E}_{ik}[v_{ik}(s)(\varepsilon_{ik}(s) - 1)] = (\varepsilon_i - 1)\mathbb{E}_{ik}[v_{ik}(s)] = 0$. Therefore, we have $\varepsilon_i = 1$. Hence the optimal price can be rewritten as
+    \begin{align*}
+        p_{ik}(\omega_{ik}) = \frac{1}{\chi_i^f} \text{mc}_i(s).
+    \end{align*}
+    Since the RHS is invariant w.r.t. $k$, we have $p_{ik}(\omega_{ik}) = p_i(\omega_i)$.  Another implication is that $\text{mc}_i(s) \in \sigma(\omega_{ik})$. Define the firms' cost function as $K_i(w(s), p_1(\omega_1), \cdots, p_n(\omega_n))$, homogeneous of degree 1. Then we have
+    \begin{align*}
+        p_i(\omega_i) = \frac{1}{\chi_i^f z_i}K_i(w(s), p_1(\omega_1), \cdots, p_n(\omega_n)).
+    \end{align*}
+    Dividing both sides by $w(s)$ yields
+    \begin{align*}
+        \frac{p_i(\omega_i)}{w(s)} = \frac{1}{\chi_i^f z_i}K_i\left(1, \frac{p_{1}(\omega_1)}{w(s)} , \cdots, \frac{p_{n}(\omega_n)}{w(s)} \right).
+    \end{align*}
+
+    Define $h_i(z) = \frac{1}{z_i} K_i(1, h_1(z), \cdots, h_n(z))$. Then we can write 
+    \begin{align*}
+        \frac{p_i(\omega_i)}{w(s)} = h_i(\chi^f z) \iff p_{i}(\omega_i) = w(s) h_i(\chi^f z).
+    \end{align*}
+    Since $p_i(\omega_i)$ is measurable w.r.t. $\sigma(\omega_{ik})$, $w(s) h_i(\chi^f z) \in \sigma(\omega_{ik})$. It remains to show that $h_i(\chi^f z) = [g_i(\chi^f z)]^{-1}$. 
+    
+    Note that by definition, $h_i(z) = \frac{1}{z_i} K_i(1, h_1(z), \cdots, h_n(z)) = \text{mc}_i(s)/w(s) = \left(z_i \frac{\partial F_i}{\partial \ell_i}(s) \right)^{-1}$ by the firm's cost-minimization problem. Hence we are done. 
+\end{proof}
+
+Note the condition \eqref{eq:cond_flex_implement_sticky}, in general, does not hold. Therefore, two corollaries follow:
+\begin{corollary}
+    Let $\mathcal{A}^f$ and $\mathcal{A}^s$ denote the sets of allocation that are implementable as flexible-price and sticky price equilibria, respectiely. Then $\mathcal{A}^f \cap \mathcal{A}^s = \emptyset$ for a generic set of infomation structures.
+\end{corollary}
+
+\begin{corollary}
+    In a multisector economy with given preferences and technologies, the first-best allocation is not implementable as a sticky-price equilibrium for a generic set of information structures.
+\end{corollary}
+
+The intuition is simple: a monetary policy aiming at price stabilization in one sector is in general not able to stabilize the prices in other sectors.
+
+
+What are the non-generic cases?
+\begin{corollary}
+    If there is a single sticky-price industry $i$, any flexible-price allocation can be implementable as a sticky-priced equilibrium with a monetary policy that stabilizes industry $i$'s price.
+\end{corollary}
+
+\begin{proof}
+    Suppose that all firms in all industries $j \neq i$ have complete information. Therefore, $\varepsilon_{jk}(s) = 1, \forall j\neq i, k \in [0,1]$. Then set the monetary policy such that 
+    \begin{align*}
+        m(s) = M z_i \frac{\partial F_i}{\partial \ell_i}(s) \frac{C(s) U'(C(s))}{V'(L(s))}
+    \end{align*}
+    Then $\text{mc}_i(s) = M$. Therefore, $\varepsilon_{ik}(s) = 1$.
+
+    It remains to show that the monetary policy stabilizes industry $i$'s prices. Recall that $p_{ik}(\omega_{ik}) = \frac{1}{\chi_i^s \varepsilon_{ik}(s)} \text{mc}_i(s)$. Under this information structure, we have $p_{ik}(\omega_{ik}) = \frac{M}{\chi_i^s}$. We are done with the proof in the sense that the moneytary policy eliminates price dispersion in industry $i$.
+\end{proof}
+
+
+\begin{corollary}
+    If firms have complete information about all shocks except for an aggregate labour-augementing shock. then any flexible-price allocation can be implemented as a sticky-price equialibrium.
+\end{corollary}
+
+\begin{proof}
+    Suppose that there is an industry $0$ transforming household labour supply into service. Then an aggregate labour-augmenting shock is equivalent to a TFP shock in industry $0$. 
+
+    Recall the proof of Theorem 1. We can write $h_i(z) = \frac{1}{z_i} K_i(1/z_0, h_1(z), \cdots, h_n(z))$. Since $g_i = h_i^{-1}$ is homogeneous of degree 0, we have a unique solution $h_i(z_0, z) = \frac{1}{z_0} \hat{h}_i(z)$.  Then $g_i(z) = z_0/\hat{h}_i(z)$. Set $w(s) = z_0 \hat{w}(z)$. Then
+    \begin{align*}
+        \frac{w(s)}{g_i(z)} = \hat{w}(z) \hat{h}_i(z) \in \sigma(\omega_{ik}).
+    \end{align*}
+
+    The function $\hat{w}(z)$ can be very arbitrary under the only constraint that it is perpendicular to $z_0$ to ensure that the final expression of $w(s)/g_i(z) \perp z_0$ so that it is measurable w.r.t. $\sigma(\omega_{ik})$.
+\end{proof}
+
+These corollaries are consistent with the intuition of Theorem 1: a monetary policy can only stabilize the prices in one sector.
+
+
+
+\bibliographystyle{../draft/aer}
+\bibliography{../draft/network_uncertainty}
+
+\end{document}
