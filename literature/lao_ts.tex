@@ -300,9 +300,9 @@ The intuition is that one flexible-price equilibrium can be achieved if and only
         p_{ik}(\omega_{ik}) = \frac{1}{\chi_i^f} \text{mc}_i(s).
     \end{align*}
     Since the RHS is invariant w.r.t. $k$, we have $p_{ik}(\omega_{ik}) = p_i(\omega_i)$.  Another implication is that $\text{mc}_i(s) \in \sigma(\omega_{ik})$. Define the firms' cost function as $K_i(w(s), p_1(\omega_1), \cdots, p_n(\omega_n))$, homogeneous of degree 1. Then we have
-    \begin{align*}
+    \begin{align}\label{eq:implementability_cond}
         p_i(\omega_i) = \frac{1}{\chi_i^f z_i}K_i(w(s), p_1(\omega_1), \cdots, p_n(\omega_n)).
-    \end{align*}
+    \end{align}
     Dividing both sides by $w(s)$ yields
     \begin{align*}
         \frac{p_i(\omega_i)}{w(s)} = \frac{1}{\chi_i^f z_i}K_i\left(1, \frac{p_{1}(\omega_1)}{w(s)} , \cdots, \frac{p_{n}(\omega_n)}{w(s)} \right).
@@ -361,6 +361,56 @@ What are the non-generic cases?
 \end{proof}
 
 These corollaries are consistent with the intuition of Theorem 1: a monetary policy can only stabilize the prices in one sector.
+
+Now we start to use the Cobb-Douglas case to illustrate the results. Let the production function be
+\[y_{ik} = z_i F_i(\ell_{ik}, x_{i1,k}, \cdots, x_{in,k}) = z_i \zeta_i \ell_{ik}^{\alpha_i} \prod_{j=1}^n x_{ij,k}^{a_{ij}}.\]
+We denote the production network matrix as $\mathbf{A}=[a_{ij}]$. The corresponding Leontief inverse is $\mathbf{L}=[l_{ij}] = (\mathbf{I}-\mathbf{A})^{-1}$.
+
+The consumption baskey is also a Cobb-Douglas aggregator of the sectoral goods given by
+\[\mathcal{C}(c_1, \cdots, c_n) = \prod_{i=1}^n\left(\frac{c_i}{\beta_i}\right)^{\beta_i}.\]
+
+\begin{proposition}
+    In a Cobb-Douglas economy with leotief inverse $\mathbf{L}$,
+    \begin{enumerate}
+        \item the monetary authority can implement the first-best allocation using a price-stabilization policy if and only if there ecists a substochastic vector $\psi = (\psi_1, \cdots, \psi_n)'$ such that \footnote{The substochastic vector $\psi$ is a vector of non-negative numbers that sum to less than or equal to1.}
+        \begin{align}\label{eq:cd_first_best}
+            (\psi' - u_i') \mathbf{L}\mathbf{V}_{ik}=0, \forall k, i,
+        \end{align}
+        where $u_i$ is the $i$-th unit vector and $\mathbf{V}_ik$ is the covariance matrix of the log productivity shocks.
+        \item If \eqref{eq:cd_first_best} holds, then the first-best allocation can be implemented vy stabilizaing aprice inex that assigns weight $\psi_i$ to the price of industry $i$, that is, $\sum_{i=1}^n \psi_i \log p_i + (1-\sum_{i=1}^n \psi_i) \log w = 0$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    By stabilizing the price index, we want
+    \begin{align*}
+        P = w^{1-\sum_{i=1}^n \psi_i} \prod_{i=1}^n p_i^{\psi_i} = \text{ constant }.
+    \end{align*}
+    WLOG, we can assume that $P=1$ so that the monetary policy is such that
+    \begin{align*}
+        \sum_{i=1}^n \psi_i \log p_i + (1-\sum_{i=1}^n \psi_i) \log w = 0.
+    \end{align*}
+
+    Recall that in the proof of Theorem 1, a flexible-price equilibrium can be implemented as a sticky-price equilibrium if and only if \eqref{eq:implementability_cond} holds. With Cobb-Douglas production function, we have $\log p_{i}(\omega_{i}) = -\log \chi^f_i - \log z_i + \alpha_i \log w(s) + \sum_{j=1}^n a_{ij} \log p_j(\omega_j)$. Solving the problem gets
+    \begin{align*}
+        \log p_i(\omega_i) = \log w(s) - \sum_{j=1}^n L_{ij}(\log \chi^f_j + \log z_j).
+    \end{align*}
+    Combining this with the monetary policy, we get
+    \begin{align*}
+        \log w(s) &= \sum_{i,j}\psi_i L_{ij}(\log \chi^f_j + \log z_j)\\
+        \log p_i(\omega_i) &= \sum_{r,j}\psi_r L_{rj}(\log \chi^f_j + \log z_j) - \sum_{j=1}^n L_{ij}(\log \chi^f_j + \log z_j).
+    \end{align*}
+    Taking conditional expectation and subtracting the non-expectation expression, we get, in compact form,
+    \begin{align*}
+        (\psi' - u_i') \mathbf{L} \left(\mathbb{E}_{ik}[\log z] - \log z\right)=0.
+    \end{align*}
+    Multiplying $\log z'$ on both sides and taking conditional expectation again, we get \eqref{eq:cd_first_best}.
+\end{proof}
+
+\begin{remark}
+    This proposition requires first to know what does "stabilizing the price index" mean. It simply means that the price does not fulctuate with shocks in the economy, so that withtout loss of generality, being zero. In Theorem 1, we had the measurability condition, while we actually have an analytical necessary and sufficient condition. Use that mathematical expression and combining with the monetary policy, we are able to get a monetary equilibrium. Also note that wage is also a price -- the price of labour services. So this weighted average across goods prices and labour wage is a general form of price index, while the $\prod_{i} p_i^{\beta_i}$ which directly comes from the consumption aggregator is a special case where $\sum_i \psi_i = 1$.
+\end{remark}
+
+This condition is very easy to be violated. As long as $\mathbf{V}_{ik}$ is a zero matrix, meaning that as long as there are a nonzero fraction of firms in two industries with an arbitrarily small idiosyncratic uncertainty about productivity shocks. We will be clear on what this means later. But generally speaking, if the information structure is complete, then the conditional covariance matrix should be a zero matrix because there is no uncertainty. With idiosyncratic component, there is stochasticity remaining, and thus the covariance matrix is not zero so that the equation does not hold in general.
 
 
 
