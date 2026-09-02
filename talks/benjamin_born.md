@@ -1,142 +1,202 @@
-This is a very good opportunity, but you should **not** try to “present the model” in full. In 30 minutes, your goal is to get him to react to the **research question and modeling choice**, not to debug all equations.
+Yes, your four points are much closer. I would organize the conversation with him exactly around these, but sharpen them so they sound like **research-design questions**, not a long literature summary.
 
-Born is especially relevant because his current work includes monetary unions and uncertainty. His “Anchored in Troubled Waters” project argues that a monetary union dampens country-specific uncertainty shocks by providing a nominal anchor, while leaving common uncertainty shocks largely unchanged. That is very close to your question: how does the monetary regime interact with uncertainty propagation? ([本杰明·博恩][1])
+Here is a 30-minute plan.
 
-I would structure the 30 minutes like this.
+## 1. Start with a 2-minute pitch
 
-## 1. First 5 minutes: give the idea, not the model
+Say:
 
-Say something like:
+> I am trying to study optimal monetary policy for uncertainty shocks in a production network. The shock is a second-moment shock to firm or sector productivity. My intended mechanism is that higher conditional volatility tightens credit or working-capital conditions, which lowers real production capacity and raises marginal costs and prices. Then, through input-output linkages, the shock propagates across sectors. I want to ask whether the divine coincidence logic in La’O and Tahbaz-Salehi survives once uncertainty shocks create heterogeneous financial wedges.
 
-> I am trying to build a production-network model in which firm-level or sector-level uncertainty shocks affect the macroeconomy through a working-capital/financial-friction channel. The starting point is La’O and Tahbaz-Salehi’s production-network monetary-policy framework. I want to add uncertainty shocks, following Alfaro, Bloom, and Lin or Arellano, Bai, and Kehoe, and a financial-friction block in the spirit of Jermann and Quadrini. The question is: when uncertainty shocks are heterogeneous across sectors, how should optimal monetary policy respond once production-network linkages propagate the shock?
+That is the clean version.
 
-Then stop. Do not immediately explain all equations.
-
-The key phrase I would use is:
-
-$$
-\text{sectoral uncertainty shocks}
-\rightarrow
-\text{credit/working-capital wedges}
-\rightarrow
-\text{network propagation}
-\rightarrow
-\text{optimal monetary policy}.
-$$
-
-That is the whole paper in one line.
-
-## 2. Next 10 minutes: tell him the modeling fork you are stuck on
-
-This is where he can actually help.
-
-I would say:
-
-> My earlier version treated productivity uncertainty as affecting expected working-capital needs and therefore pricing. But I am now realizing that the timing and the financial constraint must be handled carefully. If prices are preset before the level shock realizes, then firms choose prices under uncertainty. After productivity realizes, goods-market clearing and the working-capital condition pin down realized borrowing. The question is whether I should model the borrowing constraint as a hard state-by-state credit limit, which creates rationing/default states, or instead use it as a reduced-form lending-condition/loan-rate wedge.
-
-This is a **great question** for him because it is conceptual, not just algebraic.
-
-Ask directly:
-
-> In a production-network monetary model, would you find it acceptable to put financial frictions into the price-setting block as a working-capital wedge, without explicitly modeling credit rationing states? Or would you think the borrowing constraint must be modeled as a hard quantity constraint once realized borrowing exceeds capacity?
-
-That is probably your most important question.
-
-## 3. Next 10 minutes: ask the optimal monetary policy question
-
-You should connect to La’O and Tahbaz-Salehi, but make your departure clear.
-
-La’O and Tahbaz-Salehi study optimal monetary policy in a production network where sectoral price distortions and network positions matter; the NBER description says the paper studies optimal monetary policy in a multisector economy with firms buying and selling intermediate goods over a production network. ([国家经济研究局][2])
-
-Your question is different:
-
-> In La’O and Tahbaz-Salehi, the policymaker cares about stabilizing the right network-weighted price/wage objects because markups and input-output positions generate inefficient relative price dispersion. In my project, uncertainty also changes financial wedges. Then the relevant stabilization target may not only be price dispersion; it may be network-weighted financial tightness or uncertainty-induced working-capital wedges.
-
-Then ask him:
-
-> Do you think the optimal monetary policy result should be framed as a modified divine coincidence failure? That is, stabilizing aggregate inflation or the price index may fail because uncertainty shocks create heterogeneous financial wedges across network positions.
-
-This is much more interesting than asking “how does uncertainty shape optimal monetary policy?” The latter is too broad. Ask about the **target**:
-
-$$
-\text{Should the central bank stabilize prices, output gaps, financial wedges, or network-adjusted wedges?}
-$$
-
-A sharper question:
-
-> If uncertainty shocks are sector-specific and propagate through input-output linkages, should optimal policy lean more against shocks to upstream sectors than downstream sectors, even if their direct output shares are similar?
-
-That is probably the cleanest “production network” question.
-
-## 4. Last 5 minutes: ask for adjacent research directions
-
-Since Born’s current/recent research spans business cycles, monetary policy, expectations, and monetary unions, and his profile lists work on uncertainty and monetary unions, he may be especially useful for the open-economy angle. ([本杰明·博恩][3])
-
-Ask one or two, not five.
-
-Good question:
-
-> Do you think the more promising application is a closed-economy optimal monetary policy problem, or an open-economy/monetary-union version where sectoral uncertainty shocks differ across countries and propagate through cross-border production networks?
-
-Another good one:
-
-> If I want to connect this to financial cycles or credit cycles, would you recommend starting from firm-level borrowing constraints, bank balance sheets, or sectoral external finance dependence?
-
-This invites him to suggest a tractable path.
-
-## What not to do
-
-Do not spend the meeting apologizing for the previous wrong model. Say only:
-
-> I had an earlier version, but after reading these papers I realized the timing and financial block should be rebuilt more carefully.
-
-That sounds mature, not confused.
-
-Also do not show him the full pricing FOC unless he asks. Your formula is complex, and he may spend the whole meeting on one term. Instead, show the mechanism diagram and the key modeling fork.
-
-## The exact 30-minute plan
-
-I would prepare one page, not slides.
-
-**Page title:** “Uncertainty, Working Capital, and Optimal Monetary Policy in Production Networks”
-
-Then four blocks:
-
-**Question**
-
-$$
-\text{How should monetary policy respond to sectoral uncertainty shocks in a production network?}
-$$
-
-**Mechanism**
+Then give the one-line mapping:
 
 $$
 \sigma_{i,t}\uparrow
-\Rightarrow
-\text{credit wedge}\uparrow
-\Rightarrow
-p_{i,t}\uparrow
-\Rightarrow
-\text{network}
-\Rightarrow
-\pi\text{–}y\text{ tradeoff}.
+\quad\Rightarrow\quad
+\text{credit / working-capital wedge}\uparrow
+\quad\Rightarrow\quad
+y_{i,t}\downarrow,\ p_{i,t}\uparrow
+\quad\Rightarrow\quad
+\text{network propagation}
+\quad\Rightarrow\quad
+\text{optimal policy target?}
 $$
 
-**Ingredients**
+This is already enough for him to understand the agenda.
 
-La’O and Tahbaz-Salehi: network monetary-policy target.
-Alfaro, Bloom, Lin / Arellano, Bai, Kehoe: uncertainty-finance channel.
-Jermann and Quadrini: borrowing constraint / financial shock discipline.
-Kopytov et al.: timing and uncertainty before production decisions.
+## 2. Main question: divine coincidence and policy target
 
-**Questions for him**
+Your first question is the most important. I would phrase it like this:
 
-1. Should the financial friction be a price-setting wedge or a hard quantity/rationing constraint?
-2. What is the right optimal-policy target: inflation, output gap, or network-weighted financial wedges?
-3. Is the best application closed economy, monetary union, or cross-border production networks?
+> In La’O and Tahbaz-Salehi, optimal policy in a production network is shaped by sectoral wedges and network positions. I want to introduce uncertainty shocks that tighten working-capital or credit conditions. Do you think this should be viewed as a breakdown of divine coincidence? More concretely, should policy target aggregate inflation, network-weighted price dispersion, output gaps, or something like network-weighted financial wedges?
 
-My strongest recommendation: make question 1 the central one. If you get a clear answer on that, your model will move forward a lot.
+This is precise and open-ended.
 
-[1]: https://www.benjaminborn.de/files/BHMP_AnchorUncertainty_Apr2025.pdf?utm_source=chatgpt.com "Anchored in Troubled Waters:"
-[2]: https://www.nber.org/papers/w27464?utm_source=chatgpt.com "Optimal Monetary Policy in Production Networks | NBER"
-[3]: https://www.benjaminborn.de/?utm_source=chatgpt.com "Benjamin Born"
+The key conceptual issue is:
+
+$$
+\text{uncertainty shock}
+\neq
+\text{standard TFP level shock}.
+$$
+
+A productivity level shock changes feasible output directly. A volatility shock changes **risk, financing conditions, and expected unit costs**. So policy may face a different tradeoff: stabilizing prices may not stabilize the efficient allocation if financial wedges are heterogeneous across sectors.
+
+That is your La’O–Tahbaz-Salehi extension: the relevant object may no longer be only the network-adjusted price index or markup wedge, but also a network-adjusted **uncertainty-finance wedge**.
+
+## 3. Second question: financial channel versus information channel
+
+Your second point is also good. I would ask him directly:
+
+> Do you find the financial-friction channel the right way to make volatility shocks matter in a monetary production-network model? Kopytov et al. model supply-chain uncertainty through technology/network choice in a real model. Since I study monetary policy, I am considering a working-capital or credit-constraint channel, closer to Jermann–Quadrini and Alfaro–Bloom–Lin. Do you think this is the right abstraction, or should I also model an information channel?
+
+My own recommendation: **do not put both channels in the first version**.
+
+Use the financial channel as the benchmark. The reason is simple: if you include both financial friction and information friction, then when uncertainty raises prices or lowers output, nobody will know which mechanism is doing the work.
+
+A clean first version is:
+
+$$
+\text{full-information rational expectations}
++
+\text{uncertainty-dependent financial wedge}
++
+\text{production network}
++
+\text{optimal monetary policy}.
+$$
+
+Then later you can say:
+
+> A natural extension is incomplete information about the network or firm productivity, which would add a distinct information channel.
+
+This is easier to defend. It also distinguishes you from Kopytov et al.: they use uncertainty to shape technology/network choices in a real model; you use uncertainty to shape financial wedges and monetary-policy tradeoffs in a nominal model. Kopytov et al. study endogenous production networks under supply-chain uncertainty, while La’O and Tahbaz-Salehi study optimal monetary policy in a multisector economy where firms trade intermediate goods over a production network. ([Wiley Online Library][1])
+
+For the financial channel, the best foundation is exactly what you identified: Jermann–Quadrini for financial shocks, Arellano–Bai–Kehoe / Alfaro–Bloom–Lin for uncertainty with financial frictions, and working-capital/cost-channel papers for monetary transmission. Alfaro, Bloom, and Lin explicitly study how uncertainty shocks affect firms’ real and financial activity, and the JPE page places their article in the finance-uncertainty literature. ([DOI][2])
+
+## 4. Third question: how far to push optimal monetary policy
+
+This is where I would be strategic.
+
+Do **not** promise a full Ramsey problem immediately. Ask him whether the paper should first target a **policy-characterization result**.
+
+Say:
+
+> I am unsure how far to push the optimal-policy side. One route is to solve a full Ramsey problem. Another is to derive a target criterion: how the central bank should weight sectoral inflation or output gaps when uncertainty shocks create financial wedges. Which would you find more valuable?
+
+For your contribution, I would think in layers:
+
+**Minimum contribution**
+
+> Show that uncertainty shocks in financially constrained sectors propagate through the production network and generate inflation-output tradeoffs.
+
+**Stronger contribution**
+
+> Show that divine coincidence fails because stabilizing aggregate inflation does not stabilize network-weighted financial distortions.
+
+**Best contribution**
+
+> Derive a sufficient-statistic policy target: optimal policy responds to sectoral uncertainty shocks according to their network centrality and financial tightness.
+
+The best version sounds like:
+
+$$
+\text{optimal policy weight on sector } i
+=
+\text{network centrality}_i
+\times
+\text{financial-friction exposure}_i
+\times
+\text{uncertainty shock}_i.
+$$
+
+That is likely more publishable than just “uncertainty raises prices.”
+
+So ask Born:
+
+> Would a target-criterion result be enough, or should I aim for a full Ramsey characterization?
+
+## 5. Fourth question: future collaboration with macro-finance coauthor
+
+This is a good thing to ask near the end, after you get his comments on the main project.
+
+Say:
+
+> Separately, I may work with a macro-finance coauthor on production networks and credit cycles. Do you see promising questions where financial cycles interact with production-network propagation?
+
+Then give two or three possible directions.
+
+### Topic A: network credit cycle
+
+Question:
+
+$$
+\text{Do credit booms concentrate in upstream sectors and amplify downstream production?}
+$$
+
+Mechanism:
+
+$$
+\text{credit expansion to upstream firms}
+\Rightarrow
+\text{lower input prices / higher input supply}
+\Rightarrow
+\text{downstream expansion}
+\Rightarrow
+\text{aggregate boom}.
+$$
+
+Literature anchor: Demir et al. study bank credit supply shocks using Spanish firm-to-firm and bank-loan data and build a GE production-network model with financial frictions. ([Benny AEA][3])
+
+### Topic B: production-network amplification of monetary policy through financial frictions
+
+Question:
+
+$$
+\text{Does monetary policy transmit more strongly through financially constrained network-central sectors?}
+$$
+
+This is close to your current project, but more empirical. There is already evidence that production networks matter for monetary-shock transmission; one paper finds network amplification is highly concentrated in a small set of sectors. ([科学直通车][4])
+
+### Topic C: uncertainty shocks and supplier credit
+
+Question:
+
+$$
+\text{When uncertainty rises, do firms cut trade credit to customers, causing a network credit crunch?}
+$$
+
+This could be very nice if your coauthor is macro-finance, because trade credit is naturally a network object.
+
+### Topic D: monetary union / cross-border production networks
+
+Given Born’s talk, ask:
+
+> In a monetary union, do country-specific uncertainty or credit shocks propagate differently when firms are linked through cross-border input-output networks?
+
+This connects directly to him and gives you a reason to talk after his presentation.
+
+## What I would literally ask him
+
+I would write these four questions on paper:
+
+1. **Modeling channel:**
+   “For a monetary production-network model of uncertainty shocks, does it make sense to discipline the volatility effect through working-capital/credit constraints rather than technology choice or information frictions?”
+
+2. **Policy target:**
+   “Once uncertainty creates heterogeneous financial wedges, what is the natural analogue of the La’O–Tahbaz-Salehi policy target? Inflation? Output gap? Network-weighted financial wedges?”
+
+3. **Contribution:**
+   “Would a target-criterion result be a meaningful contribution, or should the paper aim for a full Ramsey solution?”
+
+4. **Next projects:**
+   “What are promising macro-finance questions linking production networks to credit cycles, bank shocks, or monetary-policy transmission?”
+
+This will make the meeting fruitful because you are asking him to help choose the **architecture** of the paper, not to solve your model line by line.
+
+[1]: https://onlinelibrary.wiley.com/doi/10.3982/ECTA20629?utm_source=chatgpt.com "Endogenous Production Networks Under Supply Chain Uncertainty - Kopytov - 2024 - Econometrica - Wiley Online Library"
+[2]: https://doi.org/10.1086/726230?utm_source=chatgpt.com "The Finance Uncertainty Multiplier | Journal of Political Economy: Vol 132, No 2"
+[3]: https://benny.aeaweb.org/articles?id=10.1257%2Faer.20201088&utm_source=chatgpt.com "Production and Financial Networks in Interplay - American Economic Association"
+[4]: https://www.sciencedirect.com/science/article/pii/S0304393221000179?utm_source=chatgpt.com "Monetary policy and production networks: an empirical investigation - ScienceDirect"
