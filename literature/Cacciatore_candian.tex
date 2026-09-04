@@ -67,18 +67,28 @@
 \begin{document}
 \maketitle
 
-\paragraph{Motivation} 
+\paragraph{Motivation} In 2023, supply shortages and rising prices in key upstream industries became primary drivers of the global inflation surge.
 
-\paragraph{Research Question} 
+\paragraph{Research Question} How does uncertainty arising in a particular industry affect aggregate uncertainty, production, and prices in upstream suppliers and downstream customers? Do aggregate effects of uncertainty depend on where in the production network it originates? \footnote{This uncertainty is literally the implied volatility from the stock market, not the volatility of productivity.}
 
 \paragraph{Empirical Results} 
+The volatility measures (implied volatility, realized volatility) for firm $f$, industry $i$, date $d$, period $t$ are
+\begin{align*}
+    IV_{i,d} \sum_{f\in i} s_{f,i,d-1} IV_{f,i,d}, \qquad RV_{i,t} = \frac{1}{D} \sum_{d\in t} \sum_{f\in i} s_{f,i,d} r^2_{f,i,d},
+\end{align*}
+where $r$ is the stock return.
 \begin{enumerate}
-    \item 
+    \item Sectoral volatility component explains a large part of firm implied volatility. Different sectors may have different spikes. 
+    \item Cyclicality: Negative correlation in general with industrial production; positive correlation with aggrgeate uncertainty; no clear coorelation with core CPI inflation.
+    \item Uncertainty shock: Persistently higher uncertainty in both upstream and downstream industries and own industry. Also lower employment. Lower the producer prices in upstream but raise in own industry and downstream. Intermediate input prices (index) drops in upstream and raises in downstream.
+    \item Aggregate effect: Uncertainty rises, employment drops, and CPI increases.
 \end{enumerate}
 
 \paragraph{Theories} 
 \begin{enumerate}
-    \item 
+    \item There is a wholesaler and retailers which I think are kind of redundant?
+    \item Productivity processes are standard.
+    \item Government purchase is formally modelled with an underlying process. But I prefer the fiscal policy as tax and rebated to household as in \citep{laoOptimalMonetaryPolicy2022}.
 \end{enumerate}
 
 
