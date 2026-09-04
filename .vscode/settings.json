@@ -1,0 +1,8 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%",
+  "latex-workshop.latex.auxDir": "%DIR%/.latex",
+  "files.exclude": {
+    "**/.latex": true,
+    "**/*.synctex.gz": true
+  }
+}

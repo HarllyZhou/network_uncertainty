@@ -24,6 +24,7 @@ data/logs/*
 !data/logs/.gitkeep
 
 # LaTeX build artifacts
+.latex/
 *.aux
 *.bbl
 *.bcf
@@ -49,6 +50,7 @@ draft/*.pdf
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
+.vscode/*
+!.vscode/settings.json
 *.swp
 *~
