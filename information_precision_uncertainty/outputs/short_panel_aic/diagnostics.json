@@ -1,0 +1,17 @@
+{
+  "panel_rows": 53186,
+  "firms": 4549,
+  "matched_sales_forecasts": 9326,
+  "analysis_rows": 4075,
+  "standardized_innovation_mean": -0.042890391881422504,
+  "standardized_innovation_std": 1.5626875957888338,
+  "criterion": "aic",
+  "baseline_window": 6,
+  "bootstrap_reps": 199,
+  "volatility_alignment": "target",
+  "volatility_column": "sigma_target_w6",
+  "target_volatility_matches": 10370,
+  "log_fe2_offset": 0.00021451245303742396,
+  "matched_price_forecasts": 1343,
+  "firms_with_12_price_growth_observations": 0
+}

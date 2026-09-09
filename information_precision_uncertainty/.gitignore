@@ -1,0 +1,6 @@
+data/raw/*
+!data/raw/.gitkeep
+outputs/smoke/
+__pycache__/
+*.py[cod]
+

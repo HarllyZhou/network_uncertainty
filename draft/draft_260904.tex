@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{bbm}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.75}
+\linespread{1.5}
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{multicol}
+\usepackage{stfloats}
+\usepackage{placeins}
+\usepackage{lscape}
+\usepackage[figuresright]{rotating}
+\RequirePackage{pdflscape}
+\usepackage[toc,page]{appendix}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{comment}
+\usepackage{xcolor}
+% \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{empheq}
+\usepackage{newtxtext,newtxmath}
+
+% -------- enumerated sub-labels (a), (b), … --
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=(\alph*),ref=\alph*}
+% ---------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+	colorlinks=true,
+	allcolors=black,
+	pdfstartview=Fit,
+	breaklinks=true}
+\usepackage{csquotes}
+\usepackage{natbib}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}[section]
+\numberwithin{equation}{section}
+\newtheorem{assumption}{Assumption}[section] % number within sections
+
+\title{Production Networks and Formation of Aggregate Uncertainty}
+\author{
+Harlly Zhou\footnotemark[1]\\\texttt{hzhouci@ust.hk}
+}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        {\LARGE\bfseries Uncertainty, Production Networks, and Optimal Monetary Policy\par}
+        \vspace{1.5em}
+        {\large
+        Harlly Zhou\footnotemark[1] (\texttt{hzhouci@ust.hk})\\
+        }
+        \vspace{1em}
+        \today
+    \end{center}
+    \vspace{2em}
+    \begin{abstract}
+        \sloppy
+        \noindent 
+         \vspace{1em}
+
+        \noindent\textbf{JEL Codes:} 
+
+
+        \noindent\textbf{Keywords:} 
+        \fussy
+    \end{abstract}
+    \thispagestyle{empty}
+    \setcounter{page}{0}
+\end{titlepage}
+
+
+\section{Benchmark Model}\label{sec:benchmark_model}
+Consider a closed-economy with $N$ industreis, indexed by $i= 1, \cdots, N$. Each industry has a representative firm that produces a differentiated good $y_{i,t}$ using capital $k_{i,t}$, labor $n_{i,t}$ and intermediate inputs from industry $j$, $\{x_{ij,t}\}_{j=1}^N$. The production function is given by 
+\begin{align}\label{eq:prod_func}
+    y_{i,t} = z_{i,t} \zeta_{i,t} k_{i,t}^{a^k_i} n_{i,t}^{a^n_i} \left(\prod_{j=1}^N x_{i,j,t}^{\alpha_{ij}}\right)^{1-a^k_i-a^n_i}
+\end{align}
+where $z_i$ is the productivity of industry $i$, $\zeta_{i,t}$ is a normalizing factor, $n_{i,t}$ is the labor input, and $x_{i1,t}, \cdots, x_{iN,t}$ are the intermediate inputs from industry $1, \cdots, N$. 
+
+At the beginning of each period $t$, the productivity has not realized yet. The firm needs to decide the nominal price $p_{i,t}$ as well as borrowing $b_{i,t}$ from the households. The borrowing is used to finance the labour cost and intermediate input costs. After the productivity realizes, the firm decides the input demands $n_{i,t}$ and $x_{i1,t}, \cdots, x_{iN,t}$ to produce the output $y_{i,t}$. After the sales are realized, the firm will earn a revenue of $p_{i,t} y_{i,t}$ subject to a propotional tax $\tau_{i,t}$ on the revenue. The firm needs to repay the borrowing $b_{i,t}$ with interest rate $i_t$. If the revenue is not sufficient to repay the borrowing, the firm will pay all the revenue to the households and quit. In the next period, a new firm will enter the industry. If there is a positive profit, the firm will distribute the profit to the households.
+
+There are representative households with unit mass supplying labour and making consumption. The household utility is given by
+\begin{align}\label{eq:hh_utility}
+    U(C_t, N_t) = \log C_t - \chi \frac{N_t^{1+\varphi}}{1+\varphi},
+\end{align}
+where $C_t$ is a CES aggregator of consumption goods $C_t = \left( \sum_{i=1}^N c_{i,t}^{\frac{\theta-1}{\theta}} \right)^{\frac{\theta}{\theta-1}}$, and $N_t = \sum_{i=1}^N n_{i,t}$ is the total labour supply.
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
