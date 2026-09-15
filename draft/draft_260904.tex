@@ -96,19 +96,63 @@ Harlly Zhou\footnotemark[1]\\\texttt{hzhouci@ust.hk}
 
 
 \section{Benchmark Model}\label{sec:benchmark_model}
-Consider a closed-economy with $N$ industreis, indexed by $i= 1, \cdots, N$. Each industry has a representative firm that produces a differentiated good $y_{i,t}$ using capital $k_{i,t}$, labor $n_{i,t}$ and intermediate inputs from industry $j$, $\{x_{ij,t}\}_{j=1}^N$. The production function is given by 
+Consider a closed-economy with $N$ industries, indexed by $i= 1, \cdots, N$. Each industry has a representative firm that produces a differentiated good $y_{i,t}$ using capital $k_{i,t}$, labor $n_{i,t}$ and intermediate inputs from industry $j$, $\{x_{ij,t}\}_{j=1}^N$. The production function is given by 
 \begin{align}\label{eq:prod_func}
-    y_{i,t} = z_{i,t} \zeta_{i,t} k_{i,t}^{a^k_i} n_{i,t}^{a^n_i} \left(\prod_{j=1}^N x_{i,j,t}^{\alpha_{ij}}\right)^{1-a^k_i-a^n_i}
+    y_{i,t} = z_{i,t} \zeta_{i,t} \left(k_{i,t}^{\eta_i} n_{i,t}^{1-\eta_i}\right)^{a_i} \left(\prod_{j=1}^N x_{i,j,t}^{\alpha_{ij}}\right)^{1-a_i}
 \end{align}
-where $z_i$ is the productivity of industry $i$, $\zeta_{i,t}$ is a normalizing factor, $n_{i,t}$ is the labor input, and $x_{i1,t}, \cdots, x_{iN,t}$ are the intermediate inputs from industry $1, \cdots, N$. 
+where $z_i$ is the productivity of industry $i$, $\zeta_{i,t}$ is a normalizing factor. Assume that $\sum_{j=1}^{N} \alpha_{ij} = 1$. 
 
-At the beginning of each period $t$, the productivity has not realized yet. The firm needs to decide the nominal price $p_{i,t}$ as well as borrowing $b_{i,t}$ from the households. The borrowing is used to finance the labour cost and intermediate input costs. After the productivity realizes, the firm decides the input demands $n_{i,t}$ and $x_{i1,t}, \cdots, x_{iN,t}$ to produce the output $y_{i,t}$. After the sales are realized, the firm will earn a revenue of $p_{i,t} y_{i,t}$ subject to a propotional tax $\tau_{i,t}$ on the revenue. The firm needs to repay the borrowing $b_{i,t}$ with interest rate $i_t$. If the revenue is not sufficient to repay the borrowing, the firm will pay all the revenue to the households and quit. In the next period, a new firm will enter the industry. If there is a positive profit, the firm will distribute the profit to the households.
+Capital evolves according to $k_{i,t+1} = \xi_t[(1-\delta)k_{i,t} + i_{i,t}]$, where $\delta$ is the depreciation rate, $i_t$ is investment, and $\xi_t$ is remaining proportion of renewed capital after potential liquidation. For the benchmark, we assume that there is no adjustment cost for investment.
 
-There are representative households with unit mass supplying labour and making consumption. The household utility is given by
+The stochastic productivity process is
+\begin{align}\label{eq:firm_productivity}
+    \log z_{i,t}
+    =
+    \bar z_i
+    +
+    \sigma_{i,t}\epsilon_{i,t}.
+\end{align}
+Here $\bar z_i$ is sector-specific average log productivity, $\sigma_{i,t}$ is the innovation variance, and $\epsilon_{i,t}$ is the uncertainty shock. Let
+\begin{align*}
+    \boldsymbol\epsilon_t
+    =
+    (\epsilon_{1,t},\ldots,\epsilon_{N,t})',
+    \qquad
+    \boldsymbol\epsilon_t
+    \sim
+    \mathcal N(\mathbf 0,\Sigma_{\epsilon,t}).
+\end{align*}
+For each $i$, $\epsilon_{i,t}$ has mean zero and unit variance. It realizes together with the productivity $z_{i,t}$.
+
+Suppose that the innovation variance moves over time according to a two-state Markov chain with values $\sigma^H > \sigma ^L$. The transition matrix is
+\begin{align*}
+    \mathbf{Q} = \begin{pmatrix}
+        q^H & 1-q^H \\
+        1-q^L & q^L
+    \end{pmatrix},
+\end{align*}
+so that the probability of staying in the high state is $q^H$ and the probability of staying in the low state is $q^L$.
+
+At the beginning of each period $t$, the innovation variance realizes while the uncertainty shock and thus productivity  have not realized yet. The firm needs to decide the nominal price $p_{i,t}$ as well as borrowing $b_{i,t}$ from the households. The borrowing is used to finance the labour cost, investment cost, and intermediate input costs. After the productivity realizes, the firm decides the input demands $n_{i,t}$ and $x_{i1,t}, \cdots, x_{iN,t}$ to produce the output $y_{i,t}$. After the sales are realized, the firm will earn a revenue of $p_{i,t} y_{i,t}$ subject to a propotional tax $\tau_{i,t}$ on the revenue. 
+
+The firm needs to repay the borrowing $b_{i,t}$ with interest rate $r_t + s_{i,t}$, where $r_t$ is the nominal interest rate and $s_{i,t}$ is the credit spread sector-specifically set by the creditors to compensate for the default risk. If the revenue is not sufficient to repay the borrowing, the firm needs to liquidate some of the renewed capital $(1-\delta)k_{i,t} + i_{i,t}$ to a maximum of proportion $\bar\xi \in (0,1)$. This limit is an abstract from the reality to avoid the complicated modelling of firm entry and bankruptcy. If there is a positive profit, the firm will distribute the profit to the households. 
+
+There are representative households with unit mass supplying labour and credit to firms and making consumption on goods $\{c_{i,t}\}_{i=1}^N$. The household utility is given by
 \begin{align}\label{eq:hh_utility}
     U(C_t, N_t) = \log C_t - \chi \frac{N_t^{1+\varphi}}{1+\varphi},
 \end{align}
-where $C_t$ is a CES aggregator of consumption goods $C_t = \left( \sum_{i=1}^N c_{i,t}^{\frac{\theta-1}{\theta}} \right)^{\frac{\theta}{\theta-1}}$, and $N_t = \sum_{i=1}^N n_{i,t}$ is the total labour supply.
+where $C_t$ is a CES aggregator of consumption goods $C_t = \left( \sum_{i=1}^N c_{i,t}^{\frac{\theta-1}{\theta}} \right)^{\frac{\theta}{\theta-1}}$, and $N_t = \sum_{i=1}^N n_{i,t}$ is the total labour supply. The household budget constraint is given by
+\begin{align}\label{eq:hh_budget_constraint}
+     w_t N_t + m_t + \sum_{i=1}^N (1 + r_t + \tilde{s}_{i,t}) \ell_{i,t}  + D_t + T_t \geq \sum_{i=1}^N p_{i,t} c_{i,t} + \sum_{i=1}^N \ell_{i, t+1} + m_{t+1}
+\end{align}
+where $w_t$ is the nominal wage, $m_t$ is the nominal money holdings, $\tilde{s}_{i,t}$ is the realized premia on borrowing depending on the default condition of firm $i$, $D_t$ is the total nominal profit from firms, $T_t$ is a lump-sum transfer from the government, and $P_t C_t := \sum_{i=1}^N p_{i,t} c_{i,t}$ is the total nominal consumption expenditure. Households are also subject to the cash-in-advance (CIA) constraint as in \cite{laoOptimalMonetaryPolicy2022}:
+\begin{align}\label{eq:hh_cia_constraint}
+    m_t \geq P_t C_t.
+\end{align}
+
+There is a government that can make fiscal policy and monetary policy. On the fiscal side, the government collects taxes (or subsidies) from firms and rebates the revenue to households as a lump-sum transfer 
+\[ T_t = \sum_{i=1}^N \tau_{i,t} p_{i,t} y_{i,t}.\]
+On the monetary side, the government acts as a monetary authority who can directly set the money supply $m_t$.
 
 
 
@@ -118,6 +162,47 @@ where $C_t$ is a CES aggregator of consumption goods $C_t = \left( \sum_{i=1}^N 
 
 
 
+\clearpage
+\bibliographystyle{aer}
+\bibliography{network_uncertainty}
 
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Publication Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+\begin{appendix}
+% Formatting options
+\addcontentsline{toc}{section}{Appendices}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\Roman{subsection}}
+\renewcommand{\theequation}{\thesection\arabic{equation}}
+\numberwithin{equation}{section}
+% \setcounter{page}{1}
+\setcounter{figure}{0} \renewcommand{\thefigure}{\Roman{section}.\arabic{figure}}
+\setcounter{table}{0} \renewcommand{\thetable}{\Roman{section}.\arabic{table}}
+\setcounter{subsection}{0} \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}}
+\setcounter{equation}{0} \renewcommand{\theequation}{\Roman{section}.\arabic{equation}}
+\setcounter{theorem}{0} \renewcommand{\thetheorem}{\Roman{section}.\arabic{theorem}}
+\setcounter{definition}{0} \renewcommand{\thedefinition}{\Roman{section}.\arabic{definition}}
+% \setcounter{proposition}{0} \renewcommand{\theproposition}{\Roman{section}.\arabic{proposition}}
+\setcounter{assumption}{0} \renewcommand{\theassumption}{\Roman{section}.\arabic{assumption}}
+% \setcounter{hyp}{0} \renewcommand{\thehyp}{\Roman{section}.\arabic{hyp}}
+\setcounter{footnote}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{appendix}
 
 \end{document}
