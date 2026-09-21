@@ -13,5 +13,5 @@ $bibtex = 'openout_any=a bibtex %O %S';
 
 $pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
 
-# latexmk moves synctex next to the PDF; put it back with the aux files.
-$success_cmd = 'mkdir -p .latex; if [ -f %R.synctex.gz ]; then mv -f %R.synctex.gz .latex/; fi';
+# Leave foo.synctex.gz next to foo.pdf. Inverse search (Cmd-click in the
+# PDF) looks for it there. The file explorer still hides it via files.exclude.
