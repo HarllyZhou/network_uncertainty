@@ -242,7 +242,7 @@ where the normalization factor is set as
 For the first-stage problem, the firm's FOCs are
 \begin{align*}
     [b^f_{i,t}]: \quad &\mathbb{E}_{i,t}\left[\lambda^{f}_{i,t} - (1+r_{i,t})\mathbbm{1}_{\Xi^1_{i,t}} - \mathcal{M}_{t,t+1} \frac{1+r_{i,t}}{p_{K,t}} J'(\tilde{k}_{i,t+1})\mathbbm{1}_{\Xi^2_{i,t}} \right] = 0, \\
-    [i_{i,t}]: \quad &\mathbb{E}_{i,t}\left[\lambda^{f}_{i,t}p_{K,t} - \mathcal{M}_{t,t+1} J'(\tilde{k}_{i, t+1})\left(\mathbbm{1}_{\Xi^1_{i,t} \cup \Xi^2_{i,t}} + \eta_i a_i(1-\tau_{i,t})p_{i,t}\frac{y_{i,t}/k_{i,t}}{p_{K,t}}\mathbbm{1}_{\Xi^2_{i,t}}\right)\right] = 0,
+    [i_{i,t}]: \quad &\mathbb{E}_{i,t}\left[\lambda^{f}_{i,t}p_{K,t} - \mathcal{M}_{t,t+1} J'(\tilde{k}_{i, t+1})\left(\mathbbm{1}_{\Xi^1_{i,t} \cup \Xi^2_{i,t}} + \eta_i a_i(1-\tau_{i,t+1})p_{i,t+1}\frac{y_{i,t+1}/k_{i,t+1}}{p_{K,t+1}}\mathbbm{1}_{\Xi^2_{i,t}}\right)\right] = 0,
 \end{align*}
 where $\mathbbm{1}$ denotes the indicator function of the sets $\Xi^1_{i,t}, \Xi^2_{i,t}, \Xi^3_{i,t}$. 
 
@@ -294,11 +294,11 @@ and $\pi^{12}_{i,t}:=\pi^1_{i,t}+\pi^2_{i,t}$. Define the conditional expectatio
         \mathcal M_{t,t+1}
         J'(\tilde{k}_{i,t+1})
     \right]\notag \\
-    &\qquad \qquad \quad -
+    &\qquad \qquad -
     \pi^{2}_{i,t}
     \mathbb{E}^2_{i,t} \left[
         \mathcal{M}_{t,t+1}J'(\tilde{k}_{i,t+1})
-        \frac{\partial [(1-\tau_{i,t})p_{i,t} y_{i,t}]/\partial k_{i,t}
+        \frac{\partial [(1-\tau_{i,t+1})p_{i,t+1} y_{i,t+1}]/\partial k_{i,t+1}
         }{
             p_{K,t}
         }
